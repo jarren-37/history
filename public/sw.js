@@ -1,10 +1,32 @@
-/* Project Chronicle service worker — offline-first, cache-then-network. */
-const CACHE = "chronicle-v1";
-const CORE = ["/", "/timeline", "/characters", "/map", "/exam", "/search", "/manifest.webmanifest", "/icons/icon.svg"];
+/* Project Chronicle service worker — offline-first PWA.
+ *
+ * Strategy:
+ *  - Precache the app shell (core routes, offline fallback, icons, manifest).
+ *  - Navigations: network-first, falling back to cache, then the offline page.
+ *  - Static assets (Next.js chunks, fonts, images): cache-first with runtime
+ *    caching, so once a page is visited it works fully offline.
+ */
+const VERSION = "chronicle-v2";
+const CORE = [
+  "/",
+  "/timeline",
+  "/characters",
+  "/map",
+  "/exam",
+  "/search",
+  "/offline.html",
+  "/manifest.webmanifest",
+  "/icons/icon.svg",
+  "/icons/icon-192.png",
+  "/icons/icon-512.png",
+];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE).then((cache) => cache.addAll(CORE)).catch(() => {})
+    caches
+      .open(VERSION)
+      .then((cache) => cache.addAll(CORE))
+      .catch(() => {})
   );
   self.skipWaiting();
 });
@@ -14,40 +36,68 @@ self.addEventListener("activate", (event) => {
     caches
       .keys()
       .then((keys) =>
-        Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))
+        Promise.all(keys.filter((k) => k !== VERSION).map((k) => caches.delete(k)))
       )
+      .then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
+
+function isStaticAsset(url) {
+  return (
+    url.pathname.startsWith("/_next/static/") ||
+    url.pathname.startsWith("/icons/") ||
+    /\.(?:js|css|woff2?|ttf|otf|png|jpg|jpeg|svg|webp|ico)$/.test(url.pathname)
+  );
+}
 
 self.addEventListener("fetch", (event) => {
   const { request } = event;
-  if (request.method !== "GET" || !request.url.startsWith("http")) return;
+  if (request.method !== "GET") return;
+  const url = new URL(request.url);
+  if (url.origin !== self.location.origin) return;
 
-  // Network-first for navigations so content stays fresh; fall back to cache.
+  // App navigations: network-first, then cache, then offline page.
   if (request.mode === "navigate") {
     event.respondWith(
       fetch(request)
         .then((res) => {
           const copy = res.clone();
-          caches.open(CACHE).then((c) => c.put(request, copy)).catch(() => {});
+          caches.open(VERSION).then((c) => c.put(request, copy)).catch(() => {});
           return res;
         })
-        .catch(() => caches.match(request).then((r) => r || caches.match("/")))
+        .catch(() =>
+          caches
+            .match(request)
+            .then((r) => r || caches.match("/offline.html"))
+        )
     );
     return;
   }
 
-  // Cache-first for static assets.
+  // Static assets: cache-first with runtime population.
+  if (isStaticAsset(url)) {
+    event.respondWith(
+      caches.match(request).then(
+        (cached) =>
+          cached ||
+          fetch(request).then((res) => {
+            const copy = res.clone();
+            caches.open(VERSION).then((c) => c.put(request, copy)).catch(() => {});
+            return res;
+          })
+      )
+    );
+    return;
+  }
+
+  // Everything else same-origin: try network, fall back to cache.
   event.respondWith(
-    caches.match(request).then(
-      (cached) =>
-        cached ||
-        fetch(request).then((res) => {
-          const copy = res.clone();
-          caches.open(CACHE).then((c) => c.put(request, copy)).catch(() => {});
-          return res;
-        })
-    )
+    fetch(request)
+      .then((res) => {
+        const copy = res.clone();
+        caches.open(VERSION).then((c) => c.put(request, copy)).catch(() => {});
+        return res;
+      })
+      .catch(() => caches.match(request))
   );
 });

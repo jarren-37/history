@@ -72,8 +72,53 @@ Production:
 
 ```bash
 npm run build
-npm run start
+npm run start    # http://localhost:3000  (respects $PORT)
 ```
+
+## 📲 Installable PWA (offline-first)
+
+Project Chronicle is a full Progressive Web App — students can **install it to
+the home screen** and read entirely **offline** (perfect for revising on the
+train).
+
+- **Web manifest** (`public/manifest.webmanifest`) — standalone display, dark
+  candlelit theme colours, app shortcuts (Timeline, Cast, Exams) and a full
+  icon set.
+- **Icons** — maskable + "any" PNGs at 192/512, a 180px apple-touch-icon and a
+  favicon, all rendered from the leather-book vector in `public/icons/`.
+- **Service worker** (`public/sw.js`) — precaches the app shell and every core
+  route, serves navigations network-first (falling back to cache, then a styled
+  `offline.html`), and runtime-caches Next's static assets so any visited
+  chapter works with no connection. Registered automatically in production only
+  (`components/ServiceWorker.tsx`).
+
+Install: open the production build in Chrome/Edge/Safari → **Install app** /
+**Add to Home Screen**.
+
+## ☁️ Deployment
+
+The app is a standard Next.js 14 project and deploys anywhere.
+
+**Vercel / Netlify (zero-config):** import the repo — the framework is detected
+automatically. No environment variables are required (the AI tutor falls back to
+bundled syllabus content; set `OPENAI_API_KEY` later to enable a live model in
+`app/api/tutor/route.ts`).
+
+**Any Node host:** `npm run build && npm run start` (honours `$PORT`).
+
+**Docker (self-contained, ~no extra config):**
+
+```bash
+docker build -t project-chronicle .
+docker run -p 3000:3000 project-chronicle
+```
+
+The image builds with `BUILD_STANDALONE=1`, which emits Next's
+[standalone output](https://nextjs.org/docs/app/api-reference/next-config-js/output)
+(`.next/standalone`) — a minimal server bundled with only the dependencies it
+needs — and copies `public/` and `.next/static` alongside it. The final image
+runs `node server.js` as a non-root user. (Standalone is opt-in via the env var
+so the plain `npm start` flow keeps working locally.)
 
 ## 🗂️ Project structure
 

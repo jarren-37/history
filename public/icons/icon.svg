@@ -1,33 +1,47 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#d6455b"/>
-      <stop offset="0.5" stop-color="#8459b3"/>
-      <stop offset="1" stop-color="#2f6fb0"/>
+    <linearGradient id="leather" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5a3a1d"/>
+      <stop offset="0.5" stop-color="#402813"/>
+      <stop offset="1" stop-color="#2a1a0b"/>
     </linearGradient>
-    <linearGradient id="pg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#ffffff"/>
-      <stop offset="1" stop-color="#f3ece0"/>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6e3a0"/>
+      <stop offset="0.45" stop-color="#e6c15a"/>
+      <stop offset="0.7" stop-color="#b8892b"/>
+      <stop offset="1" stop-color="#8a5f1a"/>
+    </linearGradient>
+    <linearGradient id="page" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbf1d6"/>
+      <stop offset="1" stop-color="#e7d3a4"/>
     </linearGradient>
   </defs>
-  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
-  <g transform="translate(96 120)">
-    <!-- book -->
-    <path d="M20 40 Q80 10 160 30 L160 250 Q80 232 20 258 Z" fill="url(#pg)"/>
-    <path d="M300 40 Q240 10 160 30 L160 250 Q240 232 300 258 Z" fill="url(#pg)"/>
-    <path d="M160 30 L160 250" stroke="#d6b98a" stroke-width="4"/>
-    <!-- lines -->
-    <g stroke="#c0392b" stroke-width="8" stroke-linecap="round" opacity="0.7">
-      <line x1="48" y1="80" x2="132" y2="92"/>
-      <line x1="48" y1="120" x2="132" y2="132"/>
-      <line x1="48" y1="160" x2="120" y2="170"/>
+
+  <rect width="512" height="512" rx="112" fill="url(#leather)"/>
+  <!-- gilt frame -->
+  <rect x="40" y="40" width="432" height="432" rx="80" fill="none" stroke="url(#gold)" stroke-width="7" opacity="0.85"/>
+  <rect x="62" y="62" width="388" height="388" rx="64" fill="none" stroke="url(#gold)" stroke-width="3" opacity="0.45"/>
+
+  <!-- open book emblem -->
+  <g transform="translate(256 264)">
+    <!-- pages -->
+    <path d="M0 -74 C -44 -100 -104 -92 -140 -74 L -140 96 C -104 78 -44 70 0 96 Z" fill="url(#page)" stroke="#8a5f1a" stroke-width="4"/>
+    <path d="M0 -74 C 44 -100 104 -92 140 -74 L 140 96 C 104 78 44 70 0 96 Z" fill="url(#page)" stroke="#8a5f1a" stroke-width="4"/>
+    <!-- spine -->
+    <path d="M0 -74 L0 96" stroke="#b8892b" stroke-width="5"/>
+    <!-- ruled lines -->
+    <g stroke="#c0392b" stroke-width="7" stroke-linecap="round" opacity="0.65">
+      <path d="M-116 -46 C -80 -58 -40 -56 -18 -44"/>
+      <path d="M-116 -14 C -80 -26 -40 -24 -18 -12"/>
+      <path d="M-116 18 C -84 8 -48 10 -22 20"/>
     </g>
-    <g stroke="#2f6fb0" stroke-width="8" stroke-linecap="round" opacity="0.7">
-      <line x1="188" y1="92" x2="272" y2="80"/>
-      <line x1="188" y1="132" x2="272" y2="120"/>
-      <line x1="188" y1="170" x2="252" y2="160"/>
+    <g stroke="#2f6fb0" stroke-width="7" stroke-linecap="round" opacity="0.65">
+      <path d="M18 -44 C 40 -56 80 -58 116 -46"/>
+      <path d="M18 -12 C 40 -24 80 -26 116 -14"/>
+      <path d="M22 20 C 48 10 84 8 116 18"/>
     </g>
-    <!-- sparkle -->
-    <circle cx="160" cy="14" r="10" fill="#ffffff"/>
+    <!-- gilt star above -->
+    <path d="M0 -118 L8 -96 L0 -102 L-8 -96 Z" fill="url(#gold)"/>
+    <circle cx="0" cy="-118" r="6" fill="url(#gold)"/>
   </g>
 </svg>
