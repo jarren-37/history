@@ -20,15 +20,15 @@ export default function CharactersPage() {
           <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)] px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-[var(--c-primary)]">
             🎭 The cast of history
           </span>
-          <h1 className="mt-4 font-display text-4xl font-black sm:text-5xl">
+          <h1 className="mt-4 gold-text font-display text-4xl font-black sm:text-5xl">
             Meet the people
           </h1>
-          <p className="mx-auto mt-3 max-w-xl text-[var(--text-soft)]">
+          <p className="mx-auto mt-3 max-w-xl font-serif text-[#e4cfa2]">
             Remember history as characters, not names. Explore how their goals
             and choices connected — and clashed.
           </p>
           {hydrated && (
-            <p className="mt-3 text-sm font-bold text-[var(--c-primary)]">
+            <p className="mt-3 font-hand text-lg text-[#e0c07a]">
               You've met {met.length} of {CHARACTERS.length} figures so far.
             </p>
           )}
@@ -38,10 +38,10 @@ export default function CharactersPage() {
       {/* Relationship graph */}
       <section className="mx-auto mt-10 max-w-3xl px-4">
         <Reveal>
-          <h2 className="mb-3 text-center font-display text-2xl font-black">
+          <h2 className="mb-3 text-center font-display text-2xl font-black text-[#ecd6a4]">
             How they were connected
           </h2>
-          <p className="mx-auto mb-5 max-w-md text-center text-sm text-[var(--text-soft)]">
+          <p className="mx-auto mb-5 max-w-md text-center font-serif text-sm italic text-[#cdb488]">
             Tap or hover a figure to light up their relationships.
           </p>
           <CharacterGraph />

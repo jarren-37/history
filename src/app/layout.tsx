@@ -1,11 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Nunito } from "next/font/google";
+import { Fraunces, EB_Garamond, Caveat } from "next/font/google";
 import "./globals.css";
 import { AppProvider } from "@/lib/store";
 import { NavBar } from "@/components/NavBar";
 import { ServiceWorker } from "@/components/ServiceWorker";
+import { Ambience } from "@/components/Ambience";
 
-// Editorial display serif for headings — soft, characterful, storybook.
+// Decorative display serif for illuminated chapter titles.
 const display = Fraunces({
   subsets: ["latin"],
   axes: ["opsz", "SOFT"],
@@ -13,11 +14,20 @@ const display = Fraunces({
   display: "swap",
 });
 
-// Warm, rounded, highly readable body sans.
-const sans = Nunito({
+// Classic printed-book body serif.
+const serif = EB_Garamond({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  variable: "--font-sans",
+  weight: ["400", "500", "600", "700", "800"],
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+  display: "swap",
+});
+
+// Handwritten quill for margin notes and annotations.
+const hand = Caveat({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-hand",
   display: "swap",
 });
 
@@ -54,7 +64,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${display.variable} ${sans.variable}`}
+      className={`${display.variable} ${serif.variable} ${hand.variable}`}
     >
       <head>
         {/* Prevent theme flash: apply stored theme before paint. */}
@@ -68,6 +78,7 @@ export default function RootLayout({
         <AppProvider>
           <NavBar />
           <main className="min-h-screen">{children}</main>
+          <Ambience />
           <ServiceWorker />
         </AppProvider>
       </body>

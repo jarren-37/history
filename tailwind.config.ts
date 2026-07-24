@@ -10,9 +10,10 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        display: ["var(--font-display)", "ui-rounded", "system-ui", "sans-serif"],
-        sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
-        serif: ["Georgia", "Cambria", "serif"],
+        display: ["var(--font-display)", "Georgia", "serif"],
+        sans: ["var(--font-serif)", "Georgia", "Cambria", "serif"],
+        serif: ["var(--font-serif)", "Georgia", "Cambria", "serif"],
+        hand: ["var(--font-hand)", "Segoe Script", "cursive"],
       },
       colors: {
         ink: {

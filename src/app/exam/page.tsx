@@ -49,10 +49,10 @@ function ExamContent() {
           <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)] px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-[var(--c-primary)]">
             🎯 Exam mode · 2261
           </span>
-          <h1 className="mt-4 font-display text-4xl font-black sm:text-5xl">
+          <h1 className="mt-4 gold-text font-display text-4xl font-black sm:text-5xl">
             Prove you understand it
           </h1>
-          <p className="mx-auto mt-3 max-w-xl text-[var(--text-soft)]">
+          <p className="mx-auto mt-3 max-w-xl font-serif text-[#e4cfa2]">
             Real O-Level style questions — SBQ source skills and SEQ essays —
             each with a marking guide and a model answer.
           </p>
@@ -92,7 +92,7 @@ function ExamContent() {
           <div key={q.id}>
             {filter === "all" && (i === 0 || questions[i - 1].chapter.slug !== chapter.slug) && (
               <Reveal>
-                <p className="mb-2 mt-6 font-display text-sm font-black uppercase tracking-wide text-[var(--text-faint)]">
+                <p className="mb-2 mt-6 font-display text-sm font-black uppercase tracking-wide text-[#d8b978]">
                   {getPalette(chapter.palette).motif} {chapter.title}
                 </p>
               </Reveal>

@@ -34,10 +34,10 @@ export default function SearchPage() {
           <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)] px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-[var(--c-primary)]">
             🔍 Ask anything
           </span>
-          <h1 className="mt-4 font-display text-4xl font-black sm:text-5xl">
+          <h1 className="mt-4 gold-text font-display text-4xl font-black sm:text-5xl">
             Search the story
           </h1>
-          <p className="mx-auto mt-3 max-w-lg text-[var(--text-soft)]">
+          <p className="mx-auto mt-3 max-w-lg font-serif text-[#e4cfa2]">
             Ask in plain English. Every answer stays inside the 2261 syllabus.
           </p>
 
@@ -69,7 +69,7 @@ export default function SearchPage() {
       <div className="mx-auto mt-8 max-w-2xl px-4">
         {!submitted ? (
           <Reveal>
-            <p className="mb-3 text-center text-sm font-bold uppercase tracking-wide text-[var(--text-faint)]">
+            <p className="mb-3 text-center text-sm font-bold uppercase tracking-wide text-[#d8b978]">
               Try one of these
             </p>
             <div className="grid gap-2 sm:grid-cols-2">
@@ -92,7 +92,7 @@ export default function SearchPage() {
               animate={{ opacity: 1, y: 0 }}
               className="space-y-3"
             >
-              <p className="text-sm font-bold text-[var(--text-faint)]">
+              <p className="text-sm font-bold text-[#d8b978]">
                 {results.length} result{results.length === 1 ? "" : "s"} for “
                 {submitted}”
               </p>

@@ -76,6 +76,43 @@ export function Pill({
   );
 }
 
+/**
+ * A title written by an invisible quill: the ink sweeps in left-to-right while
+ * a nib glides along the writing edge. Used for cinematic chapter reveals.
+ */
+export function QuillTitle({
+  text,
+  className = "",
+  duration = 1.2,
+}: {
+  text: string;
+  className?: string;
+  duration?: number;
+}) {
+  return (
+    <div className="relative inline-block">
+      <motion.h1
+        className={className}
+        initial={{ clipPath: "inset(0 100% -10% 0)" }}
+        animate={{ clipPath: "inset(0 0% -10% 0)" }}
+        transition={{ duration, ease: [0.5, 0, 0.2, 1] }}
+      >
+        {text}
+      </motion.h1>
+      <motion.span
+        aria-hidden
+        className="pointer-events-none absolute top-0 text-2xl"
+        initial={{ left: "0%", opacity: 0 }}
+        animate={{ left: ["0%", "100%"], opacity: [0, 1, 1, 0] }}
+        transition={{ duration, ease: [0.5, 0, 0.2, 1] }}
+        style={{ transform: "translate(-40%, -20%) rotate(8deg)" }}
+      >
+        🖋️
+      </motion.span>
+    </div>
+  );
+}
+
 /** A gentle one-shot confetti burst for achievements. */
 export function Confetti({ count = 26 }: { count?: number }) {
   const colors = [

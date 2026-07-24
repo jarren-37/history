@@ -1,219 +1,203 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { CHAPTERS } from "@/content/chapters";
+import { getPalette } from "@/content/palettes";
 import { useApp } from "@/lib/store";
-import { ChapterCard } from "@/components/ChapterCard";
-import { Reveal } from "@/components/ui";
-import { HeroBook } from "@/components/HeroBook";
-
-// A vibrant "brand" palette for the home shell so the aurora, headline gradient
-// and buttons feel colourful and alive (chapter cards still theme themselves).
-const BRAND_VARS = {
-  ["--c-primary" as string]: "#8459b3",
-  ["--c-secondary" as string]: "#f6b6a6",
-  ["--c-deep" as string]: "#2f6fb0",
-  ["--c-surface" as string]: "#f4eefb",
-} as React.CSSProperties;
+import { BookCover } from "@/components/BookCover";
+import { InkDivider, CornerFlourish, WaxSeal, DustMotes } from "@/components/Ornaments";
 
 const MODES = [
-  { href: "/timeline", label: "Timeline", desc: "The whole story, in order", icon: "🕰️", c: "#d6455b" },
-  { href: "/characters", label: "Characters", desc: "Meet the people of history", icon: "🎭", c: "#e07b39" },
-  { href: "/map", label: "Map Mode", desc: "Watch the world change", icon: "🗺️", c: "#2f8f83" },
-  { href: "/exam", label: "Exam Mode", desc: "Practise O-Level questions", icon: "🎯", c: "#4257a8" },
+  { href: "/timeline", label: "The Timeline", icon: "🕰️" },
+  { href: "/characters", label: "The Cast", icon: "🎭" },
+  { href: "/map", label: "The Atlas", icon: "🗺️" },
+  { href: "/exam", label: "The Examinations", icon: "🪶" },
+  { href: "/search", label: "The Index", icon: "🔍" },
 ];
 
 export default function Home() {
   const { progress, hydrated } = useApp();
+  const [opened, setOpened] = useState(false);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("chronicle:opened") === "1") setOpened(true);
+    setReady(true);
+  }, []);
+
+  const openBook = () => {
+    setOpened(true);
+    sessionStorage.setItem("chronicle:opened", "1");
+  };
+
+  if (!ready) return <div className="min-h-screen" />;
+  if (!opened) return <BookCover onOpened={openBook} />;
 
   const completed = Object.values(progress).filter((p) => p.completed).length;
-  const overall = hydrated
-    ? Math.round((completed / CHAPTERS.length) * 100)
-    : 0;
-  const inProgress = CHAPTERS.find(
-    (c) => progress[c.slug] && !progress[c.slug].completed
-  );
+  const overall = hydrated ? Math.round((completed / CHAPTERS.length) * 100) : 0;
 
   const ww2 = CHAPTERS.filter((c) => c.section === "World War Two");
   const cold = CHAPTERS.filter((c) => c.section === "The Cold War");
 
   return (
-    <div className="pb-24">
-      {/* Hero */}
-      <section
-        style={BRAND_VARS}
-        className="relative overflow-hidden px-4 pt-8 sm:pt-12"
+    <div className="relative mx-auto max-w-5xl px-3 py-8 sm:px-4">
+      <DustMotes count={14} />
+      <motion.div
+        initial={{ opacity: 0, rotateX: 18, y: 30 }}
+        animate={{ opacity: 1, rotateX: 0, y: 0 }}
+        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        className="page page-frame relative overflow-hidden rounded-[18px] px-5 py-10 sm:px-12 sm:py-12"
+        style={{ transformPerspective: 1400 }}
       >
-        <div className="aurora" />
-        <div className="relative mx-auto max-w-5xl">
-          <div className="grid items-center gap-8 lg:grid-cols-[1.1fr,0.9fr]">
-            <div>
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)] px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-[var(--c-primary)] shadow-soft"
-              >
-                📖 Singapore O-Level Combined History · 2261
-              </motion.div>
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.05 }}
-                className="mt-5 font-display text-5xl font-black leading-[1.05] sm:text-6xl"
-              >
-                History isn't dates.
-                <br />
-                <span className="gradient-text">It's one big story.</span>
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.12 }}
-                className="mt-5 max-w-lg text-lg text-[var(--text-soft)]"
-              >
-                An animated storybook that turns the whole syllabus into an
-                illustrated novel — where every event flows into the next, and
-                understanding leads to remembering.
-              </motion.p>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.18 }}
-                className="mt-7 flex flex-wrap gap-3"
-              >
-                <Link
-                  href={
-                    inProgress
-                      ? `/chapters/${inProgress.slug}`
-                      : `/chapters/${CHAPTERS[0].slug}`
-                  }
-                  className="rounded-2xl bg-gradient-to-r from-[var(--c-primary)] to-[var(--c-deep)] px-6 py-3.5 font-display font-bold text-white shadow-soft transition-transform hover:scale-[1.03] active:scale-95"
-                >
-                  {inProgress ? "Continue reading →" : "Begin the story →"}
-                </Link>
-                <Link
-                  href="/timeline"
-                  className="rounded-2xl border border-[var(--border)] bg-[var(--card)] px-6 py-3.5 font-display font-bold transition-colors hover:bg-[var(--c-surface)]"
-                >
-                  Explore the timeline
-                </Link>
-              </motion.div>
-            </div>
+        <CornerFlourish className="absolute left-3 top-3 h-12 w-12" />
+        <CornerFlourish className="absolute right-3 top-3 h-12 w-12 -scale-x-100" />
+        <CornerFlourish className="absolute bottom-3 left-3 h-12 w-12 -scale-y-100" />
+        <CornerFlourish className="absolute bottom-3 right-3 h-12 w-12 -scale-100" />
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.1, type: "spring", stiffness: 120, damping: 18 }}
-              className="mx-auto w-full max-w-sm lg:max-w-none"
-            >
-              <HeroBook />
-            </motion.div>
+        {/* Header */}
+        <header className="relative z-10 text-center">
+          <p className="font-hand text-2xl text-[var(--ink-faint)]">Project Chronicle</p>
+          <h1 className="mt-1 font-display text-4xl font-black text-[var(--ink)] sm:text-6xl">
+            Table of Contents
+          </h1>
+          <InkDivider className="mx-auto mt-4 h-5 w-64" />
+          <p className="mx-auto mt-3 max-w-md font-serif text-lg italic text-[var(--ink-soft)]">
+            “History is not a list of dates — it is one long, unfolding story.
+            Turn the page, and begin.”
+          </p>
+        </header>
+
+        {/* Progress ex-libris */}
+        {hydrated && (
+          <div className="relative z-10 mt-6 flex items-center justify-center gap-4">
+            <WaxSeal size={64} label={`${overall}%`} />
+            <p className="font-serif text-[var(--ink-soft)]">
+              {completed === 0
+                ? "Your journey has not yet begun."
+                : `${completed} of ${CHAPTERS.length} chapters read.`}
+            </p>
           </div>
+        )}
 
-          {/* Progress strip */}
-          {hydrated && (
-            <Reveal className="mt-10">
-              <div className="card flex flex-wrap items-center gap-4 rounded-3xl p-5">
-                <div className="grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-[var(--c-primary)] to-[var(--c-deep)] font-display text-xl font-black text-white">
-                  {overall}%
-                </div>
-                <div className="flex-1">
-                  <p className="font-display font-bold">Your journey</p>
-                  <p className="text-sm text-[var(--text-soft)]">
-                    {completed} of {CHAPTERS.length} chapters completed.
-                    {inProgress && ` Currently reading “${inProgress.title}”.`}
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-          )}
+        {/* Two parts, like facing pages */}
+        <div className="relative z-10 mt-10 grid gap-x-12 gap-y-10 md:grid-cols-2">
+          <ContentsPart
+            roman="I"
+            title="The Coming of War"
+            subtitle="World War Two"
+            chapters={ww2}
+            progress={progress}
+            hydrated={hydrated}
+          />
+          <ContentsPart
+            roman="II"
+            title="The Long Cold Peace"
+            subtitle="The Cold War"
+            chapters={cold}
+            progress={progress}
+            hydrated={hydrated}
+          />
         </div>
-      </section>
 
-      {/* Modes */}
-      <section className="mx-auto mt-14 max-w-5xl px-4">
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {MODES.map((m, i) => (
-            <Reveal key={m.href} delay={i * 0.05}>
+        <InkDivider className="mx-auto mt-12 h-5 w-72" />
+
+        {/* The reading room */}
+        <div className="relative z-10 mt-6 text-center">
+          <p className="font-display text-sm font-bold uppercase tracking-[0.25em] text-[var(--ink-faint)]">
+            The Reading Room
+          </p>
+          <div className="mt-4 flex flex-wrap justify-center gap-2.5">
+            {MODES.map((m) => (
               <Link
+                key={m.href}
                 href={m.href}
-                className="card group flex h-full flex-col gap-2 rounded-3xl p-4 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-soft-lg"
+                className="lift flex items-center gap-2 rounded-full border border-[var(--parch-edge)] bg-[var(--parch-2)] px-4 py-2 font-display text-sm font-bold text-[var(--ink-soft)] transition-colors hover:text-[var(--wax)]"
               >
-                <span
-                  className="grid h-11 w-11 place-items-center rounded-2xl text-xl shadow-soft transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6"
-                  style={{ background: `${m.c}1f`, color: m.c }}
-                >
-                  {m.icon}
-                </span>
-                <span className="mt-1 font-display text-lg font-extrabold leading-tight transition-colors group-hover:text-[var(--c-primary)]">
-                  {m.label}
-                </span>
-                <span className="text-xs text-[var(--text-faint)]">{m.desc}</span>
+                <span aria-hidden>{m.icon}</span>
+                {m.label}
               </Link>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* Chapters */}
-      <Section
-        title="World War Two"
-        subtitle="How the world fell into war"
-        chapters={ww2}
-      />
-      <Section
-        title="The Cold War"
-        subtitle="A divided world, on the edge"
-        chapters={cold}
-      />
-
-      {/* Footer note */}
-      <div className="mx-auto mt-16 max-w-3xl px-4 text-center">
-        <Reveal>
-          <div className="card rounded-3xl p-6">
-            <p className="font-display text-lg font-bold">
-              Built for understanding, not memorising 🌱
-            </p>
-            <p className="mx-auto mt-2 max-w-xl text-sm text-[var(--text-soft)]">
-              Every chapter stays strictly inside the official Cambridge / SEAB
-              2261 syllabus. The goal is that you finish thinking
-              <em> “that makes complete sense” </em>— and remember it for the exam.
-            </p>
+            ))}
           </div>
-        </Reveal>
-      </div>
+        </div>
+      </motion.div>
     </div>
   );
 }
 
-function Section({
+function ContentsPart({
+  roman,
   title,
   subtitle,
   chapters,
+  progress,
+  hydrated,
 }: {
+  roman: string;
   title: string;
   subtitle: string;
   chapters: typeof CHAPTERS;
+  progress: Record<string, { completed: boolean; page: number; total: number }>;
+  hydrated: boolean;
 }) {
   return (
-    <section className="mx-auto mt-16 max-w-5xl px-4">
-      <Reveal>
-        <div className="mb-6 flex items-end justify-between">
-          <div>
-            <h2 className="font-display text-3xl font-black">{title}</h2>
-            <p className="text-[var(--text-soft)]">{subtitle}</p>
-          </div>
-          <span className="rounded-full bg-[var(--c-surface)] px-3 py-1 text-xs font-bold text-[var(--text-faint)]">
-            {chapters.length} chapters
-          </span>
-        </div>
-      </Reveal>
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {chapters.map((c, i) => (
-          <ChapterCard key={c.id} chapter={c} index={i} />
-        ))}
+    <section>
+      <div className="mb-4 text-center">
+        <p className="font-display text-sm font-bold uppercase tracking-[0.3em] text-[var(--gold)]">
+          Part the {roman}
+        </p>
+        <h2 className="font-display text-2xl font-black text-[var(--ink)]">{title}</h2>
+        <p className="font-hand text-lg text-[var(--ink-faint)]">{subtitle}</p>
       </div>
+      <ol className="space-y-1">
+        {chapters.map((c, i) => {
+          const p = getPalette(c.palette);
+          const prog = progress[c.slug];
+          const done = hydrated && prog?.completed;
+          const reading = hydrated && prog && !prog.completed;
+          return (
+            <motion.li
+              key={c.id}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 + i * 0.06 }}
+            >
+              <Link
+                href={`/chapters/${c.slug}`}
+                className="group flex items-center gap-3 border-b border-dotted border-[var(--parch-edge)] py-2.5"
+              >
+                <span
+                  className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-lg transition-transform group-hover:scale-110"
+                  style={{
+                    background: `radial-gradient(circle at 35% 30%, ${p.secondary}, ${p.primary})`,
+                    boxShadow: `0 0 0 2px var(--parch), 0 0 0 3px ${p.primary}55, 0 3px 8px rgba(0,0,0,0.25)`,
+                  }}
+                >
+                  {p.motif}
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block truncate font-display text-lg font-bold leading-tight text-[var(--ink)] transition-colors group-hover:text-[var(--wax)]">
+                    {c.title}
+                  </span>
+                  <span className="block truncate font-serif text-sm italic text-[var(--ink-faint)]">
+                    {c.era} · {c.subtitle}
+                  </span>
+                </span>
+                <span className="shrink-0 font-hand text-lg text-[var(--ink-faint)]">
+                  {done ? (
+                    <span className="text-[var(--wax)]">✦ read</span>
+                  ) : reading ? (
+                    "reading…"
+                  ) : (
+                    `no. ${c.number}`
+                  )}
+                </span>
+              </Link>
+            </motion.li>
+          );
+        })}
+      </ol>
     </section>
   );
 }

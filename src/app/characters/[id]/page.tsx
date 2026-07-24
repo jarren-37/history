@@ -50,7 +50,7 @@ export default function CharacterPage({
         <div className="relative mx-auto max-w-3xl">
           <Link
             href="/characters"
-            className="inline-flex items-center gap-2 text-sm font-bold text-[var(--text-soft)] hover:text-[var(--c-primary)]"
+            className="inline-flex items-center gap-2 font-hand text-lg text-[#d8b978] hover:text-[#f2d98a]"
           >
             ← All characters
           </Link>
@@ -61,13 +61,13 @@ export default function CharacterPage({
               className="shrink-0 drop-shadow-md"
             />
             <div>
-              <p className="font-display text-sm font-bold uppercase tracking-wide text-[var(--c-primary)]">
+              <p className="font-hand text-lg text-[#d8b978]">
                 {c.country} · {c.years}
               </p>
-              <h1 className="mt-1 font-display text-4xl font-black sm:text-5xl">
+              <h1 className="gold-text mt-1 font-display text-4xl font-black sm:text-5xl">
                 {c.name}
               </h1>
-              <p className="mt-2 text-lg font-semibold text-[var(--text-soft)]">
+              <p className="mt-2 font-serif text-lg italic text-[#e4cfa2]">
                 {c.role}
               </p>
             </div>

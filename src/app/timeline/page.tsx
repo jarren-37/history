@@ -30,10 +30,10 @@ export default function TimelinePage() {
           <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)] px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-[var(--c-primary)]">
             🕰️ Timeline mode
           </span>
-          <h1 className="mt-4 font-display text-4xl font-black sm:text-5xl">
+          <h1 className="mt-4 gold-text font-display text-4xl font-black sm:text-5xl">
             The whole story, in order
           </h1>
-          <p className="mx-auto mt-3 max-w-xl text-[var(--text-soft)]">
+          <p className="mx-auto mt-3 max-w-xl font-serif text-[#e4cfa2]">
             Scroll along the spine of history. Tap any moment to see what
             happened — and jump into its chapter.
           </p>
@@ -57,7 +57,7 @@ export default function TimelinePage() {
                 >
                   <span
                     className={`font-display text-sm font-black transition-colors ${
-                      isActive ? "text-[var(--c-primary)]" : "text-[var(--text-faint)]"
+                      isActive ? "text-[#f2c94c]" : "text-[#c9ad78]"
                     }`}
                   >
                     {e.year}
@@ -81,7 +81,7 @@ export default function TimelinePage() {
                   </motion.span>
                   <span
                     className={`mt-2 line-clamp-2 text-xs font-semibold transition-colors ${
-                      isActive ? "text-[var(--text)]" : "text-[var(--text-faint)]"
+                      isActive ? "text-[#f2e0b4]" : "text-[#b89a6a]"
                     }`}
                   >
                     {e.title}
@@ -135,7 +135,7 @@ export default function TimelinePage() {
       {/* Vertical fallback list for quick scanning */}
       <div className="mx-auto mt-14 max-w-3xl px-4">
         <Reveal>
-          <h3 className="mb-4 font-display text-xl font-black">
+          <h3 className="mb-4 font-display text-xl font-black text-[#ecd6a4]">
             Every moment at a glance
           </h3>
         </Reveal>

@@ -7,6 +7,7 @@ import type { Chapter } from "@/content/types";
 import { getPalette, paletteVars } from "@/content/palettes";
 import { TUTOR } from "@/content/tutor";
 import { useApp } from "@/lib/store";
+import { playPageTurn } from "@/lib/sound";
 import { SceneIllustration } from "./scenes/SceneIllustration";
 import { DialogueBubble } from "./DialogueBubble";
 import { StoryChoiceCard } from "./StoryChoiceCard";
@@ -14,7 +15,13 @@ import { MemoryBooster } from "./MemoryBooster";
 import { CauseEffect } from "./CauseEffect";
 import { ExamMemory } from "./ExamMemory";
 import { AITutor } from "./AITutor";
-import { HighlightedText, ProgressBar, Pill, Confetti } from "./ui";
+import { HighlightedText, ProgressBar, Confetti, QuillTitle } from "./ui";
+import {
+  DustMotes,
+  CornerFlourish,
+  InkDivider,
+  WaxSeal,
+} from "./Ornaments";
 
 type Step =
   | { kind: "page"; pageIndex: number }
@@ -24,7 +31,7 @@ type Step =
 
 export function StoryReader({ chapter }: { chapter: Chapter }) {
   const palette = getPalette(chapter.palette);
-  const { recordPage, completeChapter, meetCharacter } = useApp();
+  const { recordPage, completeChapter, meetCharacter, soundOn } = useApp();
   const tutor = TUTOR[chapter.slug];
 
   const steps = useMemo<Step[]>(() => {
@@ -45,7 +52,11 @@ export function StoryReader({ chapter }: { chapter: Chapter }) {
 
   const go = (d: number) => {
     setDir(d);
-    setIndex((i) => Math.max(0, Math.min(steps.length - 1, i + d)));
+    setIndex((i) => {
+      const next = Math.max(0, Math.min(steps.length - 1, i + d));
+      if (next !== i && soundOn) playPageTurn();
+      return next;
+    });
   };
 
   // Progress + character bookkeeping.
@@ -76,81 +87,87 @@ export function StoryReader({ chapter }: { chapter: Chapter }) {
       style={paletteVars(chapter.palette)}
       className="relative mx-auto max-w-5xl px-4 pb-28 pt-4"
     >
-      {/* Chapter header + progress */}
-      <div className="mb-4 flex items-center gap-3">
+      <DustMotes count={10} />
+
+      {/* Running header */}
+      <div className="relative z-10 mb-3 flex items-center gap-3">
         <Link
           href="/"
-          className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl border border-[var(--border)] text-lg transition-transform hover:scale-105"
-          aria-label="Back to library"
+          className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-[var(--parch-edge)] bg-[var(--parch-2)] text-lg text-[var(--ink-soft)] transition-transform hover:scale-105"
+          aria-label="Close the book"
         >
-          ←
+          ❮
         </Link>
         <div className="min-w-0 flex-1">
           <div className="flex items-center justify-between gap-2">
-            <p className="truncate font-display text-sm font-bold text-[var(--c-deep)]">
-              {palette.motif} {chapter.number} · {chapter.title}
+            <p className="truncate font-display text-sm font-bold text-[var(--ink-soft)]">
+              {palette.motif} Chapter {chapter.number} · {chapter.title}
             </p>
-            <p className="shrink-0 text-xs font-bold text-[var(--text-faint)]">
-              {index + 1}/{steps.length}
+            <p className="shrink-0 font-hand text-base text-[var(--ink-faint)]">
+              folio {index + 1} of {steps.length}
             </p>
           </div>
           <ProgressBar value={progress} className="mt-1.5" />
         </div>
       </div>
 
-      {/* Animated step — a gentle 3D page-turn between spreads */}
-      <div
-        className="relative min-h-[60vh]"
-        style={{ perspective: "2000px" }}
-      >
+      {/* The open parchment page — turns like paper */}
+      <div className="relative z-10" style={{ perspective: "2200px" }}>
         <AnimatePresence mode="wait" custom={dir}>
           <motion.div
             key={index}
             custom={dir}
-            initial={{ opacity: 0, x: dir * 48, rotateY: dir * 10 }}
+            initial={{ opacity: 0, x: dir * 60, rotateY: dir * 14 }}
             animate={{ opacity: 1, x: 0, rotateY: 0 }}
-            exit={{ opacity: 0, x: dir * -48, rotateY: dir * -10 }}
-            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            style={{ transformStyle: "preserve-3d" }}
+            exit={{ opacity: 0, x: dir * -60, rotateY: dir * -14 }}
+            transition={{ duration: 0.5, ease: [0.33, 0, 0.2, 1] }}
+            style={{ transformStyle: "preserve-3d", transformOrigin: dir >= 0 ? "left center" : "right center" }}
+            className="page page-frame relative min-h-[62vh] overflow-hidden rounded-[18px] px-5 py-8 sm:px-10 sm:py-10"
           >
+            <CornerFlourish className="absolute left-2.5 top-2.5 h-9 w-9" />
+            <CornerFlourish className="absolute right-2.5 top-2.5 h-9 w-9 -scale-x-100" />
+            <CornerFlourish className="absolute bottom-2.5 left-2.5 h-9 w-9 -scale-y-100" />
+            <CornerFlourish className="absolute bottom-2.5 right-2.5 h-9 w-9 -scale-100" />
+
             {step.kind === "page" && (
               <PageView chapter={chapter} pageIndex={step.pageIndex} />
             )}
             {step.kind === "booster" && (
-              <div className="mx-auto max-w-2xl pt-4">
+              <div className="relative z-10 mx-auto max-w-2xl">
                 <MemoryBooster
                   booster={chapter.boosters[step.boosterIndex].booster}
                 />
               </div>
             )}
             {step.kind === "bigpicture" && (
-              <div className="mx-auto max-w-2xl pt-2">
+              <div className="relative z-10 mx-auto max-w-2xl">
                 <div className="mb-6 text-center">
-                  <Pill>🖼️ The big picture</Pill>
-                  <h2 className="mt-3 font-display text-3xl font-extrabold">
+                  <p className="font-display text-xs font-bold uppercase tracking-[0.3em] text-[var(--gold)]">
+                    ✦ The Whole Story ✦
+                  </p>
+                  <h2 className="mt-2 font-display text-3xl font-black text-[var(--ink)]">
                     {chapter.bigPicture.title}
                   </h2>
+                  <InkDivider className="mx-auto mt-3 h-4 w-48" />
                 </div>
                 <CauseEffect chain={chapter.bigPicture} />
               </div>
             )}
-            {step.kind === "wrap" && tutor && (
-              <WrapUp chapter={chapter} />
-            )}
+            {step.kind === "wrap" && tutor && <WrapUp chapter={chapter} />}
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* Nav controls */}
-      <div className="mt-8 flex items-center justify-between gap-3">
+      {/* Page-turn controls */}
+      <div className="relative z-10 mt-6 flex items-center justify-between gap-3">
         <button
           onClick={() => go(-1)}
           disabled={index === 0}
-          className="rounded-2xl border border-[var(--border)] px-5 py-3 font-bold transition-colors disabled:opacity-30 enabled:hover:bg-[var(--c-surface)]"
+          className="rounded-xl border border-[var(--parch-edge)] bg-[var(--parch-2)] px-5 py-3 font-display font-bold text-[var(--ink-soft)] transition-transform disabled:opacity-30 enabled:hover:-translate-y-0.5"
         >
-          ← Back
+          ❮ turn back
         </button>
-        <div className="flex gap-1.5">
+        <div className="flex items-center gap-1.5">
           {steps.map((_, i) => (
             <button
               key={i}
@@ -158,11 +175,11 @@ export function StoryReader({ chapter }: { chapter: Chapter }) {
                 setDir(i > index ? 1 : -1);
                 setIndex(i);
               }}
-              aria-label={`Go to step ${i + 1}`}
-              className={`h-2 rounded-full transition-all ${
+              aria-label={`Go to folio ${i + 1}`}
+              className={`transition-all ${
                 i === index
-                  ? "w-6 bg-[var(--c-primary)]"
-                  : "w-2 bg-[var(--c-secondary)] opacity-50 hover:opacity-100"
+                  ? "h-2.5 w-2.5 rotate-45 bg-[var(--wax)]"
+                  : "h-1.5 w-1.5 rounded-full bg-[var(--parch-edge)] hover:bg-[var(--ink-faint)]"
               }`}
             />
           ))}
@@ -170,16 +187,18 @@ export function StoryReader({ chapter }: { chapter: Chapter }) {
         {index < steps.length - 1 ? (
           <button
             onClick={() => go(1)}
-            className="rounded-2xl bg-gradient-to-r from-[var(--c-primary)] to-[var(--c-deep)] px-5 py-3 font-bold text-white transition-transform hover:scale-[1.03] active:scale-95"
+            className="rounded-xl px-5 py-3 font-display font-bold text-[#f6e6c4] transition-transform hover:-translate-y-0.5 active:scale-95"
+            style={{ background: "linear-gradient(180deg,#a5433a,#6f2620)", boxShadow: "inset 0 1px 0 rgba(255,220,180,0.3), 0 4px 12px rgba(0,0,0,0.35)" }}
           >
-            Next →
+            turn the page ❯
           </button>
         ) : (
           <Link
             href="/"
-            className="rounded-2xl bg-gradient-to-r from-[var(--c-primary)] to-[var(--c-deep)] px-5 py-3 font-bold text-white transition-transform hover:scale-[1.03]"
+            className="rounded-xl px-5 py-3 font-display font-bold text-[#2a1a0a] transition-transform hover:-translate-y-0.5"
+            style={{ background: "linear-gradient(180deg,#e6c15a,#b8892b)", boxShadow: "inset 0 1px 0 rgba(255,240,190,0.6)" }}
           >
-            Finish ✓
+            close the book ✦
           </Link>
         )}
       </div>
@@ -198,51 +217,66 @@ function PageView({
   pageIndex: number;
 }) {
   const page = chapter.pages[pageIndex];
+  const motif = getPalette(chapter.palette).motif;
   return (
-    <div className="grid items-center gap-6 lg:grid-cols-2">
+    <div className="relative z-10 grid items-center gap-7 lg:grid-cols-2">
+      {/* Pop-up plate: the illustration pasted into the page like a print */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
+        initial={{ opacity: 0, y: 24, rotate: -2 }}
+        animate={{ opacity: 1, y: 0, rotate: -1.2 }}
+        transition={{ delay: 0.5, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className="order-1"
       >
-        <SceneIllustration
-          scene={page.scene}
-          className="aspect-[4/3] shadow-soft-lg"
-        />
+        <div className="relative rounded-[14px] bg-[var(--parch)] p-2.5 shadow-[0_14px_36px_-16px_rgba(0,0,0,0.6)] ring-1 ring-[var(--parch-edge)]">
+          {/* washi-tape corners */}
+          <span className="absolute -left-2 -top-2 h-6 w-12 -rotate-12 rounded-sm bg-[rgba(184,137,43,0.35)]" />
+          <span className="absolute -right-2 -top-2 h-6 w-12 rotate-12 rounded-sm bg-[rgba(184,137,43,0.35)]" />
+          <SceneIllustration scene={page.scene} className="aspect-[4/3]" />
+          {page.kicker && (
+            <p className="mt-2 text-center font-hand text-lg text-[var(--ink-faint)]">
+              {motif} {page.kicker}
+            </p>
+          )}
+        </div>
       </motion.div>
 
-      <div className="order-2 space-y-4">
-        {page.kicker && (
-          <Pill>
-            {getPalette(chapter.palette).motif} {page.kicker}
-          </Pill>
-        )}
-        <h1 className="font-display text-3xl font-extrabold leading-tight sm:text-4xl">
-          {page.title}
-        </h1>
+      <div className="order-2">
+        {/* Quill-written title */}
+        <QuillTitle
+          text={page.title}
+          className="font-display text-3xl font-black leading-tight text-[var(--ink)] sm:text-4xl"
+        />
+        <InkDivider className="mt-3 h-4 w-40" />
+
         {page.narration.map((para, i) => (
           <motion.p
             key={i}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15 + i * 0.12 }}
-            className="text-lg leading-relaxed text-[var(--text-soft)]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.9 + i * 0.25, duration: 0.7 }}
+            className={`mt-4 text-[1.12rem] leading-relaxed text-[var(--ink-soft)] ${
+              i === 0 ? "dropcap" : ""
+            }`}
           >
             <HighlightedText text={para} highlights={page.highlights} />
           </motion.p>
         ))}
 
         {page.dialogues && page.dialogues.length > 0 && (
-          <div className="space-y-3 pt-2">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.3, duration: 0.6 }}
+            className="mt-5 space-y-3"
+          >
             {page.dialogues.map((d, i) => (
               <DialogueBubble key={i} dialogue={d} index={i} />
             ))}
-          </div>
+          </motion.div>
         )}
 
         {page.choice && (
-          <div className="pt-2">
+          <div className="pt-4">
             <StoryChoiceCard choice={page.choice} />
           </div>
         )}
@@ -255,24 +289,29 @@ function PageView({
 function WrapUp({ chapter }: { chapter: Chapter }) {
   const tutor = TUTOR[chapter.slug];
   return (
-    <div className="mx-auto max-w-2xl space-y-6 pt-2">
+    <div className="relative z-10 mx-auto max-w-2xl space-y-6">
       <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
+        initial={{ scale: 0.92, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="card relative overflow-visible rounded-3xl text-center"
+        className="relative overflow-visible text-center"
       >
         <Confetti />
-        <div className="overflow-hidden rounded-3xl bg-gradient-to-br from-[var(--c-primary)] to-[var(--c-deep)] px-6 py-8 text-white">
+        <div className="flex flex-col items-center">
           <motion.div
-            animate={{ rotate: [0, -8, 8, 0], scale: [1, 1.15, 1] }}
-            transition={{ duration: 1.4, repeat: Infinity, repeatDelay: 1 }}
-            className="mx-auto mb-2 text-5xl"
+            initial={{ scale: 0, rotate: -30 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ type: "spring", stiffness: 200, damping: 12, delay: 0.2 }}
           >
-            {getPalette(chapter.palette).motif}
+            <WaxSeal size={92} label="✦" />
           </motion.div>
-          <h2 className="font-display text-2xl font-extrabold">Chapter complete!</h2>
-          <p className="mt-1 text-sm opacity-85">
-            You've followed the whole story of “{chapter.title}”.
+          <p className="mt-4 font-display text-xs font-bold uppercase tracking-[0.3em] text-[var(--gold)]">
+            The Chapter is Sealed
+          </p>
+          <h2 className="mt-1 font-display text-3xl font-black text-[var(--ink)]">
+            {chapter.title}
+          </h2>
+          <p className="mt-2 font-serif italic text-[var(--ink-soft)]">
+            You have read the whole story. Let it settle in your memory.
           </p>
         </div>
       </motion.div>
@@ -281,17 +320,17 @@ function WrapUp({ chapter }: { chapter: Chapter }) {
 
       <Link
         href={`/exam?chapter=${chapter.slug}`}
-        className="flex items-center justify-between rounded-3xl bg-gradient-to-r from-[var(--c-primary)] to-[var(--c-deep)] px-6 py-5 text-white transition-transform hover:scale-[1.01]"
+        className="lift flex items-center justify-between rounded-2xl border border-[var(--parch-edge)] bg-[var(--parch-2)] px-6 py-5"
       >
         <span>
-          <span className="block font-display text-lg font-extrabold">
-            Ready to test yourself?
+          <span className="block font-display text-lg font-black text-[var(--ink)]">
+            Test your knowledge
           </span>
-          <span className="text-sm opacity-85">
-            Switch into O-Level exam mode for this chapter →
+          <span className="font-serif italic text-[var(--ink-soft)]">
+            Sit the O-Level examination for this chapter →
           </span>
         </span>
-        <span className="text-3xl">🎯</span>
+        <span className="text-3xl">🪶</span>
       </Link>
     </div>
   );

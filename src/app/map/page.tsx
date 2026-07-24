@@ -11,10 +11,10 @@ export default function MapPage() {
           <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)] px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-[var(--c-primary)]">
             🗺️ Map mode
           </span>
-          <h1 className="mt-4 font-display text-4xl font-black sm:text-5xl">
+          <h1 className="mt-4 gold-text font-display text-4xl font-black sm:text-5xl">
             Watch the world change
           </h1>
-          <p className="mx-auto mt-3 max-w-xl text-[var(--text-soft)]">
+          <p className="mx-auto mt-3 max-w-xl font-serif text-[#e4cfa2]">
             Replay the great movements of the syllabus. Pick a scenario and watch
             borders, alliances and armies come to life.
           </p>
