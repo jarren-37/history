@@ -2,13 +2,11 @@
 
 ### The storybook that teaches Singapore O-Level Combined History (2261)
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/jarren-37/history/tree/claude/project-chronicle-history-j9b67o)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/jarren-37/history)
 
 **One-click deploy →** the button above spins the whole app up on
 [Render](https://render.com) from the included `render.yaml` blueprint (free
-plan, no configuration, no secrets required). Once the branch is merged to
-`main`, use
-[`render.com/deploy?repo=https://github.com/jarren-37/history`](https://render.com/deploy?repo=https://github.com/jarren-37/history).
+plan, no configuration, no secrets required).
 
 Project Chronicle turns the entire Singapore Cambridge / SEAB O-Level Combined
 History (2261) syllabus into an **interactive animated storybook**. The goal is
