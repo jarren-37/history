@@ -114,6 +114,54 @@ export const CHAPTERS: Chapter[] = [
             "In reality, widespread anger at Versailles weakened Germany's new democracy and gave Hitler a ready-made grievance to campaign on. The Treaty meant to prevent war helped set the stage for the next one.",
         },
       },
+      {
+        id: "v-5",
+        kicker: "1919 · Paris",
+        title: "The Big Three and their quarrel",
+        scene: "treaty-signing",
+        narration: [
+          "The treaty was shaped by three very different leaders — the Big Three. France's Clemenceau wanted Germany crushed so it could never invade France again.",
+          "America's Wilson wanted a fair peace and a new League of Nations to prevent future wars. Britain's Lloyd George stood in the middle: punish Germany, but not so harshly that trade and stability collapsed.",
+          "The result was a compromise that satisfied none of them — and left Germany feeling it had been treated far more harshly than was fair.",
+        ],
+        highlights: ["Big Three", "League of Nations", "compromise"],
+        dialogues: [
+          {
+            speaker: "Clemenceau (France)",
+            side: "left",
+            text: "Germany must be made powerless. Never again.",
+          },
+          {
+            speaker: "Wilson (USA)",
+            side: "right",
+            text: "A peace without fairness will not last. We need a League of Nations.",
+          },
+        ],
+      },
+      {
+        id: "v-6",
+        kicker: "The new map",
+        title: "Europe is redrawn",
+        scene: "shrinking-germany",
+        narration: [
+          "Versailles did not only punish Germany — it redrew the map of Europe. Germany lost land on every side, and new nations rose from the collapsed empires.",
+          "Germany's overseas colonies were taken away and shared out as 'mandates'. Union between Germany and Austria — the Anschluss — was forbidden.",
+          "Millions of Germans now lived outside Germany's borders. It was one more grievance that a future leader would use.",
+        ],
+        highlights: ["colonies", "Anschluss", "forbidden"],
+      },
+      {
+        id: "v-7",
+        kicker: "1920",
+        title: "A hope called the League",
+        scene: "voting-hands",
+        narration: [
+          "Alongside the treaty came a bold new idea: the League of Nations, where countries would settle disputes by talking, not fighting — the principle of collective security.",
+          "But the League was weak from birth. The USA, whose own president had championed it, never joined. It had no army of its own, and its decisions were slow.",
+          "A peacekeeper without power. When aggression came in the 1930s, the League would prove unable to stop it — a warning of storms to come.",
+        ],
+        highlights: ["League of Nations", "collective security", "no army"],
+      },
     ],
     boosters: [
       {
@@ -342,6 +390,38 @@ export const CHAPTERS: Chapter[] = [
             "Britain and France appeased Hitler at Munich, hoping to satisfy him. Instead it convinced him they were weak. Within a year he invaded Poland and war broke out. Appeasement remains a debated lesson: was it a sensible attempt to avoid war, or a mistake that made war more likely?",
         },
       },
+      {
+        id: "h-6",
+        kicker: "A closer look",
+        title: "The final steps to war",
+        scene: "marching-troops",
+        narration: [
+          "Look closely at how Hitler edged towards war, each move bolder than the last. In 1938 he united Germany with Austria — the Anschluss — forbidden by Versailles, yet no one stopped him.",
+          "Next came the Sudetenland, handed over at Munich. Then, in March 1939, Hitler seized the rest of Czechoslovakia, tearing up the Munich promise entirely.",
+          "At last Britain and France saw the truth: Hitler could not be satisfied. They promised to defend Poland if he attacked.",
+        ],
+        highlights: ["Anschluss", "Sudetenland", "Munich"],
+      },
+      {
+        id: "h-7",
+        kicker: "August 1939",
+        title: "The pact that shocked the world",
+        scene: "handshake",
+        narration: [
+          "Then came the most shocking news of all. Nazi Germany and the communist USSR — sworn enemies — signed the Nazi-Soviet Pact, promising not to attack one another.",
+          "Secretly, they agreed to divide Poland between them. For Hitler, the pact removed the danger of fighting on two fronts at once.",
+          "The last barrier was gone. Days later German troops poured into Poland, and the Second World War in Europe began.",
+        ],
+        highlights: ["Nazi-Soviet Pact", "divide Poland", "Poland"],
+        dialogues: [
+          {
+            speaker: "hitler",
+            characterId: "hitler",
+            side: "left",
+            text: "With the East secured, nothing now stands in our way.",
+          },
+        ],
+      },
     ],
     boosters: [
       {
@@ -525,6 +605,30 @@ export const CHAPTERS: Chapter[] = [
           reality:
             "Facing an oil embargo, Japan's leaders decided to strike. The attack on Pearl Harbor was meant to disable the US Pacific fleet, but it united American opinion and brought the full weight of the USA into the war — a decision that ultimately doomed Japan's empire.",
         },
+      },
+      {
+        id: "j-5",
+        kicker: "1931–1933",
+        title: "The League humiliated",
+        scene: "voting-hands",
+        narration: [
+          "When Japan seized Manchuria in 1931, the League of Nations sent investigators and formally condemned the invasion.",
+          "But condemnation was all it could do. The League had no army, so Japan simply walked out of it in 1933 — and kept its conquest.",
+          "The world had learned a dangerous lesson: aggression could pay, and the League could not stop it. In Germany, Hitler was watching closely.",
+        ],
+        highlights: ["Manchuria", "League of Nations", "no army"],
+      },
+      {
+        id: "j-6",
+        kicker: "Reaching south",
+        title: "The dream of empire",
+        scene: "island-map",
+        narration: [
+          "Japan dreamed of a vast empire across Asia, which it called the 'Greater East Asia Co-Prosperity Sphere' — with Japan as its master.",
+          "As the war in China dragged on, Japan pushed south towards the rich oil and rubber of Southeast Asia. This alarmed the USA, which tightened its oil embargo.",
+          "Cornered between backing down and seizing what it needed by force, Japan chose force — and turned towards Pearl Harbor.",
+        ],
+        highlights: ["oil embargo", "Pearl Harbor"],
       },
     ],
     boosters: [
@@ -735,6 +839,42 @@ export const CHAPTERS: Chapter[] = [
             "The USA chose containment. The Marshall Plan rebuilt Western Europe and tied it to the USA, while the Truman Doctrine pledged support against communism. Stalin saw these as attempts to undermine Soviet influence — deepening the divide and pushing the two sides further into a Cold War.",
         },
       },
+      {
+        id: "c-5",
+        kicker: "February 1945",
+        title: "Yalta: friends with doubts",
+        scene: "handshake",
+        narration: [
+          "Even before the war ended, the Allied leaders met at the Yalta Conference. They agreed to set up the United Nations and to hold free elections in the countries freed from Hitler.",
+          "But cracks were already showing over Eastern Europe. Stalin wanted friendly governments on his border; the West wanted genuine democracy.",
+          "They parted still allies — but with quiet doubts about one another.",
+        ],
+        highlights: ["Yalta Conference", "free elections", "democracy"],
+      },
+      {
+        id: "c-6",
+        kicker: "July 1945",
+        title: "Potsdam: friends no more",
+        scene: "iron-curtain",
+        narration: [
+          "By the Potsdam Conference, much had changed. Roosevelt had died, the suspicious Truman had taken over, and the USA now had the atomic bomb.",
+          "The leaders argued over Germany, reparations and Poland. The wartime trust had drained away.",
+          "Friendship was hardening into rivalry. The Cold War was beginning.",
+        ],
+        highlights: ["Potsdam Conference", "atomic bomb"],
+      },
+      {
+        id: "c-7",
+        kicker: "1945–1948",
+        title: "Slice by slice",
+        scene: "divided-line",
+        narration: [
+          "Across Eastern Europe, Stalin tightened his grip — taking control country by country in what became known as 'salami tactics', a thin slice at a time.",
+          "Communist governments replaced free ones. To the West it looked like the USSR swallowing free nations; to Stalin it was a shield against another invasion.",
+          "An Iron Curtain, Churchill warned, had descended across the continent.",
+        ],
+        highlights: ["Iron Curtain", "communist governments"],
+      },
     ],
     boosters: [
       {
@@ -943,6 +1083,30 @@ export const CHAPTERS: Chapter[] = [
             "The West chose the Airlift, supplying two million people by air for nearly a year. It avoided war, kept Berlin free, and embarrassed Stalin, who eventually lifted the blockade. The crisis confirmed the division of Germany and led directly to the formation of NATO.",
         },
       },
+      {
+        id: "b-5",
+        kicker: "The Airlift by numbers",
+        title: "A city fed from the sky",
+        scene: "berlin-airlift",
+        narration: [
+          "For almost a year, planes flew into West Berlin day and night — at the peak, one landing every few minutes.",
+          "They carried everything the city needed: food, medicine and, above all, coal. Some pilots even dropped sweets for the children — the 'raisin bombers'.",
+          "It was a staggering effort, and it worked. Unable to stop it without starting a war, Stalin finally lifted the blockade.",
+        ],
+        highlights: ["West Berlin", "blockade"],
+      },
+      {
+        id: "b-6",
+        kicker: "1949 · 1955",
+        title: "Two Germanys, two alliances",
+        scene: "iron-curtain",
+        narration: [
+          "The crisis split Germany for good. In 1949 the Western zones became West Germany, and the Soviet zone became communist East Germany.",
+          "To defend against the Soviet threat, the West formed a military alliance: NATO. Years later the communist states answered with the Warsaw Pact.",
+          "Europe now stood in two armed camps — the shape of the Cold War for the next forty years.",
+        ],
+        highlights: ["NATO", "Warsaw Pact"],
+      },
     ],
     boosters: [
       {
@@ -1136,6 +1300,30 @@ export const CHAPTERS: Chapter[] = [
             "Kennedy chose a naval blockade combined with secret negotiation. This applied pressure while avoiding an immediate attack, giving Khrushchev room to back down. Both leaders, frightened by how close they had come, then worked to ease tension — a turning point that made the Cold War slightly less dangerous.",
         },
       },
+      {
+        id: "cu-5",
+        kicker: "1959–1962",
+        title: "Why Cuba turned to the USSR",
+        scene: "island-map",
+        narration: [
+          "Cuba had not always been a Soviet ally. After Castro's revolution the USA turned hostile, and in 1961 it backed a failed invasion at the Bay of Pigs.",
+          "Fearing another attack, Castro looked to the Soviet Union for protection. Khrushchev was glad to help — and to place missiles on America's doorstep.",
+          "And so the stage was set for the most dangerous crisis of the Cold War.",
+        ],
+        highlights: ["Bay of Pigs"],
+      },
+      {
+        id: "cu-6",
+        kicker: "The resolution",
+        title: "The secret deal",
+        scene: "handshake",
+        narration: [
+          "The public deal was simple: the USSR would remove its missiles from Cuba, and the USA promised never to invade the island.",
+          "But there was a secret too — the USA quietly agreed to remove its own missiles from Turkey, near the Soviet border. Both sides could claim they had not been humbled.",
+          "Shaken by how close they had come, they set up a telephone 'hotline' and began, slowly, to ease tension — a thaw known as détente.",
+        ],
+        highlights: ["détente"],
+      },
     ],
     boosters: [
       {
@@ -1326,6 +1514,50 @@ export const CHAPTERS: Chapter[] = [
           reality:
             "Gorbachev chose not to use force. Without the threat of Soviet tanks, communist governments across Eastern Europe collapsed and the Berlin Wall fell. His reforms and restraint, combined with the USSR's deep economic problems, brought the Cold War to a peaceful end.",
         },
+      },
+      {
+        id: "e-5",
+        kicker: "The 1980s",
+        title: "The weight of the arms race",
+        scene: "money-flow",
+        narration: [
+          "For decades the superpowers had poured fortunes into the arms race, each building ever more powerful weapons.",
+          "For the USA it was costly; for the weaker Soviet economy it was crushing. Money that could have fed and housed people was spent on missiles instead.",
+          "By the 1980s the strain had become unbearable — and something had to give.",
+        ],
+        highlights: ["arms race"],
+      },
+      {
+        id: "e-6",
+        kicker: "Gorbachev's reforms",
+        title: "Glasnost and Perestroika",
+        scene: "handshake",
+        narration: [
+          "Gorbachev's answer was two bold reforms. Glasnost — 'openness' — let people speak and criticise freely for the first time in decades.",
+          "Perestroika — 'restructuring' — tried to modernise the struggling economy. He also signed arms agreements with the USA, easing the fear of war.",
+          "But openness let people demand more freedom than the old system could survive.",
+        ],
+        highlights: ["glasnost", "perestroika"],
+        dialogues: [
+          {
+            speaker: "gorbachev",
+            characterId: "gorbachev",
+            side: "left",
+            text: "We cannot go on as before. The country must open, and it must change.",
+          },
+        ],
+      },
+      {
+        id: "e-7",
+        kicker: "1989",
+        title: "The year of revolutions",
+        scene: "falling-wall",
+        narration: [
+          "In 1989 the changes broke into the open. In Poland, the Solidarity movement won free elections. Hungary opened its border.",
+          "Country by country, communist governments across Eastern Europe fell — and, seeing that Soviet tanks would not come, crowds poured through the Berlin Wall.",
+          "Two years later the Soviet Union itself dissolved. After more than forty years, the Cold War was over.",
+        ],
+        highlights: ["Solidarity", "Berlin Wall"],
       },
     ],
     boosters: [

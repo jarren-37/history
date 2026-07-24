@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 /**
  * Hand-drawn decorative chrome used across the book: corner flourishes, ink
@@ -172,6 +172,10 @@ export function Candle({ className = "" }: { className?: string }) {
 
 /** Floating dust motes that drift through the candlelight. */
 export function DustMotes({ count = 18 }: { count?: number }) {
+  // Client-only: random positions would mismatch server vs client, so we render
+  // nothing until mounted (avoids a hydration error).
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   const motes = useMemo(
     () =>
       Array.from({ length: count }, (_, i) => ({
@@ -184,6 +188,7 @@ export function DustMotes({ count = 18 }: { count?: number }) {
       })),
     [count]
   );
+  if (!mounted) return null;
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
       {motes.map((m) => (
