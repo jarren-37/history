@@ -137,6 +137,16 @@ export const TIMELINE: TimelineEvent[] = [
       "With new leaders and growing suspicion, tension between the USA and USSR deepened after the war in Europe.",
   },
   {
+    id: "korea-divided",
+    year: 1945,
+    title: "Korea divided at the 38th parallel",
+    chapterSlug: "the-korean-war",
+    palette: "korea",
+    icon: "🗺️",
+    description:
+      "After the war, Korea was split into a communist North and a capitalist South — a Cold War fault line in Asia.",
+  },
+  {
     id: "iron-curtain",
     year: 1946,
     title: "'Iron Curtain' speech",
@@ -176,6 +186,38 @@ export const TIMELINE: TimelineEvent[] = [
     icon: "🛡️",
     description:
       "Western nations formed a defensive alliance against the Soviet threat; the Warsaw Pact answered it in 1955.",
+  },
+  {
+    id: "korea-invasion",
+    year: 1950,
+    dateLabel: "Jun 1950",
+    title: "North Korea invades the South",
+    chapterSlug: "the-korean-war",
+    palette: "korea",
+    icon: "⚔️",
+    description:
+      "North Korea crossed the 38th parallel to unite Korea by force, turning the Cold War 'hot' for the first time.",
+  },
+  {
+    id: "china-enters-korea",
+    year: 1950,
+    dateLabel: "Oct 1950",
+    title: "China enters the Korean War",
+    chapterSlug: "the-korean-war",
+    palette: "korea",
+    icon: "🇨🇳",
+    description:
+      "As UN forces neared its border, China sent huge numbers of troops, driving them back to a stalemate.",
+  },
+  {
+    id: "korea-armistice",
+    year: 1953,
+    title: "Korean War armistice",
+    chapterSlug: "the-korean-war",
+    palette: "korea",
+    icon: "🤝",
+    description:
+      "A ceasefire left Korea divided at the 38th parallel — a war with no winner, and the country still split today.",
   },
   {
     id: "cuba-crisis",

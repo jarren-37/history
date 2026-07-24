@@ -102,6 +102,14 @@ export const GLOSSARY: Record<string, string> = {
     "The independent trade union movement in Poland that challenged communist rule, part of the wave that ended communism in Eastern Europe.",
   "Berlin Wall":
     "The barrier built in 1961 dividing East and West Berlin. Its opening in 1989 became the great symbol of the Cold War's end.",
+  "38th parallel":
+    "The line of latitude along which Korea was divided in 1945 into a communist North and a capitalist South. The Korean War began and ended roughly along this line.",
+  "domino theory":
+    "The Cold War fear that if one country fell to communism, its neighbours would topple next, like a row of dominoes. It was used to justify US intervention in Korea and elsewhere.",
+  "United Nations":
+    "The international peace organisation set up in 1945 to replace the League of Nations. In 1950 it approved a force to defend South Korea (while the USSR was boycotting the vote).",
+  armistice:
+    "A ceasefire that stops fighting without a full peace treaty. The 1953 Korean armistice ended the fighting but left Korea divided.",
 };
 
 /** Case-insensitive lookup of a glossary definition. */

@@ -41,6 +41,8 @@ const FACES: Record<string, FaceSpec> = {
   castro: { skin: "#e6b98f", hair: "#2c2620", hairStyle: "cap", facial: "beard", glasses: "none", accent: "cuba", flag: "🇨🇺" },
   gorbachev: { skin: "#f0c6a0", hair: "#e0dad0", hairStyle: "balding", facial: "none", glasses: "none", accent: "collapse", flag: "🇷🇺" },
   "hirohito-era": { skin: "#eec39c", hair: "#2c2620", hairStyle: "cap", facial: "none", glasses: "round", accent: "japan", flag: "🇯🇵" },
+  "kim-il-sung": { skin: "#eec39c", hair: "#2c2620", hairStyle: "short", facial: "none", glasses: "none", accent: "korea", flag: "🇰🇵" },
+  mao: { skin: "#edc199", hair: "#2c2620", hairStyle: "swept", facial: "none", glasses: "none", accent: "korea", flag: "🇨🇳" },
 };
 
 export function CharacterPortrait({

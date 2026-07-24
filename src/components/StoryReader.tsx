@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Chapter } from "@/content/types";
@@ -32,7 +32,14 @@ type Step =
 
 export function StoryReader({ chapter }: { chapter: Chapter }) {
   const palette = getPalette(chapter.palette);
-  const { recordPage, completeChapter, meetCharacter, soundOn } = useApp();
+  const {
+    recordPage,
+    completeChapter,
+    meetCharacter,
+    soundOn,
+    progress,
+    hydrated,
+  } = useApp();
   const tutor = TUTOR[chapter.slug];
 
   const steps = useMemo<Step[]>(() => {
@@ -50,6 +57,24 @@ export function StoryReader({ chapter }: { chapter: Chapter }) {
   const [index, setIndex] = useState(0);
   const [dir, setDir] = useState(1);
   const step = steps[index];
+
+  // Resume where the student left off: once saved progress has loaded, jump to
+  // the last-read page (only on first load, and only if the chapter isn't done).
+  const resumedRef = useRef(false);
+  useEffect(() => {
+    if (!hydrated || resumedRef.current) return;
+    resumedRef.current = true;
+    const prog = progress[chapter.slug];
+    if (prog && !prog.completed && prog.page > 0) {
+      const target = steps.findIndex(
+        (s) => s.kind === "page" && s.pageIndex === prog.page
+      );
+      if (target > 0) {
+        setDir(1);
+        setIndex(target);
+      }
+    }
+  }, [hydrated, progress, chapter.slug, steps]);
 
   const go = (d: number) => {
     setDir(d);
@@ -81,7 +106,7 @@ export function StoryReader({ chapter }: { chapter: Chapter }) {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  const progress = (index + 1) / steps.length;
+  const readFraction = (index + 1) / steps.length;
 
   return (
     <GlossaryProvider>
@@ -109,7 +134,7 @@ export function StoryReader({ chapter }: { chapter: Chapter }) {
               folio {index + 1} of {steps.length}
             </p>
           </div>
-          <ProgressBar value={progress} className="mt-1.5" />
+          <ProgressBar value={readFraction} className="mt-1.5" />
         </div>
       </div>
 

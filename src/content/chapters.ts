@@ -1204,12 +1204,238 @@ export const CHAPTERS: Chapter[] = [
   },
 
   // ─────────────────────────────────────────────────────────────────────────
-  // 6. THE CUBAN MISSILE CRISIS
+  // 6. THE KOREAN WAR
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: "ch-korea",
+    slug: "the-korean-war",
+    number: "2.3",
+    section: "The Cold War",
+    title: "The Korean War",
+    subtitle: "The Cold War turns hot",
+    inquiry: "Why did the Cold War lead to real fighting in Korea?",
+    palette: "korea",
+    era: "1950–1953",
+    hook: "For the first time, the superpowers' rivalry exploded into open war — on a divided peninsula in Asia.",
+    outcomes: [
+      "Explain why Korea was divided and how the war began",
+      "Explain the roles of the USA, the UN and China",
+      "Explain the outcome and significance of the Korean War",
+    ],
+    characterIds: ["kim-il-sung", "mao", "truman"],
+    timelineIds: [
+      "korea-divided",
+      "korea-invasion",
+      "china-enters-korea",
+      "korea-armistice",
+    ],
+    pages: [
+      {
+        id: "k-1",
+        kicker: "After 1945",
+        title: "A country cut in two",
+        scene: "divided-line",
+        narration: [
+          "When the Second World War ended, Korea was split in two along a line called the 38th parallel. The north became communist, backed by the USSR; the south became capitalist, backed by the USA.",
+          "In the north, Kim Il Sung dreamed of uniting the whole country under communism. In the south, a rival government looked to America for support.",
+          "Two hostile Koreas, glaring at each other across a line — a Cold War fault line waiting to crack.",
+        ],
+        highlights: ["38th parallel", "communist", "capitalist"],
+        dialogues: [
+          {
+            speaker: "kim-il-sung",
+            characterId: "kim-il-sung",
+            side: "left",
+            text: "Korea must be one nation — a communist nation.",
+          },
+        ],
+      },
+      {
+        id: "k-2",
+        kicker: "June 1950",
+        title: "The North strikes",
+        scene: "marching-troops",
+        narration: [
+          "In June 1950, North Korean troops swept across the 38th parallel, invading the south to unite Korea by force.",
+          "The attack was sudden and powerful. Within weeks the North had overrun almost the whole peninsula, pinning the South into a small corner in the far south.",
+          "To the watching USA, this looked like communism on the march — and it feared that if Korea fell, other countries would follow.",
+        ],
+        highlights: ["invading", "communism"],
+      },
+      {
+        id: "k-3",
+        kicker: "Containment in action",
+        title: "The world answers",
+        scene: "world-map",
+        narration: [
+          "The USA saw the invasion as a test of containment — and feared the 'domino theory': that if one country fell to communism, its neighbours would topple next.",
+          "This time the United Nations acted. With the USSR absent from the vote, the UN agreed to send forces to defend South Korea — most of them American, led by General MacArthur.",
+          "The UN troops drove the North back, past the 38th parallel, all the way towards the Yalu River on China's border.",
+        ],
+        highlights: ["containment", "domino theory", "United Nations"],
+      },
+      {
+        id: "k-4",
+        kicker: "Late 1950",
+        title: "China enters the war",
+        scene: "marching-troops",
+        narration: [
+          "China watched in alarm as UN forces neared its border. Communist China, under Mao, would not allow enemy armies on its doorstep.",
+          "Hundreds of thousands of Chinese troops poured across the border, hurling the UN forces back down the peninsula.",
+          "The front line swung violently — and then settled, roughly back at the 38th parallel where it had all begun.",
+        ],
+        highlights: ["China", "38th parallel"],
+        dialogues: [
+          {
+            speaker: "mao",
+            characterId: "mao",
+            side: "right",
+            text: "We cannot let a hostile army sit on our border. China will act.",
+          },
+        ],
+      },
+      {
+        id: "k-5",
+        kicker: "1953",
+        title: "Stalemate and armistice",
+        scene: "handshake",
+        narration: [
+          "Neither side could win. The war ground into a bloody stalemate along the 38th parallel, and in 1953 the two sides signed an armistice — a ceasefire, not a true peace.",
+          "Korea stayed divided, almost exactly where it had started, and remains split to this day.",
+          "The Cold War had turned 'hot' for the first time — yet the superpowers had avoided fighting each other directly. That pattern would shape the decades ahead.",
+        ],
+        highlights: ["stalemate", "armistice", "divided"],
+        choice: {
+          question: "You are the USA in 1950. North Korea has invaded the South. What do you do?",
+          options: [
+            {
+              label: "Send forces to defend the South",
+              outcome:
+                "This is what the USA did, through the UN — containment put into action.",
+              historical: true,
+            },
+            {
+              label: "Stay out of a distant war",
+              outcome:
+                "The USA feared that doing nothing would let communism spread unchecked — the domino theory.",
+            },
+            {
+              label: "Attack China and the USSR directly",
+              outcome:
+                "Far too dangerous — it risked a third world war, which both sides wanted to avoid.",
+            },
+          ],
+          reality:
+            "The USA led a UN force to defend South Korea, applying containment in Asia. After China intervened, the war became a stalemate ending in the 1953 armistice. Korea stayed divided — showing that the superpowers would fight through limited, 'proxy' wars but pull back from direct all-out war.",
+        },
+      },
+    ],
+    boosters: [
+      {
+        afterPage: 0,
+        booster: {
+          type: "recall",
+          prompt: "Quick check before the story continues.",
+          question: "Why was Korea divided after 1945?",
+          answer:
+            "After the Second World War, Korea was split at the 38th parallel into a communist North (backed by the USSR) and a capitalist South (backed by the USA) — a Cold War division.",
+        },
+      },
+      {
+        afterPage: 3,
+        booster: {
+          type: "order",
+          prompt: "Order the events of the Korean War.",
+          items: [
+            "Korea divided at the 38th parallel (1945)",
+            "North Korea invades the South (1950)",
+            "UN forces push the North back",
+            "China enters and drives the UN back",
+            "Armistice; Korea stays divided (1953)",
+          ],
+        },
+      },
+    ],
+    bigPicture: {
+      title: "Why the Cold War turned hot in Korea",
+      nodes: [
+        {
+          id: "n1",
+          label: "A divided Korea",
+          icon: "🗺️",
+          detail:
+            "Korea was split at the 38th parallel into a communist North and a capitalist South.",
+        },
+        {
+          id: "n2",
+          label: "The North invades",
+          icon: "⚔️",
+          detail:
+            "In 1950 the North attacked the South to unite Korea under communism.",
+        },
+        {
+          id: "n3",
+          label: "Containment in action",
+          icon: "🛡️",
+          detail:
+            "The USA led a UN force to stop communism spreading, fearing the domino theory.",
+        },
+        {
+          id: "n4",
+          label: "China intervenes",
+          icon: "🇨🇳",
+          detail:
+            "As UN forces neared its border, China sent troops and pushed them back.",
+        },
+        {
+          id: "n5",
+          label: "Stalemate & division",
+          icon: "🤝",
+          detail:
+            "The 1953 armistice left Korea divided at the 38th parallel — a war with no winner.",
+        },
+      ],
+    },
+    exam: [
+      {
+        id: "k-exam-1",
+        skill: "Explain (SEQ)",
+        format: "SEQ",
+        marks: 8,
+        question: "Explain why war broke out in Korea in 1950.",
+        markScheme: [
+          "Valid reasons: the division of Korea, Cold War rivalry, Kim Il Sung's aim to unite Korea, superpower backing.",
+          "Explain HOW each reason led to war.",
+          "L3: two developed reasons with clear links.",
+        ],
+        modelAnswer:
+          "War broke out largely because Korea had been divided at the 38th parallel into a communist North and a capitalist South, creating two hostile states. Cold War rivalry meant each was backed by a superpower, raising the stakes. When the North's leader Kim Il Sung invaded the South in 1950 to unite Korea under communism, the USA saw it as communism spreading and intervened — turning a local invasion into a Cold War conflict.",
+      },
+      {
+        id: "k-exam-2",
+        skill: "Judgement (SEQ)",
+        format: "SEQ",
+        marks: 12,
+        question:
+          "'The Korean War was a success for the policy of containment.' How far do you agree?",
+        markScheme: [
+          "FOR: communism was stopped from taking the South; South Korea survived; showed US resolve.",
+          "AGAINST: huge cost and casualties; Korea left divided; China strengthened; communism not rolled back.",
+          "L4/L5: a balanced judgement with a supported conclusion.",
+        ],
+        modelAnswer:
+          "In one sense containment succeeded: South Korea was saved from communism and the USA showed it would resist Soviet-backed expansion. However, the war was hugely costly and ended in stalemate, with Korea left divided exactly as before and communist China emerging stronger. Communism was contained but not defeated. On balance, the Korean War was a limited success for containment — it held the line, but at great cost and without a clear victory.",
+      },
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // 7. THE CUBAN MISSILE CRISIS
   // ─────────────────────────────────────────────────────────────────────────
   {
     id: "ch-cuba",
     slug: "cuban-missile-crisis",
-    number: "2.3",
+    number: "2.4",
     section: "The Cold War",
     title: "The Cuban Missile Crisis",
     subtitle: "Thirteen days on the edge of nuclear war",
@@ -1429,7 +1655,7 @@ export const CHAPTERS: Chapter[] = [
   {
     id: "ch-end",
     slug: "end-of-the-cold-war",
-    number: "2.4",
+    number: "2.5",
     section: "The Cold War",
     title: "The End of the Cold War",
     subtitle: "How the long standoff finally thawed",

@@ -37,6 +37,9 @@ export default function Home() {
 
   const completed = Object.values(progress).filter((p) => p.completed).length;
   const overall = hydrated ? Math.round((completed / CHAPTERS.length) * 100) : 0;
+  const inProgress = hydrated
+    ? CHAPTERS.find((c) => progress[c.slug] && !progress[c.slug].completed)
+    : undefined;
 
   const ww2 = CHAPTERS.filter((c) => c.section === "World War Two");
   const cold = CHAPTERS.filter((c) => c.section === "The Cold War");
@@ -71,13 +74,30 @@ export default function Home() {
 
         {/* Progress ex-libris */}
         {hydrated && (
-          <div className="relative z-10 mt-6 flex items-center justify-center gap-4">
-            <WaxSeal size={64} label={`${overall}%`} />
-            <p className="font-serif text-[var(--ink-soft)]">
-              {completed === 0
-                ? "Your journey has not yet begun."
-                : `${completed} of ${CHAPTERS.length} chapters read.`}
-            </p>
+          <div className="relative z-10 mt-6 flex flex-col items-center gap-4">
+            <div className="flex items-center justify-center gap-4">
+              <WaxSeal size={64} label={`${overall}%`} />
+              <p className="font-serif text-[var(--ink-soft)]">
+                {completed === 0
+                  ? inProgress
+                    ? "Your journey has begun — keep reading."
+                    : "Your journey has not yet begun."
+                  : `${completed} of ${CHAPTERS.length} chapters read.`}
+              </p>
+            </div>
+            {inProgress && (
+              <Link
+                href={`/chapters/${inProgress.slug}`}
+                className="lift flex items-center gap-2 rounded-full px-5 py-2.5 font-display text-sm font-bold text-[#f6e6c4]"
+                style={{
+                  background: "linear-gradient(180deg,#a5433a,#6f2620)",
+                  boxShadow:
+                    "inset 0 1px 0 rgba(255,220,180,0.3), 0 4px 12px rgba(0,0,0,0.35)",
+                }}
+              >
+                📖 Continue “{inProgress.title}” →
+              </Link>
+            )}
           </div>
         )}
 
@@ -156,6 +176,11 @@ function ContentsPart({
           const prog = progress[c.slug];
           const done = hydrated && prog?.completed;
           const reading = hydrated && prog && !prog.completed;
+          const pct = prog
+            ? prog.completed
+              ? 100
+              : Math.round(((prog.page + 1) / prog.total) * 100)
+            : 0;
           return (
             <motion.li
               key={c.id}
@@ -183,12 +208,28 @@ function ContentsPart({
                   <span className="block truncate font-serif text-sm italic text-[var(--ink-faint)]">
                     {c.era} · {c.subtitle}
                   </span>
+                  {reading && (
+                    <span className="mt-1.5 flex items-center gap-2">
+                      <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-[var(--parch-deep)]">
+                        <span
+                          className="block h-full rounded-full"
+                          style={{
+                            width: `${pct}%`,
+                            background: `linear-gradient(90deg, ${p.secondary}, ${p.primary})`,
+                          }}
+                        />
+                      </span>
+                      <span className="font-hand text-xs text-[var(--ink-faint)]">
+                        {pct}%
+                      </span>
+                    </span>
+                  )}
                 </span>
                 <span className="shrink-0 font-hand text-lg text-[var(--ink-faint)]">
                   {done ? (
                     <span className="text-[var(--wax)]">✦ read</span>
                   ) : reading ? (
-                    "reading…"
+                    <span className="text-[var(--c-primary)]">resume →</span>
                   ) : (
                     `no. ${c.number}`
                   )}

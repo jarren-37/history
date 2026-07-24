@@ -341,6 +341,48 @@ export const CHARACTERS: Character[] = [
     relationships: [],
     chapters: ["japans-road-to-war"],
   },
+  {
+    id: "kim-il-sung",
+    name: "Kim Il Sung",
+    role: "Leader of North Korea",
+    country: "North Korea",
+    emoji: "🇰🇵",
+    palette: "korea",
+    years: "in power from 1948",
+    tagline: "Sought to unite Korea under communism",
+    bio: "Communist leader of North Korea. Backed by the USSR, he launched the invasion of South Korea in 1950 to unite the peninsula under communism — starting the Korean War.",
+    goals: ["Unite Korea under communism"],
+    beliefs: ["Korea should be one communist nation"],
+    actions: ["Invaded South Korea (1950)"],
+    consequences: [
+      "Started the Korean War",
+      "Korea was left divided after 1953",
+    ],
+    relationships: [{ to: "mao", relation: "ally", sentiment: "friendly" }],
+    chapters: ["the-korean-war"],
+  },
+  {
+    id: "mao",
+    name: "Mao Zedong",
+    role: "Leader of Communist China",
+    country: "China",
+    emoji: "🇨🇳",
+    palette: "korea",
+    years: "in power from 1949",
+    tagline: "Sent China's armies into the Korean War",
+    bio: "Leader of communist China. When United Nations forces advanced towards the Chinese border during the Korean War, he sent hundreds of thousands of Chinese troops, driving them back and turning the war into a stalemate.",
+    goals: ["Protect China's border", "Support fellow communists"],
+    beliefs: ["China must not allow a hostile army on its border"],
+    actions: ["Sent Chinese troops into Korea (1950)"],
+    consequences: [
+      "Pushed UN forces back",
+      "Helped create the stalemate and lasting division",
+    ],
+    relationships: [
+      { to: "kim-il-sung", relation: "ally", sentiment: "friendly" },
+    ],
+    chapters: ["the-korean-war"],
+  },
 ];
 
 export function getCharacter(id: string): Character | undefined {
