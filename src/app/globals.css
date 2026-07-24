@@ -3,10 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --font-display: "Baloo 2", "Nunito", ui-rounded, "SF Pro Rounded", system-ui,
-    sans-serif;
-  --font-sans: "Nunito", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-    Roboto, sans-serif;
+  /* --font-display / --font-sans are provided by next/font on <html>.
+     Tailwind's fontFamily appends system fallbacks after them. */
 
   /* Base surfaces (light). */
   --bg: #fbf7f0;
@@ -114,7 +112,28 @@ body {
   background-color: var(--card);
   border: 1px solid var(--border);
   border-radius: 1.5rem;
-  box-shadow: 0 12px 40px -18px rgba(30, 25, 45, 0.35);
+  box-shadow: 0 1px 2px rgba(30, 25, 45, 0.04),
+    0 12px 40px -18px rgba(30, 25, 45, 0.35);
+}
+
+/* Frosted glass surface for the floating nav and overlays. */
+.glass {
+  background-color: color-mix(in srgb, var(--card) 72%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  box-shadow: 0 1px 1px rgba(255, 255, 255, 0.25) inset,
+    0 14px 44px -20px rgba(30, 25, 45, 0.4);
+  backdrop-filter: saturate(1.4) blur(16px);
+  -webkit-backdrop-filter: saturate(1.4) blur(16px);
+}
+
+/* Reusable tactile lift for interactive surfaces. */
+.lift {
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 60px -24px rgba(30, 25, 45, 0.45);
 }
 
 /* A gently textured "paper" feel for story pages. */

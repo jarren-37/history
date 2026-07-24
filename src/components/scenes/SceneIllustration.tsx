@@ -31,6 +31,14 @@ export function SceneIllustration({
         <Sky />
         {renderScene(scene)}
       </svg>
+      {/* editorial depth: soft vignette + top-light inner highlight */}
+      <div
+        className="pointer-events-none absolute inset-0 rounded-[inherit]"
+        style={{
+          boxShadow:
+            "inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -40px 60px -40px rgba(40,30,50,0.22), inset 0 0 0 1px rgba(255,255,255,0.35)",
+        }}
+      />
     </div>
   );
 }

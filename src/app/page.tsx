@@ -6,13 +6,22 @@ import { CHAPTERS } from "@/content/chapters";
 import { useApp } from "@/lib/store";
 import { ChapterCard } from "@/components/ChapterCard";
 import { Reveal } from "@/components/ui";
-import { SceneIllustration } from "@/components/scenes/SceneIllustration";
+import { HeroBook } from "@/components/HeroBook";
+
+// A vibrant "brand" palette for the home shell so the aurora, headline gradient
+// and buttons feel colourful and alive (chapter cards still theme themselves).
+const BRAND_VARS = {
+  ["--c-primary" as string]: "#8459b3",
+  ["--c-secondary" as string]: "#f6b6a6",
+  ["--c-deep" as string]: "#2f6fb0",
+  ["--c-surface" as string]: "#f4eefb",
+} as React.CSSProperties;
 
 const MODES = [
-  { href: "/timeline", label: "Timeline", desc: "The whole story, in order", icon: "🕰️" },
-  { href: "/characters", label: "Characters", desc: "Meet the people of history", icon: "🎭" },
-  { href: "/map", label: "Map Mode", desc: "Watch the world change", icon: "🗺️" },
-  { href: "/exam", label: "Exam Mode", desc: "Practise O-Level questions", icon: "🎯" },
+  { href: "/timeline", label: "Timeline", desc: "The whole story, in order", icon: "🕰️", c: "#d6455b" },
+  { href: "/characters", label: "Characters", desc: "Meet the people of history", icon: "🎭", c: "#e07b39" },
+  { href: "/map", label: "Map Mode", desc: "Watch the world change", icon: "🗺️", c: "#2f8f83" },
+  { href: "/exam", label: "Exam Mode", desc: "Practise O-Level questions", icon: "🎯", c: "#4257a8" },
 ];
 
 export default function Home() {
@@ -32,7 +41,10 @@ export default function Home() {
   return (
     <div className="pb-24">
       {/* Hero */}
-      <section className="relative overflow-hidden px-4 pt-8 sm:pt-12">
+      <section
+        style={BRAND_VARS}
+        className="relative overflow-hidden px-4 pt-8 sm:pt-12"
+      >
         <div className="aurora" />
         <div className="relative mx-auto max-w-5xl">
           <div className="grid items-center gap-8 lg:grid-cols-[1.1fr,0.9fr]">
@@ -90,17 +102,12 @@ export default function Home() {
             </div>
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, rotate: -3 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ delay: 0.1, type: "spring", stiffness: 120 }}
-              className="hidden lg:block"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.1, type: "spring", stiffness: 120, damping: 18 }}
+              className="mx-auto w-full max-w-sm lg:max-w-none"
             >
-              <div className="animate-float">
-                <SceneIllustration
-                  scene="world-map"
-                  className="aspect-square shadow-soft-lg"
-                />
-              </div>
+              <HeroBook />
             </motion.div>
           </div>
 
@@ -131,10 +138,15 @@ export default function Home() {
             <Reveal key={m.href} delay={i * 0.05}>
               <Link
                 href={m.href}
-                className="card group flex h-full flex-col gap-1 rounded-3xl p-4 transition-transform hover:-translate-y-1"
+                className="card group flex h-full flex-col gap-2 rounded-3xl p-4 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-soft-lg"
               >
-                <span className="text-2xl">{m.icon}</span>
-                <span className="mt-1 font-display font-extrabold group-hover:text-[var(--c-primary)]">
+                <span
+                  className="grid h-11 w-11 place-items-center rounded-2xl text-xl shadow-soft transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6"
+                  style={{ background: `${m.c}1f`, color: m.c }}
+                >
+                  {m.icon}
+                </span>
+                <span className="mt-1 font-display text-lg font-extrabold leading-tight transition-colors group-hover:text-[var(--c-primary)]">
                   {m.label}
                 </span>
                 <span className="text-xs text-[var(--text-faint)]">{m.desc}</span>

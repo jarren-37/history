@@ -76,6 +76,50 @@ export function Pill({
   );
 }
 
+/** A gentle one-shot confetti burst for achievements. */
+export function Confetti({ count = 26 }: { count?: number }) {
+  const colors = [
+    "#d6455b",
+    "#e07b39",
+    "#2f8f83",
+    "#2f6fb0",
+    "#8459b3",
+    "#ffce6b",
+  ];
+  const pieces = Array.from({ length: count }, (_, i) => ({
+    id: i,
+    x: (Math.random() - 0.5) * 320,
+    rot: Math.random() * 360,
+    delay: Math.random() * 0.25,
+    color: colors[i % colors.length],
+    square: i % 2 === 0,
+  }));
+  return (
+    <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-center overflow-visible">
+      {pieces.map((p) => (
+        <motion.span
+          key={p.id}
+          className="absolute top-6"
+          initial={{ opacity: 0, y: 0, x: 0, rotate: 0 }}
+          animate={{
+            opacity: [0, 1, 1, 0],
+            y: [0, 180 + Math.random() * 80],
+            x: [0, p.x],
+            rotate: [0, p.rot + 240],
+          }}
+          transition={{ duration: 1.8, delay: p.delay, ease: "easeOut" }}
+          style={{
+            width: 9,
+            height: p.square ? 9 : 12,
+            borderRadius: p.square ? 2 : 999,
+            background: p.color,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
 /** Slim progress bar coloured with the active palette. */
 export function ProgressBar({
   value,

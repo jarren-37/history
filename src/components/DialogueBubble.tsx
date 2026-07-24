@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import type { Dialogue } from "@/content/types";
 import { getCharacter } from "@/content/characters";
+import { CharacterPortrait } from "./CharacterPortrait";
 
 /** A speech bubble with an optional linked character portrait. */
 export function DialogueBubble({
@@ -20,8 +21,10 @@ export function DialogueBubble({
   const name = character?.name ?? dialogue.speaker;
   const emoji = character?.emoji ?? "💬";
 
-  const portrait = (
-    <div className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-[var(--c-secondary)] to-[var(--c-primary)] text-xl shadow-soft">
+  const portrait = character ? (
+    <CharacterPortrait id={character.id} size={48} breathing={false} className="shrink-0" />
+  ) : (
+    <div className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[var(--c-secondary)] to-[var(--c-primary)] text-xl shadow-soft">
       {emoji}
     </div>
   );

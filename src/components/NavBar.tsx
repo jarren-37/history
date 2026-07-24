@@ -20,7 +20,7 @@ export function NavBar() {
 
   return (
     <header className="sticky top-0 z-50 px-3 pt-3 sm:px-5">
-      <nav className="card mx-auto flex max-w-6xl items-center gap-2 rounded-3xl px-3 py-2 backdrop-blur-md sm:px-4">
+      <nav className="glass mx-auto flex max-w-6xl items-center gap-2 rounded-3xl px-3 py-2 sm:px-4">
         <Link
           href="/"
           className="group flex items-center gap-2 pr-2 font-display text-lg font-extrabold"

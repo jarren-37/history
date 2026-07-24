@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { CHARACTERS, getCharacter } from "@/content/characters";
 import { getChapter } from "@/content/chapters";
 import { getPalette, paletteVars } from "@/content/palettes";
+import { CharacterPortrait } from "@/components/CharacterPortrait";
 
 export function generateStaticParams() {
   return CHARACTERS.map((c) => ({ id: c.id }));
@@ -54,9 +55,11 @@ export default function CharacterPage({
             ← All characters
           </Link>
           <div className="mt-4 flex flex-col items-center gap-5 text-center sm:flex-row sm:text-left">
-            <span className="grid h-28 w-28 shrink-0 place-items-center rounded-4xl bg-gradient-to-br from-[var(--c-secondary)] to-[var(--c-primary)] text-6xl shadow-soft-lg">
-              {c.emoji}
-            </span>
+            <CharacterPortrait
+              id={c.id}
+              size={132}
+              className="shrink-0 drop-shadow-md"
+            />
             <div>
               <p className="font-display text-sm font-bold uppercase tracking-wide text-[var(--c-primary)]">
                 {c.country} · {c.years}
@@ -116,7 +119,12 @@ export default function CharacterPage({
                     href={`/characters/${other.id}`}
                     className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[var(--c-surface)] px-4 py-3 transition-transform hover:-translate-y-0.5"
                   >
-                    <span className="text-2xl">{other.emoji}</span>
+                    <CharacterPortrait
+                      id={other.id}
+                      size={40}
+                      breathing={false}
+                      ring={false}
+                    />
                     <span className="min-w-0">
                       <span className="block truncate font-bold">
                         {other.name}

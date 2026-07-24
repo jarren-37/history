@@ -14,7 +14,7 @@ import { MemoryBooster } from "./MemoryBooster";
 import { CauseEffect } from "./CauseEffect";
 import { ExamMemory } from "./ExamMemory";
 import { AITutor } from "./AITutor";
-import { HighlightedText, ProgressBar, Pill } from "./ui";
+import { HighlightedText, ProgressBar, Pill, Confetti } from "./ui";
 
 type Step =
   | { kind: "page"; pageIndex: number }
@@ -98,16 +98,20 @@ export function StoryReader({ chapter }: { chapter: Chapter }) {
         </div>
       </div>
 
-      {/* Animated step */}
-      <div className="relative min-h-[60vh]">
+      {/* Animated step — a gentle 3D page-turn between spreads */}
+      <div
+        className="relative min-h-[60vh]"
+        style={{ perspective: "2000px" }}
+      >
         <AnimatePresence mode="wait" custom={dir}>
           <motion.div
             key={index}
             custom={dir}
-            initial={{ opacity: 0, x: dir * 60 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: dir * -60 }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, x: dir * 48, rotateY: dir * 10 }}
+            animate={{ opacity: 1, x: 0, rotateY: 0 }}
+            exit={{ opacity: 0, x: dir * -48, rotateY: dir * -10 }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            style={{ transformStyle: "preserve-3d" }}
           >
             {step.kind === "page" && (
               <PageView chapter={chapter} pageIndex={step.pageIndex} />
@@ -255,9 +259,10 @@ function WrapUp({ chapter }: { chapter: Chapter }) {
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="card overflow-hidden rounded-3xl text-center"
+        className="card relative overflow-visible rounded-3xl text-center"
       >
-        <div className="bg-gradient-to-br from-[var(--c-primary)] to-[var(--c-deep)] px-6 py-8 text-white">
+        <Confetti />
+        <div className="overflow-hidden rounded-3xl bg-gradient-to-br from-[var(--c-primary)] to-[var(--c-deep)] px-6 py-8 text-white">
           <motion.div
             animate={{ rotate: [0, -8, 8, 0], scale: [1, 1.15, 1] }}
             transition={{ duration: 1.4, repeat: Infinity, repeatDelay: 1 }}

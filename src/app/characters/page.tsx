@@ -6,6 +6,7 @@ import { CHARACTERS } from "@/content/characters";
 import { getPalette } from "@/content/palettes";
 import { useApp } from "@/lib/store";
 import { CharacterGraph } from "@/components/CharacterGraph";
+import { CharacterPortrait } from "@/components/CharacterPortrait";
 import { Reveal } from "@/components/ui";
 
 export default function CharactersPage() {
@@ -75,9 +76,12 @@ export default function CharactersPage() {
                           "linear-gradient(135deg, var(--c-surface), transparent)",
                       }}
                     >
-                      <span className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-[var(--c-secondary)] to-[var(--c-primary)] text-3xl shadow-soft">
-                        {c.emoji}
-                      </span>
+                      <CharacterPortrait
+                        id={c.id}
+                        size={68}
+                        breathing={false}
+                        className="shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-105"
+                      />
                       <div className="min-w-0">
                         <h3 className="truncate font-display text-lg font-extrabold group-hover:text-[var(--c-primary)]">
                           {c.name}

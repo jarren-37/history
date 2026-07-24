@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { CHARACTERS } from "@/content/characters";
+import { CharacterPortrait } from "./CharacterPortrait";
 
 const SENTIMENT: Record<string, string> = {
   friendly: "#2f8f83",
@@ -99,22 +100,25 @@ export function CharacterGraph() {
             onClick={() => setFocus(focus === n.id ? null : n.id)}
             style={{ cursor: "pointer" }}
           >
-            <circle
-              cx={n.x}
-              cy={n.y}
-              r={focus === n.id ? 30 : 26}
-              fill="var(--card)"
-              stroke={getPaletteColor(n.palette)}
-              strokeWidth={focus === n.id ? 4 : 2.5}
-            />
-            <text
-              x={n.x}
-              y={n.y + 7}
-              textAnchor="middle"
-              fontSize="22"
+            {focus === n.id && (
+              <circle
+                cx={n.x}
+                cy={n.y}
+                r={32}
+                fill="none"
+                stroke={getPaletteColor(n.palette)}
+                strokeWidth={3}
+              />
+            )}
+            <foreignObject
+              x={n.x - 27}
+              y={n.y - 27}
+              width={54}
+              height={54}
+              style={{ overflow: "visible" }}
             >
-              {n.emoji}
-            </text>
+              <CharacterPortrait id={n.id} size={54} breathing={false} />
+            </foreignObject>
             <text
               x={n.x}
               y={n.y + 46}
