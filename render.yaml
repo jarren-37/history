@@ -1,0 +1,28 @@
+# Render.com Blueprint — one-click deploy for Project Chronicle.
+# Spec: https://render.com/docs/blueprint-spec
+#
+# Deploy with the "Deploy to Render" button in the README, or:
+#   Render Dashboard → New → Blueprint → point at this repo.
+#
+# No secrets required: the AI tutor falls back to bundled syllabus content.
+# To enable a live model later, add OPENAI_API_KEY in the Render dashboard.
+
+services:
+  - type: web
+    name: project-chronicle
+    runtime: node
+    plan: free
+    region: singapore
+    branch: claude/project-chronicle-history-j9b67o
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "20.18.1"
+      - key: NEXT_TELEMETRY_DISABLED
+        value: "1"
+      # Uncomment and set in the dashboard to enable a live AI tutor model:
+      # - key: OPENAI_API_KEY
+      #   sync: false

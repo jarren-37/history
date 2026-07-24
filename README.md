@@ -2,6 +2,14 @@
 
 ### The storybook that teaches Singapore O-Level Combined History (2261)
 
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/jarren-37/history/tree/claude/project-chronicle-history-j9b67o)
+
+**One-click deploy →** the button above spins the whole app up on
+[Render](https://render.com) from the included `render.yaml` blueprint (free
+plan, no configuration, no secrets required). Once the branch is merged to
+`main`, use
+[`render.com/deploy?repo=https://github.com/jarren-37/history`](https://render.com/deploy?repo=https://github.com/jarren-37/history).
+
 Project Chronicle turns the entire Singapore Cambridge / SEAB O-Level Combined
 History (2261) syllabus into an **interactive animated storybook**. The goal is
 not to display notes — it is to make students feel like they are reading an
@@ -98,6 +106,13 @@ Install: open the production build in Chrome/Edge/Safari → **Install app** /
 ## ☁️ Deployment
 
 The app is a standard Next.js 14 project and deploys anywhere.
+
+**Render (one click):** click the **Deploy to Render** button at the top of this
+README. It reads `render.yaml`, provisions a free web service, runs
+`npm ci && npm run build`, starts it with `npm run start`, and health-checks
+`/`. Node is pinned via `.node-version` / `NODE_VERSION`; nothing else is
+required. To enable a live AI tutor later, add `OPENAI_API_KEY` in the Render
+dashboard.
 
 **Vercel / Netlify (zero-config):** import the repo — the framework is detected
 automatically. No environment variables are required (the AI tutor falls back to
