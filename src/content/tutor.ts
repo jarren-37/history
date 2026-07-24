@@ -272,4 +272,40 @@ export const TUTOR: Record<string, TutorContent> = {
         "So Gorbachev was the decisive trigger acting on long-term problems that were already pushing the Cold War towards its end.",
     },
   },
+  "the-korean-war": {
+    simpler:
+      "After WWII, Korea was split at the 38th parallel into a communist North and a capitalist South. In 1950 the North invaded to unite Korea. The USA led a UN force to stop communism spreading; China then joined in. The war ended in 1953 in a stalemate, with Korea still divided.",
+    eli10:
+      "Imagine two halves of one playground with a line down the middle. One side charges across to take over, so the other side's big friend jumps in to stop them — then the neighbour joins too. After lots of pushing, everyone ends up back at the same line.",
+    analogy:
+      "Korea was a tug-of-war over a line: the North pulled, the UN pulled back, China pulled again — and after all that effort, the rope ended up right where it started, at the 38th parallel.",
+    matters:
+      "It matters because it's the first time the Cold War turned into real fighting. It shows containment and the domino theory in action, and why the superpowers fought through 'proxy' wars rather than each other.",
+    memorise: [
+      "Korea split at the 38th parallel (1945): North communist, South capitalist",
+      "North invades 1950 → USA leads a UN force (USSR boycotting the vote)",
+      "China enters late 1950 → stalemate",
+      "1953 armistice = ceasefire; Korea stays divided",
+    ],
+    mistakes: [
+      "Saying a side 'won' — it ended in stalemate/division",
+      "Forgetting the UN and China's roles",
+      "Confusing armistice (ceasefire) with a full peace treaty",
+    ],
+    oneSentence:
+      "The Korean War (1950–53) was the first 'hot' Cold War conflict, ending in a stalemate that left Korea divided at the 38th parallel.",
+    threeSentence:
+      "After 1945 Korea was divided into a communist North and a capitalist South. When the North invaded in 1950, the USA led a UN force to contain communism, and China then intervened. The war ended in a 1953 armistice with Korea still divided.",
+    fiveSentence:
+      "After the Second World War, Korea was split at the 38th parallel into a communist North backed by the USSR and a capitalist South backed by the USA. In 1950 the North invaded to unite Korea under communism. Seeing this as communism spreading, the USA led a United Nations force that pushed the North back towards China's border. Alarmed, China sent troops that drove the UN forces back to the 38th parallel. The war ended in a 1953 armistice, leaving Korea divided — the Cold War's first 'hot' war.",
+    peel: {
+      point: "The Korean War was a limited success for containment.",
+      evidence:
+        "The USA led a UN force that stopped North Korea taking over the South, saving South Korea from communism.",
+      explain:
+        "However, the war ended in stalemate with Korea still divided and China strengthened, so communism was contained but not defeated.",
+      link:
+        "It held the line against communism, but at great cost and without a clear victory.",
+    },
+  },
 };
