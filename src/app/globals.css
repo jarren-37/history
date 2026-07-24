@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Baloo 2", "Nunito", ui-rounded, "SF Pro Rounded", system-ui,
+    sans-serif;
+  --font-sans: "Nunito", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, sans-serif;
+
+  /* Base surfaces (light). */
+  --bg: #fbf7f0;
+  --bg-2: #f3ece0;
+  --card: #ffffff;
+  --text: #2b2a33;
+  --text-soft: #55535f;
+  --text-faint: #7c7a88;
+  --border: rgba(43, 42, 51, 0.08);
+
+  /* Scoped chapter palette defaults (overridden inline per chapter). */
+  --c-primary: #8a7a63;
+  --c-secondary: #d8c9ae;
+  --c-deep: #4a3f30;
+  --c-surface: #f6f0e6;
+}
+
+.dark {
+  --bg: #14131a;
+  --bg-2: #1c1b24;
+  --card: #221f2c;
+  --text: #ece9f2;
+  --text-soft: #bdb9c9;
+  --text-faint: #8b8799;
+  --border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+/* A soft, layered aurora background used behind hero areas. */
+.aurora {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.aurora::before,
+.aurora::after {
+  content: "";
+  position: absolute;
+  width: 55vw;
+  height: 55vw;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.55;
+  animation: auroraFloat 18s ease-in-out infinite alternate;
+}
+.aurora::before {
+  background: radial-gradient(
+    circle at center,
+    var(--c-secondary),
+    transparent 65%
+  );
+  top: -18vw;
+  left: -12vw;
+}
+.aurora::after {
+  background: radial-gradient(
+    circle at center,
+    var(--c-primary),
+    transparent 60%
+  );
+  bottom: -22vw;
+  right: -14vw;
+  opacity: 0.4;
+  animation-delay: -6s;
+}
+.dark .aurora::before,
+.dark .aurora::after {
+  opacity: 0.3;
+}
+
+@keyframes auroraFloat {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(4vw, 3vw, 0) scale(1.12);
+  }
+}
+
+/* Soft card with subtle border + shadow that respects the theme. */
+.card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  box-shadow: 0 12px 40px -18px rgba(30, 25, 45, 0.35);
+}
+
+/* A gently textured "paper" feel for story pages. */
+.paper {
+  background-image: radial-gradient(
+      var(--c-surface) 1px,
+      transparent 1px
+    );
+  background-size: 22px 22px;
+}
+
+/* Highlighted key words in narration. */
+.hl {
+  background: linear-gradient(
+    120deg,
+    color-mix(in srgb, var(--c-secondary) 70%, transparent),
+    color-mix(in srgb, var(--c-primary) 30%, transparent)
+  );
+  color: var(--text);
+  padding: 0.05em 0.35em;
+  border-radius: 0.5em;
+  font-weight: 700;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.dark .hl {
+  color: #fff;
+}
+
+/* Custom scrollbar for the horizontal timeline. */
+.timeline-scroll::-webkit-scrollbar {
+  height: 10px;
+}
+.timeline-scroll::-webkit-scrollbar-thumb {
+  background: var(--c-secondary);
+  border-radius: 999px;
+}
+.timeline-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Focus ring that matches the palette, for accessibility. */
+:where(a, button, [tabindex]):focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--c-primary) 70%, white);
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(120deg, var(--c-primary), var(--c-deep));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+/* Lighter stops in dark mode so the headline stays legible on the dark bg. */
+.dark .gradient-text {
+  background: linear-gradient(
+    120deg,
+    color-mix(in srgb, var(--c-secondary) 85%, white),
+    var(--c-primary)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

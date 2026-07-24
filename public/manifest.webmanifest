@@ -1,0 +1,26 @@
+{
+  "name": "Project Chronicle — The History Storybook",
+  "short_name": "Chronicle",
+  "description": "An interactive animated storybook for Singapore O-Level Combined History (2261).",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#fbf7f0",
+  "theme_color": "#d6455b",
+  "categories": ["education"],
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
