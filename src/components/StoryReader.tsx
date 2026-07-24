@@ -15,6 +15,7 @@ import { MemoryBooster } from "./MemoryBooster";
 import { CauseEffect } from "./CauseEffect";
 import { ExamMemory } from "./ExamMemory";
 import { AITutor } from "./AITutor";
+import { GlossaryProvider } from "./Glossary";
 import { HighlightedText, ProgressBar, Confetti, QuillTitle } from "./ui";
 import {
   DustMotes,
@@ -83,9 +84,10 @@ export function StoryReader({ chapter }: { chapter: Chapter }) {
   const progress = (index + 1) / steps.length;
 
   return (
+    <GlossaryProvider>
     <div
       style={paletteVars(chapter.palette)}
-      className="relative mx-auto max-w-5xl px-4 pb-28 pt-4"
+      className="relative mx-auto max-w-5xl px-3 pb-28 pt-4 sm:px-4"
     >
       <DustMotes count={10} />
 
@@ -167,7 +169,8 @@ export function StoryReader({ chapter }: { chapter: Chapter }) {
         >
           ❮ turn back
         </button>
-        <div className="flex items-center gap-1.5">
+        {/* Progress dots — small marks with generous tap targets for touch */}
+        <div className="flex max-w-[45vw] flex-wrap items-center justify-center gap-0.5 sm:max-w-none">
           {steps.map((_, i) => (
             <button
               key={i}
@@ -176,12 +179,17 @@ export function StoryReader({ chapter }: { chapter: Chapter }) {
                 setIndex(i);
               }}
               aria-label={`Go to folio ${i + 1}`}
-              className={`transition-all ${
-                i === index
-                  ? "h-2.5 w-2.5 rotate-45 bg-[var(--wax)]"
-                  : "h-1.5 w-1.5 rounded-full bg-[var(--parch-edge)] hover:bg-[var(--ink-faint)]"
-              }`}
-            />
+              aria-current={i === index}
+              className="grid h-7 w-5 place-items-center"
+            >
+              <span
+                className={`block transition-all ${
+                  i === index
+                    ? "h-2.5 w-2.5 rotate-45 bg-[var(--wax)]"
+                    : "h-1.5 w-1.5 rounded-full bg-[var(--parch-edge)] hover:bg-[var(--ink-faint)]"
+                }`}
+              />
+            </button>
           ))}
         </div>
         {index < steps.length - 1 ? (
@@ -205,6 +213,7 @@ export function StoryReader({ chapter }: { chapter: Chapter }) {
 
       <AITutor chapterSlug={chapter.slug} chapterTitle={chapter.title} />
     </div>
+    </GlossaryProvider>
   );
 }
 

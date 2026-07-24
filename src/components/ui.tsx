@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import React from "react";
+import { useGlossary } from "./Glossary";
 
 /** Fade-and-rise wrapper used throughout for gentle entrances. */
 export function Reveal({
@@ -30,6 +31,9 @@ export function Reveal({
 
 /**
  * Renders a paragraph, wrapping any highlight phrases in a coloured mark.
+ * If a highlighted phrase is a glossary term (and a GlossaryProvider is above
+ * in the tree), it becomes a tappable button that opens its definition —
+ * shown with a dotted underline to invite the tap.
  * Matching is case-insensitive and longest-first so overlaps behave.
  */
 export function HighlightedText({
@@ -39,6 +43,7 @@ export function HighlightedText({
   text: string;
   highlights?: string[];
 }) {
+  const glossary = useGlossary();
   if (!highlights.length) return <>{text}</>;
   const sorted = [...highlights].sort((a, b) => b.length - a.length);
   const escaped = sorted.map((h) => h.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
@@ -46,15 +51,29 @@ export function HighlightedText({
   const parts = text.split(re);
   return (
     <>
-      {parts.map((part, i) =>
-        sorted.some((h) => h.toLowerCase() === part.toLowerCase()) ? (
+      {parts.map((part, i) => {
+        const isHighlight = sorted.some(
+          (h) => h.toLowerCase() === part.toLowerCase()
+        );
+        if (!isHighlight) return <React.Fragment key={i}>{part}</React.Fragment>;
+        if (glossary?.has(part)) {
+          return (
+            <button
+              key={i}
+              onClick={() => glossary.openTerm(part)}
+              className="hl cursor-pointer underline decoration-dotted decoration-[var(--wax)] decoration-2 underline-offset-4 transition-colors hover:decoration-solid"
+              title={`Definition: ${part}`}
+            >
+              {part}
+            </button>
+          );
+        }
+        return (
           <span key={i} className="hl">
             {part}
           </span>
-        ) : (
-          <React.Fragment key={i}>{part}</React.Fragment>
-        )
-      )}
+        );
+      })}
     </>
   );
 }
