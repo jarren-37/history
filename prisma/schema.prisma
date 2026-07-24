@@ -1,0 +1,48 @@
+// Project Chronicle — data model (reference).
+//
+// The app ships offline-first: reading progress, "met" characters and prefs are
+// persisted in the browser via localStorage (see src/lib/store.tsx), so no
+// database is required to run it. This schema documents the intended shape for
+// optional server-side persistence (SQLite + Prisma) — e.g. syncing a student's
+// progress across devices. To enable it, add prisma + @prisma/client, run
+// `prisma migrate dev`, and wire the /api routes to the client.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Student {
+  id        String            @id @default(cuid())
+  createdAt DateTime          @default(now())
+  progress  ChapterProgress[]
+  metChars  MetCharacter[]
+  theme     String            @default("light")
+  soundOn   Boolean           @default(false)
+}
+
+model ChapterProgress {
+  id          String   @id @default(cuid())
+  student     Student  @relation(fields: [studentId], references: [id])
+  studentId   String
+  chapterSlug String
+  page        Int      @default(0)
+  total       Int      @default(1)
+  completed   Boolean  @default(false)
+  updatedAt   DateTime @updatedAt
+
+  @@unique([studentId, chapterSlug])
+}
+
+model MetCharacter {
+  id          String  @id @default(cuid())
+  student     Student @relation(fields: [studentId], references: [id])
+  studentId   String
+  characterId String
+
+  @@unique([studentId, characterId])
+}

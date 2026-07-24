@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Offline · Project Chronicle</title>
+    <style>
+      :root { color-scheme: dark; }
+      html, body { margin: 0; height: 100%; }
+      body {
+        font-family: Georgia, "Times New Roman", serif;
+        color: #3b2a17;
+        background:
+          radial-gradient(120% 80% at 50% -10%, rgba(255, 196, 120, 0.16), transparent 55%),
+          linear-gradient(180deg, #3a2412, #241708);
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+      .page {
+        max-width: 460px;
+        text-align: center;
+        padding: 40px 32px;
+        border-radius: 16px;
+        border: 1px solid #c8a86f;
+        background:
+          radial-gradient(120% 120% at 30% 0%, rgba(255, 250, 232, 0.8), transparent 45%),
+          #f2e2bd;
+        box-shadow: 0 18px 50px -18px rgba(0, 0, 0, 0.7);
+        position: relative;
+      }
+      .page::after {
+        content: "";
+        position: absolute;
+        inset: 10px;
+        border: 1.5px solid #c8a86f;
+        border-radius: 10px;
+        box-shadow: inset 0 0 0 3px rgba(184, 137, 43, 0.18);
+        pointer-events: none;
+      }
+      .seal { font-size: 44px; }
+      h1 { font-size: 28px; margin: 10px 0 6px; color: #3b2a17; }
+      p { color: #5f472c; line-height: 1.6; margin: 6px 0; }
+      .hand { font-family: "Segoe Script", cursive; color: #8a6c46; font-size: 18px; }
+      a {
+        display: inline-block;
+        margin-top: 18px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: 700;
+        color: #2a1a0a;
+        background: linear-gradient(180deg, #e6c15a, #b8892b);
+        box-shadow: inset 0 1px 0 rgba(255, 240, 190, 0.6);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <div class="seal">🕯️</div>
+      <h1>The library is dark</h1>
+      <p>You're offline, and this page hasn't been read yet.</p>
+      <p class="hand">Pages you've already opened remain available.</p>
+      <a href="/">Return to the book</a>
+    </main>
+  </body>
+</html>
