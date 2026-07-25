@@ -1,1215 +1,757 @@
 import type { Chapter } from "./types";
 
 /**
- * The storybook chapters. Content is authored to stay strictly within the
- * Singapore Cambridge SEAB O-Level Combined History (2261) syllabus, focusing
- * on understanding (cause → effect → consequence) rather than trivia.
+ * The storybook chapters, aligned to the Singapore Cambridge SEAB O-Level
+ * Combined History (2261) syllabus:
+ *
+ *  Unit 1 — The Road to War
+ *   1. The Paris Peace Conference & the League of Nations
+ *   2. Case Study: Nazi Germany
+ *   3. Case Study: Militarist Japan
+ *   4. The Outbreak of War in Europe
+ *   5. The Outbreak of War in the Asia-Pacific
+ *  Unit 2 — The Cold War
+ *   6. The End of the Second World War
+ *   7. Origins of the Cold War in Europe
+ *   8. Case Study: The Korean War
+ *   9. Case Study: The Vietnam War
+ *  10. The End of the Cold War
+ *
+ * Content stays strictly within the syllabus, focusing on understanding
+ * (cause → effect → consequence) rather than trivia.
  */
 export const CHAPTERS: Chapter[] = [
-  // ─────────────────────────────────────────────────────────────────────────
-  // 1. THE TREATY OF VERSAILLES
-  // ─────────────────────────────────────────────────────────────────────────
+  // ── 1. THE PARIS PEACE CONFERENCE & THE LEAGUE ───────────────────────────
   {
-    id: "ch-versailles",
-    slug: "treaty-of-versailles",
-    number: "1.1",
-    section: "World War Two",
-    title: "The Treaty of Versailles",
-    subtitle: "How a peace treaty planted the seeds of war",
-    inquiry: "How did the peace of 1919 help cause another war?",
+    id: "ch-paris",
+    slug: "paris-peace-conference",
+    number: "1",
+    section: "The Road to War",
+    title: "The Paris Peace Conference & the League",
+    subtitle: "The peace of 1919 and the search for security",
+    inquiry: "Could the peace of 1919 keep the world safe?",
     palette: "versailles",
-    era: "1919–1920",
-    hook: "The war was over. But the peace would prove far more dangerous than anyone imagined.",
+    era: "1919–1920s",
+    hook: "The Great War was over. Now the victors had to build a peace — and hope it would last.",
     outcomes: [
-      "Explain the main terms of the Treaty of Versailles",
-      "Explain why Germans resented the Treaty",
-      "Link the Treaty to the later rise of Hitler and the Second World War",
+      "Explain the aims and main terms of the Treaty of Versailles",
+      "Explain how borders were redrawn through self-determination",
+      "Assess the successes and failures of the League of Nations in the 1920s",
     ],
-    characterIds: ["hitler", "chamberlain", "churchill"],
+    characterIds: [],
     timelineIds: ["versailles-signed", "league-formed"],
     pages: [
       {
-        id: "v-1",
+        id: "p-1",
         kicker: "1919 · Paris",
         title: "A room full of anger",
         scene: "treaty-signing",
         narration: [
-          "The First World War had ended. Millions were dead, and the victorious nations gathered at Paris to decide what to do with Germany.",
-          "France had suffered terribly and wanted Germany punished so it could never threaten Europe again. Germany was not even allowed to help write the treaty — it was simply told to sign.",
+          "The First World War had ended, and the victorious powers gathered at Paris to decide the peace. Three leaders — the Big Three — dominated the talks.",
+          "France's Clemenceau wanted Germany crushed; America's Wilson wanted a fair peace and a League of Nations; Britain's Lloyd George stood in between. Germany was not even allowed to negotiate.",
         ],
-        highlights: ["First World War", "punished", "sign"],
+        highlights: ["Big Three", "League of Nations"],
         dialogues: [
-          {
-            speaker: "France",
-            side: "left",
-            text: "Germany must pay for the destruction it caused. Make it weak.",
-          },
-          {
-            speaker: "Germany",
-            side: "right",
-            text: "We were not even invited. This is a dictated peace.",
-          },
+          { speaker: "Clemenceau (France)", side: "left", text: "Germany must be made powerless. Never again." },
+          { speaker: "Wilson (USA)", side: "right", text: "A peace without fairness will not last." },
         ],
       },
       {
-        id: "v-2",
+        id: "p-2",
         kicker: "The terms",
-        title: "Germany shrinks",
-        scene: "shrinking-germany",
-        narration: [
-          "The Treaty took land away from Germany. Its overseas colonies were removed, and the Rhineland — the region bordering France — had to be kept free of German troops.",
-          "Germany's army was cut to just 100,000 men, with no air force, no submarines and almost no navy. A once-mighty power was made deliberately weak.",
-        ],
-        highlights: ["land", "Rhineland", "100,000 men", "weak"],
-      },
-      {
-        id: "v-3",
-        kicker: "The terms",
-        title: "The mountain of debt",
+        title: "The price Germany paid",
         scene: "reparations-coins",
         narration: [
-          "Germany was ordered to pay reparations — huge payments for the damage of the war. The bill was enormous and would take generations to repay.",
-          "Worst of all for German pride was the War Guilt Clause: Germany had to accept the blame for starting the entire war. To ordinary Germans, this felt like a deep humiliation.",
+          "The Treaty of Versailles hit Germany hard. The War Guilt Clause forced Germany to accept blame for the war, and huge reparations followed.",
+          "Germany was disarmed — its army capped, the Rhineland demilitarised — and it lost territory on every side. Germans called it a humiliating 'diktat'.",
         ],
-        highlights: ["reparations", "War Guilt Clause", "blame", "humiliation"],
-        dialogues: [
-          {
-            speaker: "A German worker",
-            side: "left",
-            text: "How can one country pay for a whole war? And why must we alone take the blame?",
-          },
-        ],
+        highlights: ["Treaty of Versailles", "War Guilt Clause", "reparations", "demilitarised", "diktat"],
       },
       {
-        id: "v-4",
-        kicker: "The consequence",
-        title: "A wound that would not heal",
-        scene: "angry-crowd",
-        narration: [
-          "Germans called the treaty a 'diktat' — a dictated peace — and a 'stab in the back'. Anger at Versailles spread through the country.",
-          "This resentment did not fade. It became fuel. Years later, a politician named Adolf Hitler would promise to tear the Treaty up — and millions of angry Germans would listen.",
-        ],
-        highlights: ["diktat", "resentment", "Adolf Hitler", "tear the Treaty up"],
-        choice: {
-          question: "If you were a German voter in the 1920s, how might you feel about the Treaty?",
-          options: [
-            {
-              label: "Accept it — the war was lost",
-              outcome:
-                "Some Germans accepted it, but many felt the terms were far harsher than a lost war deserved.",
-            },
-            {
-              label: "Resent it deeply",
-              outcome:
-                "This was the common feeling. That resentment is exactly what extremist leaders would later exploit.",
-              historical: true,
-            },
-            {
-              label: "Ignore it",
-              outcome:
-                "Hard to ignore — reparations and lost land affected daily life and national pride directly.",
-            },
-          ],
-          reality:
-            "In reality, widespread anger at Versailles weakened Germany's new democracy and gave Hitler a ready-made grievance to campaign on. The Treaty meant to prevent war helped set the stage for the next one.",
-        },
-      },
-      {
-        id: "v-5",
-        kicker: "1919 · Paris",
-        title: "The Big Three and their quarrel",
-        scene: "treaty-signing",
-        narration: [
-          "The treaty was shaped by three very different leaders — the Big Three. France's Clemenceau wanted Germany crushed so it could never invade France again.",
-          "America's Wilson wanted a fair peace and a new League of Nations to prevent future wars. Britain's Lloyd George stood in the middle: punish Germany, but not so harshly that trade and stability collapsed.",
-          "The result was a compromise that satisfied none of them — and left Germany feeling it had been treated far more harshly than was fair.",
-        ],
-        highlights: ["Big Three", "League of Nations", "compromise"],
-        dialogues: [
-          {
-            speaker: "Clemenceau (France)",
-            side: "left",
-            text: "Germany must be made powerless. Never again.",
-          },
-          {
-            speaker: "Wilson (USA)",
-            side: "right",
-            text: "A peace without fairness will not last. We need a League of Nations.",
-          },
-        ],
-      },
-      {
-        id: "v-6",
-        kicker: "The new map",
-        title: "Europe is redrawn",
+        id: "p-3",
+        kicker: "A new map",
+        title: "New nations from old empires",
         scene: "shrinking-germany",
         narration: [
-          "Versailles did not only punish Germany — it redrew the map of Europe. Germany lost land on every side, and new nations rose from the collapsed empires.",
-          "Germany's overseas colonies were taken away and shared out as 'mandates'. Union between Germany and Austria — the Anschluss — was forbidden.",
-          "Millions of Germans now lived outside Germany's borders. It was one more grievance that a future leader would use.",
+          "The war had shattered the old empires. From their ruins, new nation-states were created across Europe, guided by the idea of self-determination — that peoples should rule themselves.",
+          "But borders could not be drawn perfectly. Millions ended up as minorities in the wrong country, planting grievances that would trouble the years ahead.",
         ],
-        highlights: ["colonies", "Anschluss", "forbidden"],
+        highlights: ["nation-states", "self-determination", "minorities"],
       },
       {
-        id: "v-7",
-        kicker: "1920",
-        title: "A hope called the League",
+        id: "p-4",
+        kicker: "1920s",
+        title: "A parliament of the world",
         scene: "voting-hands",
         narration: [
-          "Alongside the treaty came a bold new idea: the League of Nations, where countries would settle disputes by talking, not fighting — the principle of collective security.",
-          "But the League was weak from birth. The USA, whose own president had championed it, never joined. It had no army of its own, and its decisions were slow.",
-          "A peacekeeper without power. When aggression came in the 1930s, the League would prove unable to stop it — a warning of storms to come.",
+          "To keep the peace, the powers created the League of Nations, built on collective security — nations acting together against any aggressor.",
+          "In the 1920s the League had some successes settling small disputes. But it was weak: the USA never joined, it had no army, and it could not force great powers to obey.",
         ],
         highlights: ["League of Nations", "collective security", "no army"],
+        choice: {
+          question: "You lead the League in the 1920s. A powerful nation ignores your ruling. What can you do?",
+          options: [
+            { label: "Send in an army to enforce it", outcome: "The League had no army of its own — it simply could not." },
+            { label: "Impose trade sanctions", outcome: "Possible, but slow and easily dodged, especially without US support.", historical: true },
+            { label: "Condemn it and hope", outcome: "Too often this was all the League could do — exposing its weakness." },
+          ],
+          reality: "The League relied on persuasion and sanctions, not force. It could settle quarrels between small states, but had no way to compel a determined great power. In the 1930s that weakness would prove fatal.",
+        },
       },
     ],
     boosters: [
-      {
-        afterPage: 2,
-        booster: {
-          type: "match",
-          prompt: "Match each term of the Treaty to what it did.",
-          pairs: [
-            { left: "Reparations", right: "Germany had to pay for war damage" },
-            { left: "War Guilt Clause", right: "Germany accepted blame for the war" },
-            { left: "Army limit", right: "German forces cut to 100,000 men" },
-            { left: "Rhineland", right: "Kept free of German troops" },
-          ],
-        },
-      },
-      {
-        afterPage: 3,
-        booster: {
-          type: "recall",
-          prompt: "Quick check before the story continues.",
-          question: "Why did the War Guilt Clause anger Germans so deeply?",
-          answer:
-            "It forced Germany alone to accept blame for the whole war, which felt like a national humiliation — and it justified the reparations payments.",
-        },
-      },
+      { afterPage: 1, booster: { type: "match", prompt: "Match each term of Versailles to what it did.", pairs: [
+        { left: "War Guilt Clause", right: "Germany accepted blame for the war" },
+        { left: "Reparations", right: "Germany paid for war damage" },
+        { left: "Demilitarisation", right: "The Rhineland kept free of troops" },
+        { left: "Self-determination", right: "New nation-states for peoples" },
+      ] } },
+      { afterPage: 3, booster: { type: "recall", prompt: "Check your understanding.", question: "Why was the League of Nations weak in the 1920s?", answer: "The USA never joined, it had no army of its own, and its decisions could not force great powers to obey — so it relied only on persuasion and sanctions." } },
     ],
     bigPicture: {
-      title: "The chain that led from peace to war",
-      intro: "Follow how a single treaty rippled forward into another world war.",
+      title: "The peace that had to hold",
       nodes: [
-        {
-          id: "n1",
-          label: "Harsh treaty",
-          icon: "📜",
-          detail:
-            "Versailles took German land, limited its army, demanded reparations and blamed Germany for the war.",
-        },
-        {
-          id: "n2",
-          label: "German resentment",
-          icon: "😠",
-          detail:
-            "Germans saw the treaty as an unfair 'diktat' and a humiliation that damaged national pride.",
-        },
-        {
-          id: "n3",
-          label: "Weak democracy",
-          icon: "🏛️",
-          detail:
-            "The new German government was blamed for accepting the treaty, making it unpopular and unstable.",
-        },
-        {
-          id: "n4",
-          label: "Hitler exploits anger",
-          icon: "🕯️",
-          detail:
-            "Hitler promised to overturn Versailles and restore Germany's pride, winning mass support.",
-        },
-        {
-          id: "n5",
-          label: "Path to war",
-          icon: "🔥",
-          detail:
-            "Once in power, Hitler dismantled the treaty and expanded German territory, leading to the Second World War.",
-        },
+        { id: "n1", label: "Harsh treaty", icon: "📜", detail: "Versailles blamed and punished Germany, breeding resentment." },
+        { id: "n2", label: "New nations", icon: "🗺️", detail: "Old empires broke up into nation-states by self-determination." },
+        { id: "n3", label: "The League", icon: "🕊️", detail: "Set up for collective security — to keep the peace together." },
+        { id: "n4", label: "Weak foundations", icon: "⚠️", detail: "No US membership, no army: the League could not compel great powers." },
+        { id: "n5", label: "Trouble ahead", icon: "⛈️", detail: "Grievances and a weak League left the peace fragile." },
       ],
     },
     exam: [
-      {
-        id: "v-exam-1",
-        skill: "Inference",
-        format: "SBQ",
-        marks: 5,
-        question:
-          "What can you infer about German feelings towards the Treaty of Versailles? Explain your answer using the source and your knowledge.",
-        source: {
-          label: "A German cartoon, 1920 (paraphrased description)",
-          text:
-            "The cartoon shows Germany as a person crushed under an enormous weight labelled 'reparations', while figures representing the Allies look on.",
-        },
-        markScheme: [
-          "L1: Copies or describes the source with no inference (1 mark).",
-          "L2: A supported inference, e.g. Germans felt the treaty was unfairly harsh (2–3 marks).",
-          "L3: A developed inference using source detail AND own knowledge, e.g. Germans felt crushed and humiliated by reparations and the War Guilt Clause (4–5 marks).",
-        ],
-        modelAnswer:
-          "The source suggests that Germans felt the Treaty was crushing and unfair. The figure buckling under a huge 'reparations' weight implies that Germans saw the payments as an unbearable burden. This fits my knowledge that Germans resented the reparations and the War Guilt Clause, viewing the treaty as a humiliating 'diktat' forced on them.",
-      },
-      {
-        id: "v-exam-2",
-        skill: "Explain (SEQ)",
-        format: "SEQ",
-        marks: 8,
-        question:
-          "Explain why many Germans were angry about the Treaty of Versailles.",
-        markScheme: [
-          "Identify valid reasons (e.g. reparations, War Guilt Clause, loss of land, army limits).",
-          "Explain HOW each reason caused anger, not just list it.",
-          "L3 answers develop at least two reasons with clear links to German resentment.",
-        ],
-        modelAnswer:
-          "Many Germans were angry because the Treaty forced them to accept sole blame for the war through the War Guilt Clause, which felt deeply humiliating. This anger was made worse by the reparations, huge payments that damaged the German economy and daily life. On top of this, Germany lost land and had its army cut to 100,000 men, leaving Germans feeling weak and treated unfairly — a resentment that later leaders would exploit.",
-      },
+      { id: "p-exam-1", skill: "Explain (SEQ)", format: "SEQ", marks: 8, question: "Explain why many Germans were angry about the Treaty of Versailles.",
+        markScheme: ["Valid reasons: War Guilt Clause, reparations, disarmament, loss of land.", "Explain HOW each caused anger.", "L3: two developed reasons with links."],
+        modelAnswer: "Germans were angry mainly because the War Guilt Clause forced them to accept sole blame for the war, which felt deeply humiliating, and justified huge reparations that damaged the economy. They were also angered by disarmament and the loss of territory, which left Germany weak and treated, they felt, unfairly — a resentment they called a 'diktat'." },
+      { id: "p-exam-2", skill: "Judgement (SEQ)", format: "SEQ", marks: 12, question: "'The League of Nations was a failure in the 1920s.' How far do you agree?",
+        markScheme: ["AGAINST (successes): settled some small disputes, humanitarian work.", "FOR (weaknesses): no USA, no army, could not compel great powers.", "L4/L5: balanced judgement with a conclusion."],
+        modelAnswer: "In the 1920s the League had real successes, settling several disputes between smaller states and doing valuable humanitarian work, so it was not a complete failure. However, its weaknesses were serious: the USA never joined, it had no army, and it could not force great powers to obey. On balance the League worked while the stakes were low, but its fragile foundations meant it was not equipped for the greater challenges to come." },
     ],
   },
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // 2. THE RISE OF HITLER & APPEASEMENT
-  // ─────────────────────────────────────────────────────────────────────────
+  // ── 2. CASE STUDY: NAZI GERMANY ──────────────────────────────────────────
   {
-    id: "ch-hitler",
-    slug: "rise-of-hitler",
-    number: "1.2",
-    section: "World War Two",
-    title: "The Rise of Hitler & the Road to War",
-    subtitle: "From anger and depression to invasion",
-    inquiry: "Why did war break out in Europe in 1939?",
+    id: "ch-nazi",
+    slug: "nazi-germany",
+    number: "2",
+    section: "The Road to War",
+    title: "Nazi Germany",
+    subtitle: "How Hitler rose and seized total power",
+    inquiry: "How did an unstable democracy become a dictatorship?",
     palette: "hitler",
-    era: "1929–1939",
-    hook: "A struggling democracy, a global depression, and a leader who promised to make Germany great again.",
+    era: "1919–1939",
+    hook: "A young democracy, blamed for defeat and battered by crisis — and a party that promised to make Germany great again.",
     outcomes: [
-      "Explain how the Depression helped Hitler gain support",
-      "Describe Hitler's actions that broke the Treaty of Versailles",
-      "Explain the policy of appeasement and its consequences",
+      "Explain the weaknesses of the Weimar government",
+      "Explain the appeal of Hitler and the methods of the Nazi Party",
+      "Explain how Hitler consolidated power and the impact of his policies",
     ],
-    characterIds: ["hitler", "chamberlain", "churchill"],
-    timelineIds: ["hitler-power", "rhineland", "munich", "poland"],
+    characterIds: ["hitler"],
+    timelineIds: ["weimar", "depression", "hitler-power"],
     pages: [
       {
-        id: "h-1",
-        kicker: "1929 · The Depression",
+        id: "n-1",
+        kicker: "1919–1929",
+        title: "A democracy born in defeat",
+        scene: "empty-factory",
+        narration: [
+          "After the war, Germany became a democracy — the Weimar Republic. But it was blamed for signing Versailles, and its constitution let too many small parties squabble, so governments were weak and short-lived.",
+          "Hyperinflation in 1923 wiped out savings. Even when things recovered, many Germans never trusted their fragile new democracy.",
+        ],
+        highlights: ["Weimar Republic", "constitution", "weak"],
+      },
+      {
+        id: "n-2",
+        kicker: "1929",
         title: "The world runs out of money",
         scene: "empty-factory",
         narration: [
-          "In 1929 a great economic depression spread across the world. In Germany, factories closed and millions lost their jobs.",
-          "Desperate people wanted answers. The moderate government seemed powerless, and Germans began to look towards leaders who promised bold change.",
+          "Then came the Great Depression. Factories closed, millions lost their jobs, and the Weimar government seemed powerless to help.",
+          "Desperate people looked for someone with answers — and turned away from the moderate parties towards the extremes.",
         ],
-        highlights: ["depression", "jobs", "powerless", "bold change"],
+        highlights: ["Great Depression", "unemployment", "extremes"],
       },
       {
-        id: "h-2",
-        kicker: "1933",
-        title: "A promise to make Germany great",
+        id: "n-3",
+        kicker: "The Nazi appeal",
+        title: "The promise of a strong leader",
         scene: "rising-leader",
         narration: [
-          "Adolf Hitler and the Nazi Party promised to end unemployment, restore German pride, and tear up the hated Treaty of Versailles.",
-          "To Germans humiliated by defeat and crushed by depression, this message was powerful. In 1933 Hitler became leader of Germany — and soon, its dictator.",
+          "Hitler and the Nazi Party promised jobs, pride and an end to Versailles. Powerful propaganda and mass rallies spread the message, while the SA used force against opponents.",
+          "The Nazis also played the democratic game, winning votes in elections. In 1933 Hitler was legally made Chancellor — then moved quickly to destroy the democracy that had raised him.",
         ],
-        highlights: ["Nazi Party", "restore German pride", "Treaty of Versailles", "dictator"],
+        highlights: ["Nazi Party", "propaganda", "force", "elections", "Chancellor"],
         dialogues: [
-          {
-            speaker: "hitler",
-            characterId: "hitler",
-            side: "left",
-            text: "Germany will rise again. The chains of Versailles will be broken.",
-          },
+          { speaker: "hitler", characterId: "hitler", side: "left", text: "Give me power, and I will give Germany back its strength and its pride." },
         ],
       },
       {
-        id: "h-3",
-        kicker: "1936",
-        title: "Testing the world",
+        id: "n-4",
+        kicker: "1933–1939",
+        title: "One party, one leader",
+        scene: "angry-crowd",
+        narration: [
+          "Hitler established a dictatorship: other parties were banned and opponents silenced. Germany became a one-party state under his total control.",
+          "His policies cut unemployment through public works and rearmament, moving Germany towards a war economy. But this came with fierce German nationalism and the brutal persecution of Jews and other minorities, as society was tightly controlled.",
+        ],
+        highlights: ["dictatorship", "one-party state", "war economy", "nationalism", "persecution"],
+        choice: {
+          question: "It is 1933. You are a German worker with a new job under the Nazis. How do you feel?",
+          options: [
+            { label: "Grateful — at last, work", outcome: "Many felt this way; jobs bought loyalty, and few asked how it was paid for.", historical: true },
+            { label: "Uneasy about lost freedoms", outcome: "Some were — but opposition was dangerous under a police state." },
+            { label: "Afraid for my neighbours", outcome: "Persecution of minorities grew steadily, and speaking out was risky." },
+          ],
+          reality: "Hitler's dictatorship won support by ending unemployment and restoring pride — but it rested on propaganda, terror, and the persecution of those it labelled enemies. Consent and fear went hand in hand.",
+        },
+      },
+    ],
+    boosters: [
+      { afterPage: 1, booster: { type: "fill", prompt: "Complete the sentence.", sentence: "The {{blank}} of 1929 caused mass {{blank}}, which helped {{blank}} win support.", answers: ["Depression", "unemployment", "Hitler"], bank: ["Depression", "unemployment", "Hitler", "Weimar", "reparations", "pride"] } },
+      { afterPage: 3, booster: { type: "recall", prompt: "Check your understanding.", question: "Name two methods the Nazis used to gain and keep power.", answer: "Any two of: powerful propaganda, force/violence through the SA, contesting elections, and — once in power — banning other parties to create a one-party dictatorship." } },
+    ],
+    bigPicture: {
+      title: "From democracy to dictatorship",
+      nodes: [
+        { id: "n1", label: "Weak Weimar", icon: "🏛️", detail: "A fragile democracy blamed for Versailles and prone to crisis." },
+        { id: "n2", label: "Depression", icon: "📉", detail: "Mass unemployment left Germans desperate for strong leadership." },
+        { id: "n3", label: "Nazi appeal", icon: "🕯️", detail: "Propaganda, force and elections won Hitler mass support." },
+        { id: "n4", label: "Dictatorship", icon: "⛓️", detail: "Hitler banned rivals and built a one-party state." },
+        { id: "n5", label: "Control & persecution", icon: "⚠️", detail: "Rearmament and nationalism came with terror and persecution." },
+      ],
+    },
+    exam: [
+      { id: "n-exam-1", skill: "Explain (SEQ)", format: "SEQ", marks: 8, question: "Explain why Hitler was able to come to power in Germany by 1933.",
+        markScheme: ["Valid reasons: Weimar weakness, the Depression, Nazi appeal/methods.", "Explain HOW each helped Hitler.", "L3: two developed reasons with links."],
+        modelAnswer: "Hitler came to power partly because the Weimar Republic was weak and unpopular, blamed for Versailles and unable to provide stable government. The Great Depression then caused mass unemployment, leaving Germans desperate for a strong leader. The Nazis exploited this with powerful propaganda and promises of jobs and pride, while also winning votes — so that in 1933 Hitler could be legally made Chancellor." },
+      { id: "n-exam-2", skill: "Inference", format: "SBQ", marks: 5, question: "What can you infer about Nazi methods from this source? Explain using the source and your knowledge.",
+        source: { label: "A description of a Nazi rally, 1930s (paraphrased)", text: "Thousands stand in ordered ranks beneath huge banners as loudspeakers carry Hitler's voice; uniformed men line the edges of the crowd." },
+        markScheme: ["L1: describes the source.", "L2: a supported inference (e.g. the Nazis used propaganda).", "L3: developed inference using source detail AND knowledge (propaganda + force/control)."],
+        modelAnswer: "The source suggests the Nazis relied on propaganda and control. The banners, loudspeakers and ordered ranks imply a carefully staged spectacle to inspire loyalty, while the uniformed men lining the crowd hint at force and intimidation. This fits my knowledge that the Nazis combined mass propaganda with the threat of violence to build and keep support." },
+    ],
+  },
+
+  // ── 3. CASE STUDY: MILITARIST JAPAN ──────────────────────────────────────
+  {
+    id: "ch-japan-dom",
+    slug: "militarist-japan",
+    number: "3",
+    section: "The Road to War",
+    title: "Militarist Japan",
+    subtitle: "How the army came to rule Japan",
+    inquiry: "Why did democracy give way to military rule in Japan?",
+    palette: "japan",
+    era: "1920s–1930s",
+    hook: "A modern democracy shaken by hardship — and generals who promised strength through empire.",
+    outcomes: [
+      "Explain the weaknesses of democratic government in Japan",
+      "Explain the appeal of the ultranationalists",
+      "Explain how the militarists consolidated power and their policies",
+    ],
+    characterIds: ["hirohito-era"],
+    timelineIds: ["japan-depression"],
+    pages: [
+      {
+        id: "j-1",
+        kicker: "1920s",
+        title: "A fragile democracy",
+        scene: "voting-hands",
+        narration: [
+          "In the 1920s Japan had a democratic government, but it was weak. Politicians were seen as corrupt and divided, and many Japanese lost faith in them.",
+          "Real power was drifting towards those who promised order and strength — above all, the army.",
+        ],
+        highlights: ["democratic", "weak", "army"],
+      },
+      {
+        id: "j-2",
+        kicker: "Hard times",
+        title: "A nation under strain",
+        scene: "empty-factory",
+        narration: [
+          "Japan faced serious economic troubles: inflation, unemployment, and bitter disputes between landlords and struggling farmers.",
+          "Then the Great Depression struck, devastating trade. Hardship spread anger — and the ultranationalists offered a bold, simple answer: expansion.",
+        ],
+        highlights: ["unemployment", "Great Depression", "expansion"],
+      },
+      {
+        id: "j-3",
+        kicker: "The ultranationalists",
+        title: "Strength through the sword",
+        scene: "rising-sun",
+        narration: [
+          "Ultranationalist army officers argued that only military strength and an Asian empire could save Japan. Military successes abroad made them heroes at home.",
+          "They also used terror: political assassinations struck down moderate leaders who stood in their way, cowing the government.",
+        ],
+        highlights: ["military strength", "empire", "assassinations"],
+        dialogues: [
+          { speaker: "hirohito-era", characterId: "hirohito-era", side: "right", text: "Weak politicians have failed Japan. The army will make her great." },
+        ],
+      },
+      {
+        id: "j-4",
+        kicker: "1930s",
+        title: "The army takes charge",
         scene: "marching-troops",
         narration: [
-          "Hitler began to break the Treaty step by step. He rebuilt the army and, in 1936, marched troops into the demilitarised Rhineland.",
-          "Britain and France did nothing. Hitler learned a dangerous lesson: the great powers would not stop him.",
+          "By the 1930s the militarists dominated the government. They increased state control over industry and launched campaigns to revitalise the economy for war.",
+          "Society was reshaped for conflict: education was militarised to breed loyal soldiers, and independent labour unions were crushed.",
         ],
-        highlights: ["break the Treaty", "Rhineland", "did nothing"],
+        highlights: ["militarists", "state control", "militarised", "labour unions"],
+        choice: {
+          question: "You are a Japanese moderate politician in the 1930s. The army is seizing control. What do you do?",
+          options: [
+            { label: "Resist openly", outcome: "Dangerous — moderates who opposed the militarists risked assassination." },
+            { label: "Go along quietly", outcome: "Many did, out of fear or patriotism, letting the militarists tighten their grip.", historical: true },
+            { label: "Appeal to the League", outcome: "The League had already proved powerless to restrain Japan." },
+          ],
+          reality: "Economic misery and the failure of the politicians let the militarists take over. Through military success, assassination and control of society, they turned Japan into an aggressive, war-focused state.",
+        },
+      },
+    ],
+    boosters: [
+      { afterPage: 1, booster: { type: "order", prompt: "Order Japan's slide towards military rule.", items: ["A weak, distrusted democracy", "Economic hardship and the Depression", "Ultranationalists gain support", "Assassinations silence moderates", "The militarists take control"] } },
+      { afterPage: 3, booster: { type: "recall", prompt: "Check your understanding.", question: "How did the militarists reshape Japanese society for war?", answer: "They increased state control over industry, militarised education to produce loyal soldiers, and crushed independent labour unions — focusing the whole nation on military strength." } },
+    ],
+    bigPicture: {
+      title: "Why the army came to rule",
+      nodes: [
+        { id: "n1", label: "Weak democracy", icon: "🏛️", detail: "Divided, distrusted politicians lost the people's faith." },
+        { id: "n2", label: "Economic misery", icon: "📉", detail: "Inflation, unemployment and the Depression bred anger." },
+        { id: "n3", label: "Ultranationalists", icon: "🌅", detail: "Officers promised salvation through empire and strength." },
+        { id: "n4", label: "Terror & success", icon: "⚔️", detail: "Assassinations and military victories won them power." },
+        { id: "n5", label: "A war state", icon: "🪖", detail: "State control, militarised schools and crushed unions." },
+      ],
+    },
+    exam: [
+      { id: "j-exam-1", skill: "Explain (SEQ)", format: "SEQ", marks: 8, question: "Explain why the militarists were able to gain power in Japan in the 1930s.",
+        markScheme: ["Valid reasons: weak democracy, economic hardship/Depression, ultranationalist appeal & methods.", "Explain HOW each helped the militarists.", "L3: two developed reasons with links."],
+        modelAnswer: "The militarists gained power partly because Japan's democracy was weak and distrusted, leaving a gap they could fill. Economic hardship, worsened by the Depression, spread anger and made the ultranationalists' promise of strength through empire appealing. They reinforced this through military successes that made them popular and through assassinations that silenced moderate opponents, allowing them to dominate the government." },
+      { id: "j-exam-2", skill: "Explain (SEQ)", format: "SEQ", marks: 8, question: "Explain how the militarists tried to control Japanese society.",
+        markScheme: ["Valid points: militarised education, crushing labour unions, state control of industry, propaganda.", "Explain HOW each increased control.", "L3: two developed points."],
+        modelAnswer: "The militarists tightened control over society in several ways. They militarised education so that children were raised to be loyal, obedient soldiers for the state. They crushed independent labour unions, removing a source of opposition and workers' power. They also increased government control over industry, directing the economy towards military strength — binding the whole nation to their war aims." },
+    ],
+  },
+
+  // ── 4. THE OUTBREAK OF WAR IN EUROPE ─────────────────────────────────────
+  {
+    id: "ch-outbreak-eu",
+    slug: "outbreak-europe",
+    number: "4",
+    section: "The Road to War",
+    title: "The Outbreak of War in Europe",
+    subtitle: "From a weak League to world war",
+    inquiry: "Why did war break out in Europe in 1939?",
+    palette: "berlin",
+    era: "1930s–1939",
+    hook: "Step by step, a defeated Germany rose again — while the world hoped, in vain, that giving in would keep the peace.",
+    outcomes: [
+      "Explain the ineffectiveness of the League in the 1930s",
+      "Describe Germany's aggressive foreign policy step by step",
+      "Explain the policy of appeasement and why war broke out",
+    ],
+    characterIds: ["hitler", "chamberlain", "churchill"],
+    timelineIds: ["abyssinia", "rhineland", "anschluss", "munich", "poland"],
+    pages: [
+      {
+        id: "o-1",
+        kicker: "1930s",
+        title: "The League fails the test",
+        scene: "voting-hands",
+        narration: [
+          "In the 1930s the League of Nations was tested by aggression — and failed. Efforts at disarmament collapsed as nations rearmed.",
+          "The Abyssinian Crisis of 1935, when Italy invaded Abyssinia, exposed the League's helplessness: it could condemn, but it could not stop a great power. Aggressors took note.",
+        ],
+        highlights: ["disarmament", "Abyssinian Crisis", "helplessness"],
       },
       {
-        id: "h-4",
-        kicker: "1938 · Munich",
+        id: "o-2",
+        kicker: "1935–1938",
+        title: "Germany on the march",
+        scene: "marching-troops",
+        narration: [
+          "Hitler tore up Versailles piece by piece. A plebiscite returned the Saar in 1935; in 1936 he remilitarised the Rhineland; in 1938 came the Anschluss, union with Austria.",
+          "Each move broke the treaty. Each time, Britain and France did nothing — and Hitler grew bolder.",
+        ],
+        highlights: ["Saar", "remilitarised", "Rhineland", "Anschluss"],
+        dialogues: [
+          { speaker: "hitler", characterId: "hitler", side: "left", text: "They protest, but they will not act. Germany rises again." },
+        ],
+      },
+      {
+        id: "o-3",
+        kicker: "1938–1939",
         title: "'Peace for our time'",
         scene: "handshake",
         narration: [
-          "Rather than risk war, Britain and France followed appeasement — giving Hitler some of what he demanded, hoping he would be satisfied.",
-          "At Munich in 1938 they let Germany take the Sudetenland. Prime Minister Chamberlain returned promising 'peace for our time'. But Hitler was not finished.",
+          "Rather than risk war, Britain and France chose appeasement. At the Munich Agreement of 1938 they let Germany take the Sudetenland; Chamberlain promised 'peace for our time'.",
+          "But in March 1939 Hitler seized the rest of Czechoslovakia, breaking his word. Appeasement had failed.",
         ],
-        highlights: ["appeasement", "Munich", "Sudetenland", "peace for our time"],
+        highlights: ["appeasement", "Munich Agreement", "Sudetenland", "Czechoslovakia"],
         dialogues: [
-          {
-            speaker: "chamberlain",
-            characterId: "chamberlain",
-            side: "left",
-            text: "I believe this means peace for our time.",
-          },
-          {
-            speaker: "churchill",
-            characterId: "churchill",
-            side: "right",
-            text: "You were given the choice between war and dishonour. You chose dishonour, and you will have war.",
-          },
+          { speaker: "chamberlain", characterId: "chamberlain", side: "left", text: "I believe it is peace for our time." },
+          { speaker: "churchill", characterId: "churchill", side: "right", text: "You chose dishonour, and you will have war." },
         ],
       },
       {
-        id: "h-5",
+        id: "o-4",
         kicker: "1939",
         title: "The line is crossed",
         scene: "marching-troops",
         narration: [
-          "In September 1939 Hitler invaded Poland. This time, Britain and France had promised to defend it.",
-          "Appeasement had failed. Two days later they declared war on Germany. The Second World War in Europe had begun.",
+          "In August 1939 came a shock: the Nazi-Soviet Pact, in which sworn enemies agreed not to fight, and secretly to divide Poland.",
+          "Freed from the fear of a two-front war, Hitler invaded Poland in September 1939. This time Britain and France declared war — and the Second World War in Europe had begun.",
         ],
-        highlights: ["invaded Poland", "Appeasement had failed", "declared war", "Second World War"],
+        highlights: ["Nazi-Soviet Pact", "divide Poland", "invaded Poland", "declared war"],
         choice: {
-          question: "It is 1938. You are Britain. Hitler demands the Sudetenland. What do you do?",
+          question: "It is 1938. Hitler demands the Sudetenland. You are Britain. What do you do?",
           options: [
-            {
-              label: "Appease — give in to avoid war",
-              outcome:
-                "This is what Britain chose. It bought time but encouraged Hitler to demand more.",
-              historical: true,
-            },
-            {
-              label: "Fight now",
-              outcome:
-                "Britain's forces were not ready, and the public feared another war — which is partly why appeasement was chosen.",
-            },
-            {
-              label: "Negotiate a firm limit",
-              outcome:
-                "Attempted at Munich, but Hitler had no intention of stopping at the Sudetenland.",
-            },
+            { label: "Appease — give in to avoid war", outcome: "This is what Britain did at Munich. It bought time but encouraged Hitler.", historical: true },
+            { label: "Fight now", outcome: "Britain's forces were not ready and the public feared another war." },
+            { label: "Set a firm limit", outcome: "Attempted at Munich — but Hitler never intended to stop." },
           ],
-          reality:
-            "Britain and France appeased Hitler at Munich, hoping to satisfy him. Instead it convinced him they were weak. Within a year he invaded Poland and war broke out. Appeasement remains a debated lesson: was it a sensible attempt to avoid war, or a mistake that made war more likely?",
+          reality: "Britain and France appeased Hitler, hoping to satisfy him. Instead it convinced him they were weak. Within a year he invaded Poland and war broke out — leaving appeasement one of history's most debated decisions.",
         },
-      },
-      {
-        id: "h-6",
-        kicker: "A closer look",
-        title: "The final steps to war",
-        scene: "marching-troops",
-        narration: [
-          "Look closely at how Hitler edged towards war, each move bolder than the last. In 1938 he united Germany with Austria — the Anschluss — forbidden by Versailles, yet no one stopped him.",
-          "Next came the Sudetenland, handed over at Munich. Then, in March 1939, Hitler seized the rest of Czechoslovakia, tearing up the Munich promise entirely.",
-          "At last Britain and France saw the truth: Hitler could not be satisfied. They promised to defend Poland if he attacked.",
-        ],
-        highlights: ["Anschluss", "Sudetenland", "Munich"],
-      },
-      {
-        id: "h-7",
-        kicker: "August 1939",
-        title: "The pact that shocked the world",
-        scene: "handshake",
-        narration: [
-          "Then came the most shocking news of all. Nazi Germany and the communist USSR — sworn enemies — signed the Nazi-Soviet Pact, promising not to attack one another.",
-          "Secretly, they agreed to divide Poland between them. For Hitler, the pact removed the danger of fighting on two fronts at once.",
-          "The last barrier was gone. Days later German troops poured into Poland, and the Second World War in Europe began.",
-        ],
-        highlights: ["Nazi-Soviet Pact", "divide Poland", "Poland"],
-        dialogues: [
-          {
-            speaker: "hitler",
-            characterId: "hitler",
-            side: "left",
-            text: "With the East secured, nothing now stands in our way.",
-          },
-        ],
       },
     ],
     boosters: [
-      {
-        afterPage: 1,
-        booster: {
-          type: "fill",
-          prompt: "Complete the sentence.",
-          sentence:
-            "The {{blank}} of 1929 caused mass {{blank}} in Germany, which helped {{blank}} win support.",
-          answers: ["Depression", "unemployment", "Hitler"],
-          bank: ["Depression", "unemployment", "Hitler", "Churchill", "peace", "reparations"],
-        },
-      },
-      {
-        afterPage: 4,
-        booster: {
-          type: "order",
-          prompt: "Drag Hitler's steps to war into the correct order.",
-          items: [
-            "Hitler comes to power (1933)",
-            "Rhineland remilitarised (1936)",
-            "Munich Agreement / Sudetenland (1938)",
-            "Invasion of Poland (1939)",
-          ],
-        },
-      },
+      { afterPage: 1, booster: { type: "order", prompt: "Order Hitler's steps to war.", items: ["Saar plebiscite (1935)", "Rhineland remilitarised (1936)", "Anschluss with Austria (1938)", "Sudetenland / Munich (1938)", "Rest of Czechoslovakia (1939)", "Invasion of Poland (1939)"] } },
+      { afterPage: 2, booster: { type: "recall", prompt: "Check your understanding.", question: "What was the policy of appeasement?", answer: "Giving in to some of Hitler's demands to avoid another war — most famously letting Germany take the Sudetenland at Munich in 1938. It failed when Hitler invaded Poland in 1939." } },
     ],
     bigPicture: {
-      title: "From depression to world war",
-      intro: "Each link made the next one possible.",
+      title: "How war returned to Europe",
       nodes: [
-        {
-          id: "n1",
-          label: "Great Depression",
-          icon: "📉",
-          detail: "Mass unemployment made Germans desperate for strong leadership.",
-        },
-        {
-          id: "n2",
-          label: "Hitler gains support",
-          icon: "🕯️",
-          detail:
-            "He promised jobs, pride and an end to Versailles, winning power in 1933.",
-        },
-        {
-          id: "n3",
-          label: "Breaking Versailles",
-          icon: "🪖",
-          detail:
-            "Rearmament and the Rhineland showed the great powers would not act.",
-        },
-        {
-          id: "n4",
-          label: "Appeasement",
-          icon: "🤝",
-          detail:
-            "Britain and France gave in at Munich, encouraging further demands.",
-        },
-        {
-          id: "n5",
-          label: "War in Europe",
-          icon: "🔥",
-          detail:
-            "The invasion of Poland in 1939 finally triggered the Second World War.",
-        },
+        { id: "n1", label: "League fails", icon: "⚠️", detail: "Disarmament collapsed and Abyssinia showed the League powerless." },
+        { id: "n2", label: "German aggression", icon: "🪖", detail: "Saar, Rhineland, Anschluss — Versailles undone step by step." },
+        { id: "n3", label: "Appeasement", icon: "🤝", detail: "Britain and France gave in at Munich, encouraging Hitler." },
+        { id: "n4", label: "Pact with the USSR", icon: "✍️", detail: "The Nazi-Soviet Pact removed the fear of a two-front war." },
+        { id: "n5", label: "War", icon: "🔥", detail: "The invasion of Poland finally triggered the Second World War." },
       ],
     },
     exam: [
-      {
-        id: "h-exam-1",
-        skill: "Explain (SEQ)",
-        format: "SEQ",
-        marks: 8,
-        question: "Explain why Hitler was able to come to power in Germany by 1933.",
-        markScheme: [
-          "Valid reasons: the Depression, resentment at Versailles, weak government, Nazi promises.",
-          "Each reason must be explained, showing HOW it helped Hitler.",
-          "L3: at least two developed reasons with clear links.",
-        ],
-        modelAnswer:
-          "Hitler came to power partly because of the Great Depression, which caused mass unemployment and left Germans desperate for a strong leader who promised jobs. This was made worse by lasting resentment at the Treaty of Versailles, which Hitler promised to overturn, appealing to wounded national pride. The weakness of the existing government, which seemed unable to solve the crisis, meant many Germans turned to the Nazis as a bold alternative.",
-      },
-      {
-        id: "h-exam-2",
-        skill: "Judgement (SEQ)",
-        format: "SEQ",
-        marks: 12,
-        question:
-          "'Appeasement was the main reason war broke out in 1939.' How far do you agree?",
-        markScheme: [
-          "Argue FOR: appeasement encouraged Hitler, gave him land and time, showed weakness.",
-          "Argue AGAINST: Hitler's own aims/actions, the failure to stop rearmament, Versailles resentment.",
-          "L4/L5: a balanced judgement that weighs the factors and reaches a supported conclusion.",
-        ],
-        modelAnswer:
-          "Appeasement contributed to war because giving in at Munich convinced Hitler the great powers were weak, encouraging him to invade Poland. However, appeasement was not the main cause. The deeper cause was Hitler's own determination to overturn Versailles and expand German territory — appeasement gave him opportunities, but his aims created the danger. On balance, appeasement made war more likely, but Hitler's ambitions were the fundamental reason war broke out in 1939.",
-      },
+      { id: "o-exam-1", skill: "Explain (SEQ)", format: "SEQ", marks: 8, question: "Explain why appeasement was adopted by Britain and France in the 1930s.",
+        markScheme: ["Valid reasons: fear of another war, weakness of forces, belief some German grievances were fair, distraction by economic problems.", "Explain HOW each led to appeasement.", "L3: two developed reasons."],
+        modelAnswer: "Appeasement was adopted mainly because Britain and France feared another devastating war so soon after 1918, and their forces and economies were not ready to fight. Many also believed that some of Germany's grievances over Versailles were genuinely unfair, so giving in seemed reasonable. By satisfying Hitler's demands, they hoped to keep the peace — not yet realising he could not be satisfied." },
+      { id: "o-exam-2", skill: "Judgement (SEQ)", format: "SEQ", marks: 12, question: "'Appeasement was the main reason war broke out in 1939.' How far do you agree?",
+        markScheme: ["FOR: appeasement emboldened Hitler, gave him land and time.", "AGAINST: Hitler's own aims, the failed League, the Nazi-Soviet Pact.", "L4/L5: balanced judgement with a conclusion."],
+        modelAnswer: "Appeasement made war more likely, since giving in at Munich convinced Hitler the great powers were weak and encouraged him to invade Poland. However, it was not the main cause. The deeper cause was Hitler's own determination to overturn Versailles and expand, helped by a League too weak to stop him and the Nazi-Soviet Pact that freed his hand. On balance, appeasement contributed to war, but Hitler's ambitions were the fundamental reason it broke out." },
     ],
   },
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // 3. JAPAN'S ROAD TO WAR
-  // ─────────────────────────────────────────────────────────────────────────
+  // ── 5. THE OUTBREAK OF WAR IN THE ASIA-PACIFIC ───────────────────────────
   {
-    id: "ch-japan",
-    slug: "japans-road-to-war",
-    number: "1.3",
-    section: "World War Two",
-    title: "Japan's Road to War",
-    subtitle: "How the war spread to the Asia-Pacific",
+    id: "ch-outbreak-asia",
+    slug: "outbreak-asia",
+    number: "5",
+    section: "The Road to War",
+    title: "The Outbreak of War in the Asia-Pacific",
+    subtitle: "Japan's road to Pearl Harbor",
     inquiry: "Why did war break out in the Asia-Pacific?",
     palette: "japan",
     era: "1931–1941",
-    hook: "An island nation, hungry for resources, reaches out across Asia — and towards a collision with the USA.",
+    hook: "An empire hungry for resources reaches across Asia — towards a collision with the United States.",
     outcomes: [
-      "Explain why Japan followed a policy of expansion",
-      "Describe Japan's invasions of Manchuria and China",
-      "Explain why Japan attacked Pearl Harbor",
+      "Explain the ineffectiveness of the League over Manchuria",
+      "Explain the worsening of US–Japan relations",
+      "Explain Japan's expansion and the attack on Pearl Harbor",
     ],
     characterIds: ["hirohito-era"],
     timelineIds: ["manchuria", "china-war", "pearl-harbor"],
     pages: [
       {
-        id: "j-1",
-        kicker: "1930s · Japan",
-        title: "A nation in need",
-        scene: "rising-sun",
-        narration: [
-          "Japan was a rising power but a small, crowded island with few natural resources of its own. It depended on imports of raw materials to keep its industries running.",
-          "The Great Depression hit Japan hard. Military leaders argued that the answer was to build an empire — to seize the land and resources Japan lacked.",
-        ],
-        highlights: ["few natural resources", "Depression", "empire", "resources"],
-      },
-      {
-        id: "j-2",
-        kicker: "1931",
-        title: "The first grab: Manchuria",
+        id: "a-1",
+        kicker: "1931–1933",
+        title: "The League humiliated",
         scene: "island-map",
         narration: [
-          "In 1931 Japan invaded Manchuria in northern China, which was rich in coal, iron and farmland.",
-          "The League of Nations condemned the invasion, but it had no army and could not force Japan out. Japan simply left the League and kept its conquest.",
+          "In 1931 Japan seized Manchuria in China for its resources. The League of Nations condemned the invasion — but could do nothing more.",
+          "Japan simply walked out of the League in 1933 and kept its conquest. The world had learned that aggression could pay.",
         ],
-        highlights: ["Manchuria", "League of Nations", "no army", "left the League"],
+        highlights: ["Manchuria", "League of Nations", "aggression"],
       },
       {
-        id: "j-3",
-        kicker: "1937",
+        id: "a-2",
+        kicker: "From 1937",
         title: "War with China",
         scene: "marching-troops",
         narration: [
-          "Encouraged by success, Japan launched a full invasion of China in 1937. The war was brutal and dragged on for years.",
-          "The fighting demanded ever more oil and steel — and much of Japan's oil came from the United States, which was growing alarmed by Japanese aggression.",
+          "In 1937 Japan launched a full invasion of China. Its dream was a vast empire — the Greater East Asia Co-Prosperity Sphere, led by Japan.",
+          "But the war devoured resources, especially oil — much of it bought from the United States, which watched Japan's aggression with growing alarm.",
         ],
-        highlights: ["invasion of China", "oil", "United States", "aggression"],
+        highlights: ["invasion of China", "Greater East Asia Co-Prosperity Sphere", "oil"],
+        dialogues: [
+          { speaker: "hirohito-era", characterId: "hirohito-era", side: "left", text: "Asia should be led by Asians — by Japan. We need its resources to be strong." },
+        ],
       },
       {
-        id: "j-4",
-        kicker: "1941 · Pearl Harbor",
-        title: "The road to Pearl Harbor",
+        id: "a-3",
+        kicker: "US–Japan relations",
+        title: "The tightening noose",
         scene: "rising-sun",
         narration: [
-          "To pressure Japan, the USA cut off vital supplies, including oil. Japan now faced a choice: back down, or seize the resources of Southeast Asia by force.",
-          "Japan chose war. In December 1941 it launched a surprise attack on the US fleet at Pearl Harbor, hoping to cripple American power — instead, it brought the USA fully into the Second World War.",
+          "As Japan pushed south towards the resources of Southeast Asia, relations with the USA collapsed. To pressure Japan, the USA cut off supplies — including vital oil.",
+          "Japan now faced a stark choice: back down and abandon its empire, or seize what it needed by force.",
         ],
-        highlights: ["cut off vital supplies", "oil", "Pearl Harbor", "brought the USA"],
+        highlights: ["oil embargo", "seize"],
+      },
+      {
+        id: "a-4",
+        kicker: "December 1941",
+        title: "Pearl Harbor",
+        scene: "rising-sun",
+        narration: [
+          "Japan chose war. In December 1941 it launched a surprise attack on the US fleet at Pearl Harbor, hoping to cripple American power in the Pacific.",
+          "Instead, the attack united America in fury and brought the full weight of the USA into the Second World War.",
+        ],
+        highlights: ["Pearl Harbor", "brought the full weight of the USA"],
         choice: {
           question: "You are Japan in 1941. The USA has cut off your oil. What now?",
           options: [
-            {
-              label: "Back down and withdraw from China",
-              outcome:
-                "Military leaders saw this as unacceptable — it would waste years of conquest and damage national pride.",
-            },
-            {
-              label: "Seize resources by force",
-              outcome:
-                "Japan chose this path, attacking to grab the oil and materials of Southeast Asia.",
-              historical: true,
-            },
+            { label: "Back down and withdraw from China", outcome: "Unthinkable to the militarists — it would waste years of conquest and pride." },
+            { label: "Seize the resources by force", outcome: "Japan chose this, striking to grab Southeast Asia's oil and materials.", historical: true },
           ],
-          reality:
-            "Facing an oil embargo, Japan's leaders decided to strike. The attack on Pearl Harbor was meant to disable the US Pacific fleet, but it united American opinion and brought the full weight of the USA into the war — a decision that ultimately doomed Japan's empire.",
+          reality: "Facing an oil embargo, Japan's leaders decided to strike. Pearl Harbor was meant to disable the US fleet, but it brought America fully into the war — a decision that ultimately doomed Japan's empire.",
         },
-      },
-      {
-        id: "j-5",
-        kicker: "1931–1933",
-        title: "The League humiliated",
-        scene: "voting-hands",
-        narration: [
-          "When Japan seized Manchuria in 1931, the League of Nations sent investigators and formally condemned the invasion.",
-          "But condemnation was all it could do. The League had no army, so Japan simply walked out of it in 1933 — and kept its conquest.",
-          "The world had learned a dangerous lesson: aggression could pay, and the League could not stop it. In Germany, Hitler was watching closely.",
-        ],
-        highlights: ["Manchuria", "League of Nations", "no army"],
-      },
-      {
-        id: "j-6",
-        kicker: "Reaching south",
-        title: "The dream of empire",
-        scene: "island-map",
-        narration: [
-          "Japan dreamed of a vast empire across Asia, which it called the 'Greater East Asia Co-Prosperity Sphere' — with Japan as its master.",
-          "As the war in China dragged on, Japan pushed south towards the rich oil and rubber of Southeast Asia. This alarmed the USA, which tightened its oil embargo.",
-          "Cornered between backing down and seizing what it needed by force, Japan chose force — and turned towards Pearl Harbor.",
-        ],
-        highlights: ["oil embargo", "Pearl Harbor"],
       },
     ],
     boosters: [
-      {
-        afterPage: 2,
-        booster: {
-          type: "recall",
-          prompt: "Check your understanding.",
-          question: "Why did the League of Nations fail to stop Japan in Manchuria?",
-          answer:
-            "The League had no army of its own, so although it condemned the invasion it could not force Japan out. Japan simply ignored it and left the League.",
-        },
-      },
-      {
-        afterPage: 3,
-        booster: {
-          type: "order",
-          prompt: "Put Japan's road to war in order.",
-          items: [
-            "Depression pushes Japan to expand",
-            "Invasion of Manchuria (1931)",
-            "Full invasion of China (1937)",
-            "USA cuts off oil",
-            "Attack on Pearl Harbor (1941)",
-          ],
-        },
-      },
+      { afterPage: 1, booster: { type: "recall", prompt: "Check your understanding.", question: "Why did the League fail to stop Japan in Manchuria?", answer: "The League had no army, so although it condemned the invasion it could not force Japan out. Japan simply ignored it and left the League in 1933." } },
+      { afterPage: 3, booster: { type: "order", prompt: "Order Japan's road to Pearl Harbor.", items: ["Invasion of Manchuria (1931)", "Full invasion of China (1937)", "Push south for resources", "USA cuts off oil", "Attack on Pearl Harbor (1941)"] } },
     ],
     bigPicture: {
       title: "Why war came to the Asia-Pacific",
       nodes: [
-        {
-          id: "n1",
-          label: "Few resources + Depression",
-          icon: "📉",
-          detail:
-            "Japan lacked raw materials and was hit hard by the Depression, pushing leaders towards expansion.",
-        },
-        {
-          id: "n2",
-          label: "Expansion into Manchuria & China",
-          icon: "🗾",
-          detail:
-            "Japan seized Manchuria (1931) and invaded China (1937) to gain land and resources.",
-        },
-        {
-          id: "n3",
-          label: "Clash with the USA",
-          icon: "⚠️",
-          detail:
-            "Japanese aggression alarmed the USA, which cut off oil and other supplies.",
-        },
-        {
-          id: "n4",
-          label: "Pearl Harbor",
-          icon: "🌅",
-          detail:
-            "Rather than back down, Japan attacked Pearl Harbor, bringing the USA into the war.",
-        },
+        { id: "n1", label: "League powerless", icon: "⚠️", detail: "It could not stop Japan taking Manchuria." },
+        { id: "n2", label: "War in China", icon: "⚔️", detail: "From 1937 Japan invaded China, needing ever more resources." },
+        { id: "n3", label: "US–Japan clash", icon: "🛢️", detail: "Aggression collapsed relations; the USA cut off oil." },
+        { id: "n4", label: "Seize by force", icon: "🌅", detail: "Cornered, Japan chose to grab Southeast Asia's resources." },
+        { id: "n5", label: "Pearl Harbor", icon: "💥", detail: "The 1941 attack brought the USA into the war." },
       ],
     },
     exam: [
-      {
-        id: "j-exam-1",
-        skill: "Explain (SEQ)",
-        format: "SEQ",
-        marks: 8,
-        question: "Explain why Japan followed a policy of expansion in the 1930s.",
-        markScheme: [
-          "Valid reasons: lack of resources, effects of the Depression, desire for empire/prestige.",
-          "Explain HOW each reason drove expansion.",
-          "L3: two developed reasons with clear links.",
-        ],
-        modelAnswer:
-          "Japan expanded largely because it lacked natural resources and needed raw materials for its industries; seizing territory like Manchuria promised coal, iron and farmland. This need was made urgent by the Great Depression, which damaged Japan's economy and strengthened military leaders who argued that empire was the solution. Expansion also offered Japan greater power and prestige as a leading nation in Asia.",
-      },
-      {
-        id: "j-exam-2",
-        skill: "Purpose",
-        format: "SBQ",
-        marks: 6,
-        question:
-          "Why was this source published? Explain your answer using the source and your knowledge.",
-        source: {
-          label: "A US government poster after Pearl Harbor (paraphrased description)",
-          text:
-            "The poster shows the attack on Pearl Harbor and urges Americans to unite and support the war effort.",
-        },
-        markScheme: [
-          "L1: describes the source only.",
-          "L2: identifies a purpose (e.g. to gain support) with some support.",
-          "L3: explains the purpose using source detail AND context (Pearl Harbor bringing the USA into the war).",
-        ],
-        modelAnswer:
-          "The purpose of the source was to rally Americans behind the war effort after Pearl Harbor. By showing the attack, it aimed to provoke anger and unite the public. This fits the context: the surprise attack in December 1941 shocked the USA and brought it fully into the war, so the government needed to build strong public support for fighting Japan.",
-      },
+      { id: "a-exam-1", skill: "Explain (SEQ)", format: "SEQ", marks: 8, question: "Explain why relations between the USA and Japan worsened in the 1930s.",
+        markScheme: ["Valid reasons: Japan's aggression in China, the drive south, the US oil embargo.", "Explain HOW each worsened relations.", "L3: two developed reasons."],
+        modelAnswer: "US–Japan relations worsened mainly because of Japan's aggression, especially its invasion of China from 1937, which the USA opposed. Japan's push south towards Southeast Asia's resources threatened American interests further. In response the USA cut off supplies, including oil, which Japan desperately needed — a step that pushed the two nations towards outright hostility." },
+      { id: "a-exam-2", skill: "Explain (SEQ)", format: "SEQ", marks: 8, question: "Explain why Japan attacked Pearl Harbor in 1941.",
+        markScheme: ["Valid reasons: the oil embargo, need for resources, hope to cripple the US fleet.", "Explain HOW each led to the attack.", "L3: two developed reasons."],
+        modelAnswer: "Japan attacked Pearl Harbor mainly because the US oil embargo left it facing a choice between abandoning its empire or seizing resources by force, and it chose force. To grab Southeast Asia safely, Japan needed to remove the threat of the US Pacific fleet, so it launched a surprise attack at Pearl Harbor hoping to cripple American naval power — a gamble that instead brought the USA fully into the war." },
     ],
   },
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // 4. ORIGINS OF THE COLD WAR
-  // ─────────────────────────────────────────────────────────────────────────
+  // ── 6. THE END OF THE SECOND WORLD WAR ───────────────────────────────────
+  {
+    id: "ch-endww2",
+    slug: "end-of-ww2",
+    number: "6",
+    section: "The Cold War",
+    title: "The End of the Second World War",
+    subtitle: "Why the Allies won",
+    inquiry: "Why did the Axis powers lose the war?",
+    palette: "endwar",
+    era: "1941–1945",
+    hook: "The tide turns. Across two vast fronts, the strengths of the Allies and the weaknesses of the Axis decide the war.",
+    outcomes: [
+      "Explain the strengths of the Allies that led to victory",
+      "Explain the military weaknesses of Germany",
+      "Explain the military weaknesses of Japan",
+    ],
+    characterIds: ["churchill", "roosevelt", "stalin", "truman"],
+    timelineIds: ["dday", "hiroshima", "ww2-ends"],
+    pages: [
+      {
+        id: "e6-1",
+        kicker: "The Allies' strength",
+        title: "The weight of America and the USSR",
+        scene: "money-flow",
+        narration: [
+          "When the USA entered the war, it brought vast economic resources and manpower, out-producing the Axis in ships, planes and tanks.",
+          "In the east, the Soviet Union bled the German army in enormous battles, tying down and destroying huge forces. The Axis now faced enemies too strong to beat.",
+        ],
+        highlights: ["economic resources", "manpower", "Soviet Union"],
+      },
+      {
+        id: "e6-2",
+        kicker: "Winning strategies",
+        title: "D-Day, island-hopping, the bomb",
+        scene: "marching-troops",
+        narration: [
+          "The Allies chose war-winning strategies. In 1944, D-Day landed huge armies in France, opening a second front against Germany in the west.",
+          "In the Pacific, the USA used island hopping to close in on Japan. Finally, the dropping of the atomic bomb in 1945 brought a shattering end to the war.",
+        ],
+        highlights: ["D-Day", "island hopping", "atomic bomb"],
+      },
+      {
+        id: "e6-3",
+        kicker: "Germany's weakness",
+        title: "A war on two fronts",
+        scene: "divided-line",
+        narration: [
+          "Germany's own mistakes hastened defeat. Hitler's interference created an ineffective command structure, with poor decisions overruling his generals.",
+          "Worst of all, by invading the USSR while still fighting in the west, Germany was trapped in a war on two fronts — too much for even its powerful army.",
+        ],
+        highlights: ["command structure", "war on two fronts"],
+      },
+      {
+        id: "e6-4",
+        kicker: "Japan's weakness",
+        title: "An empire stretched too thin",
+        scene: "island-map",
+        narration: [
+          "Japan, too, was undone by weakness. Its empire was overextended, spread across a vast ocean that was impossible to defend.",
+          "And though it had conquered resource-rich lands, it could not safely ship those raw materials home past Allied forces — slowly starving its war machine.",
+        ],
+        highlights: ["overextended", "raw materials"],
+        choice: {
+          question: "Which single factor best explains the Allied victory?",
+          options: [
+            { label: "Allied economic might", outcome: "Crucial — US production and Soviet manpower overwhelmed the Axis.", historical: true },
+            { label: "Axis military blunders", outcome: "Important too — two-front war and overextension crippled the Axis." },
+            { label: "War-winning strategies", outcome: "D-Day, island hopping and the bomb all mattered — victory had many causes." },
+          ],
+          reality: "There was no single cause. Allied strengths — American resources, Soviet manpower and effective strategies — combined with Axis weaknesses such as Germany's two-front war and Japan's overextension to bring the war to an end in 1945.",
+        },
+      },
+    ],
+    boosters: [
+      { afterPage: 1, booster: { type: "match", prompt: "Match each strategy to its front.", pairs: [
+        { left: "D-Day", right: "Second front against Germany (Europe)" },
+        { left: "Island hopping", right: "Closing in on Japan (Pacific)" },
+        { left: "Atomic bomb", right: "Forced Japan's surrender (1945)" },
+        { left: "Soviet army", right: "Destroyed German forces in the east" },
+      ] } },
+      { afterPage: 3, booster: { type: "recall", prompt: "Check your understanding.", question: "Give one military weakness each for Germany and Japan.", answer: "Germany: an ineffective command structure and a war on two fronts. Japan: an overextended empire and an inability to ship raw materials safely back home." } },
+    ],
+    bigPicture: {
+      title: "Why the Allies won",
+      nodes: [
+        { id: "n1", label: "American power", icon: "🏭", detail: "US resources and manpower out-produced the Axis." },
+        { id: "n2", label: "Soviet sacrifice", icon: "🇷🇺", detail: "The USSR destroyed vast German forces in the east." },
+        { id: "n3", label: "Winning strategies", icon: "🪂", detail: "D-Day, island hopping and the atomic bomb." },
+        { id: "n4", label: "German weakness", icon: "↔️", detail: "Poor command and a crippling two-front war." },
+        { id: "n5", label: "Japanese weakness", icon: "🌊", detail: "An overextended empire it could not supply." },
+      ],
+    },
+    exam: [
+      { id: "e6-exam-1", skill: "Explain (SEQ)", format: "SEQ", marks: 8, question: "Explain why the Allies were able to win the Second World War.",
+        markScheme: ["Valid reasons: American resources/manpower, Soviet role, war-winning strategies.", "Explain HOW each helped victory.", "L3: two developed reasons."],
+        modelAnswer: "The Allies won largely because of overwhelming strength. The USA brought huge economic resources and manpower, out-producing the Axis in weapons, while the Soviet Union destroyed massive German forces in the east. The Allies also used effective strategies — D-Day opened a second front against Germany, island hopping closed in on Japan, and the atomic bomb ended the war. Together these strengths were too much for the Axis to withstand." },
+      { id: "e6-exam-2", skill: "Judgement (SEQ)", format: "SEQ", marks: 12, question: "'The Allies won the war because of their own strengths rather than Axis weaknesses.' How far do you agree?",
+        markScheme: ["FOR strengths: US resources, Soviet manpower, strategies.", "FOR weaknesses: German two-front war/command, Japanese overextension.", "L4/L5: balanced judgement with a conclusion."],
+        modelAnswer: "Allied strengths were vital: American resources, Soviet manpower and strategies like D-Day and the atomic bomb overwhelmed the Axis. Yet Axis weaknesses mattered too — Germany's ineffective command and self-inflicted two-front war, and Japan's overextended empire that it could not supply, all hastened defeat. On balance, Allied strengths were the decisive factor, but they were made even more effective by the serious weaknesses of their enemies." },
+    ],
+  },
+
+  // ── 7. ORIGINS OF THE COLD WAR IN EUROPE ─────────────────────────────────
   {
     id: "ch-coldwar",
-    slug: "origins-of-the-cold-war",
-    number: "2.1",
+    slug: "cold-war-origins",
+    number: "7",
     section: "The Cold War",
-    title: "Origins of the Cold War",
+    title: "Origins of the Cold War in Europe",
     subtitle: "How wartime allies became rivals",
     inquiry: "Why did the USA and USSR become enemies after 1945?",
     palette: "coldwar",
     era: "1945–1949",
     hook: "They defeated Hitler together. Then the two most powerful nations on earth turned on each other.",
     outcomes: [
-      "Explain the ideological differences between the USA and USSR",
-      "Explain how wartime conferences increased tension",
-      "Describe the Truman Doctrine and Marshall Plan as containment",
+      "Explain the emergence of the USA and USSR as superpowers",
+      "Explain the growing mistrust and the division of Europe",
+      "Explain US containment and the Soviet responses",
     ],
-    characterIds: ["stalin", "truman", "roosevelt", "churchill"],
-    timelineIds: ["yalta", "potsdam", "iron-curtain", "truman-doctrine"],
+    characterIds: ["stalin", "truman", "churchill", "roosevelt"],
+    timelineIds: ["yalta", "potsdam", "iron-curtain", "truman-doctrine", "berlin-blockade", "nato"],
     pages: [
       {
         id: "c-1",
         kicker: "1945",
-        title: "Two very different dreams",
+        title: "Two superpowers, two dreams",
         scene: "iron-curtain",
         narration: [
-          "The USA and the Soviet Union had been allies against Hitler. But they believed in opposite ways of running the world.",
-          "The USA believed in capitalism and democracy — free elections and free business. The USSR believed in communism — a one-party state and government control of the economy. Each feared the other would try to spread its system.",
+          "The war left Europe in ruins and two giants standing above the rest: the USA and the USSR, the new superpowers.",
+          "But they believed in opposite systems — American capitalism and democracy versus Soviet communism — and each feared the other would spread its way of life.",
         ],
-        highlights: ["capitalism", "democracy", "communism", "spread"],
+        highlights: ["superpowers", "capitalism", "democracy", "communism"],
         dialogues: [
-          {
-            speaker: "truman",
-            characterId: "truman",
-            side: "left",
-            text: "Free peoples must be free to choose their own governments.",
-          },
-          {
-            speaker: "stalin",
-            characterId: "stalin",
-            side: "right",
-            text: "The Soviet Union must be safe. We will never be invaded again.",
-          },
+          { speaker: "truman", characterId: "truman", side: "left", text: "Free peoples must choose their own governments." },
+          { speaker: "stalin", characterId: "stalin", side: "right", text: "The Soviet Union must be safe. We will never be invaded again." },
         ],
       },
       {
         id: "c-2",
-        kicker: "1945 · Yalta & Potsdam",
+        kicker: "1945–1946",
         title: "The cracks appear",
         scene: "handshake",
         narration: [
-          "At the Yalta and Potsdam conferences, the Allies tried to plan the post-war world. But their agreement was already breaking down.",
-          "The biggest disagreement was over Eastern Europe. Stalin wanted friendly communist governments as a buffer to protect the USSR. The West saw this as the Soviet Union taking over free countries by force.",
+          "At Yalta and Potsdam the Allies tried to plan the post-war world, but mistrust grew fast. Their wartime alliance was breaking down over the future of Eastern Europe.",
+          "Stalin set up communist governments there as a buffer; the West saw free nations being swallowed. In 1946 Churchill warned that an 'Iron Curtain' had fallen across Europe.",
         ],
-        highlights: ["Yalta", "Potsdam", "Eastern Europe", "buffer"],
+        highlights: ["Yalta", "Potsdam", "Eastern Europe", "Iron Curtain"],
       },
       {
         id: "c-3",
-        kicker: "1946",
-        title: "An iron curtain falls",
-        scene: "divided-line",
-        narration: [
-          "Across Eastern Europe, Soviet-backed communist governments took power. Europe was splitting into two camps.",
-          "In 1946 Churchill warned that an 'Iron Curtain' had descended across the continent, dividing the free West from the communist East. Suspicion was hardening into hostility.",
-        ],
-        highlights: ["communist governments", "two camps", "Iron Curtain", "hostility"],
-        dialogues: [
-          {
-            speaker: "churchill",
-            characterId: "churchill",
-            side: "left",
-            text: "From the Baltic to the Adriatic, an iron curtain has descended across the continent.",
-          },
-        ],
-      },
-      {
-        id: "c-4",
         kicker: "1947",
         title: "America draws a line",
         scene: "money-flow",
         narration: [
-          "The USA decided it must stop communism from spreading any further — a policy called containment.",
-          "President Truman promised support to countries resisting communism (the Truman Doctrine), and the Marshall Plan sent billions of dollars to rebuild Western Europe — because prosperous countries were less likely to turn communist.",
+          "The USA answered with containment — stopping communism from spreading. The Truman Doctrine promised support to nations resisting it (a political and military stand).",
+          "The Marshall Plan then poured economic aid into Western Europe, since prosperous countries were less likely to turn communist.",
         ],
-        highlights: ["containment", "Truman Doctrine", "Marshall Plan", "rebuild"],
+        highlights: ["containment", "Truman Doctrine", "Marshall Plan"],
+      },
+      {
+        id: "c-4",
+        kicker: "1948–1949",
+        title: "Blockade, airlift and alliance",
+        scene: "berlin-airlift",
+        narration: [
+          "Stalin struck back. In 1948 he blockaded West Berlin, deep inside the Soviet zone. The West replied not with force but with the Berlin Airlift, supplying the city by air for almost a year until he backed down.",
+          "The divide hardened into rival blocs: the West formed NATO in 1949, and the Soviets later answered with the Warsaw Pact.",
+        ],
+        highlights: ["Berlin Blockade", "Berlin Airlift", "NATO", "Warsaw Pact"],
         choice: {
-          question: "You are the USA in 1947. Western Europe is poor and unstable. What do you do?",
+          question: "You are the West in 1948. Berlin is blockaded. What do you do?",
           options: [
-            {
-              label: "Send massive economic aid",
-              outcome:
-                "This was the Marshall Plan — rebuilding Europe to make communism less appealing.",
-              historical: true,
-            },
-            {
-              label: "Stay out of Europe",
-              outcome:
-                "The USA feared that poverty would let communism spread, so it chose to get involved.",
-            },
-            {
-              label: "Threaten the USSR militarily",
-              outcome:
-                "Too dangerous so soon after the war; economic containment was preferred first.",
-            },
+            { label: "Supply Berlin by air", outcome: "This was the Airlift — a peaceful win that kept the city free.", historical: true },
+            { label: "Force through the blockade", outcome: "This risked direct war with the USSR, which both sides feared." },
+            { label: "Abandon West Berlin", outcome: "This would hand Stalin a huge victory and shake the West's allies." },
           ],
-          reality:
-            "The USA chose containment. The Marshall Plan rebuilt Western Europe and tied it to the USA, while the Truman Doctrine pledged support against communism. Stalin saw these as attempts to undermine Soviet influence — deepening the divide and pushing the two sides further into a Cold War.",
+          reality: "The West chose the Airlift, supplying two million people by air until Stalin lifted the blockade. It avoided war and confirmed the division of Europe into two hostile, armed camps — the shape of the Cold War.",
         },
-      },
-      {
-        id: "c-5",
-        kicker: "February 1945",
-        title: "Yalta: friends with doubts",
-        scene: "handshake",
-        narration: [
-          "Even before the war ended, the Allied leaders met at the Yalta Conference. They agreed to set up the United Nations and to hold free elections in the countries freed from Hitler.",
-          "But cracks were already showing over Eastern Europe. Stalin wanted friendly governments on his border; the West wanted genuine democracy.",
-          "They parted still allies — but with quiet doubts about one another.",
-        ],
-        highlights: ["Yalta Conference", "free elections", "democracy"],
-      },
-      {
-        id: "c-6",
-        kicker: "July 1945",
-        title: "Potsdam: friends no more",
-        scene: "iron-curtain",
-        narration: [
-          "By the Potsdam Conference, much had changed. Roosevelt had died, the suspicious Truman had taken over, and the USA now had the atomic bomb.",
-          "The leaders argued over Germany, reparations and Poland. The wartime trust had drained away.",
-          "Friendship was hardening into rivalry. The Cold War was beginning.",
-        ],
-        highlights: ["Potsdam Conference", "atomic bomb"],
-      },
-      {
-        id: "c-7",
-        kicker: "1945–1948",
-        title: "Slice by slice",
-        scene: "divided-line",
-        narration: [
-          "Across Eastern Europe, Stalin tightened his grip — taking control country by country in what became known as 'salami tactics', a thin slice at a time.",
-          "Communist governments replaced free ones. To the West it looked like the USSR swallowing free nations; to Stalin it was a shield against another invasion.",
-          "An Iron Curtain, Churchill warned, had descended across the continent.",
-        ],
-        highlights: ["Iron Curtain", "communist governments"],
       },
     ],
     boosters: [
-      {
-        afterPage: 0,
-        booster: {
-          type: "match",
-          prompt: "Match each superpower to its beliefs.",
-          pairs: [
-            { left: "USA", right: "Capitalism and democracy" },
-            { left: "USSR", right: "Communism and a one-party state" },
-            { left: "USA's fear", right: "Communism will spread" },
-            { left: "USSR's fear", right: "Being invaded again" },
-          ],
-        },
-      },
-      {
-        afterPage: 3,
-        booster: {
-          type: "fill",
-          prompt: "Complete the definition of the US policy.",
-          sentence:
-            "The USA's policy of {{blank}} aimed to stop the spread of {{blank}}. The {{blank}} sent money to rebuild Western Europe.",
-          answers: ["containment", "communism", "Marshall Plan"],
-          bank: [
-            "containment",
-            "communism",
-            "Marshall Plan",
-            "appeasement",
-            "capitalism",
-            "Iron Curtain",
-          ],
-        },
-      },
+      { afterPage: 0, booster: { type: "match", prompt: "Match each superpower to its beliefs.", pairs: [
+        { left: "USA", right: "Capitalism and democracy" },
+        { left: "USSR", right: "Communism and one-party rule" },
+        { left: "US aim", right: "Contain the spread of communism" },
+        { left: "Soviet aim", right: "A buffer of friendly states" },
+      ] } },
+      { afterPage: 2, booster: { type: "fill", prompt: "Complete the definition.", sentence: "The US policy of {{blank}} aimed to stop the spread of {{blank}}. The {{blank}} sent money to rebuild Western Europe.", answers: ["containment", "communism", "Marshall Plan"], bank: ["containment", "communism", "Marshall Plan", "appeasement", "capitalism", "Iron Curtain"] } },
     ],
     bigPicture: {
       title: "How allies became enemies",
       nodes: [
-        {
-          id: "n1",
-          label: "Opposing beliefs",
-          icon: "⚖️",
-          detail:
-            "Capitalism/democracy vs communism — each side distrusted the other's system.",
-        },
-        {
-          id: "n2",
-          label: "Tension at conferences",
-          icon: "❄️",
-          detail:
-            "Yalta and Potsdam revealed deep disagreement, especially over Eastern Europe.",
-        },
-        {
-          id: "n3",
-          label: "Soviet control of the East",
-          icon: "🧱",
-          detail:
-            "Communist governments across Eastern Europe alarmed the West — the 'Iron Curtain'.",
-        },
-        {
-          id: "n4",
-          label: "US containment",
-          icon: "💵",
-          detail:
-            "The Truman Doctrine and Marshall Plan committed the USA to resisting communism.",
-        },
-        {
-          id: "n5",
-          label: "A divided world",
-          icon: "🌍",
-          detail: "Europe split into two hostile camps — the Cold War had begun.",
-        },
+        { id: "n1", label: "Two superpowers", icon: "🌍", detail: "The USA and USSR emerged dominant — but opposed." },
+        { id: "n2", label: "Opposing beliefs", icon: "⚖️", detail: "Capitalism/democracy vs communism bred deep distrust." },
+        { id: "n3", label: "Divided Europe", icon: "🧱", detail: "Soviet control of the East drew the 'Iron Curtain'." },
+        { id: "n4", label: "US containment", icon: "💵", detail: "The Truman Doctrine and Marshall Plan resisted communism." },
+        { id: "n5", label: "Soviet response", icon: "🚧", detail: "The Berlin Blockade, and rival blocs in NATO and the Warsaw Pact." },
       ],
     },
     exam: [
-      {
-        id: "c-exam-1",
-        skill: "Explain (SEQ)",
-        format: "SEQ",
-        marks: 8,
-        question: "Explain why the USA and the USSR became rivals after 1945.",
-        markScheme: [
-          "Valid reasons: ideological differences, disagreement over Eastern Europe, mutual suspicion.",
-          "Explain HOW each reason caused rivalry.",
-          "L3: two developed reasons with clear links.",
-        ],
-        modelAnswer:
-          "The USA and USSR became rivals mainly because of their opposing beliefs: the USA supported capitalism and democracy while the USSR was communist, and each feared the other would spread its system. This was deepened by disagreement over Eastern Europe, where Stalin set up communist governments that the West saw as aggression but Stalin saw as protection. Growing suspicion on both sides turned wartime allies into Cold War enemies.",
-      },
-      {
-        id: "c-exam-2",
-        skill: "Reliability",
-        format: "SBQ",
-        marks: 7,
-        question:
-          "How reliable is this source as evidence of Soviet aims after the war? Explain using the source and your knowledge.",
-        source: {
-          label: "A US newspaper editorial, 1947 (paraphrased description)",
-          text:
-            "The editorial warns that the Soviet Union is determined to spread communism across the whole of Europe and must be stopped.",
-        },
-        markScheme: [
-          "Consider content: does it match known Soviet actions in Eastern Europe?",
-          "Consider provenance/purpose: a US source during rising tension may be one-sided.",
-          "L3: a balanced judgement weighing usefulness against possible bias.",
-        ],
-        modelAnswer:
-          "The source is partly reliable. Its claim that the USSR was expanding fits real events, since Stalin did install communist governments across Eastern Europe. However, as a US editorial written during rising Cold War tension, it is likely one-sided — it presents Soviet aims as pure aggression and ignores Stalin's fear of invasion and desire for a buffer. It is therefore useful for showing Western attitudes, but not a balanced account of Soviet aims.",
-      },
+      { id: "c-exam-1", skill: "Explain (SEQ)", format: "SEQ", marks: 8, question: "Explain why the USA and the USSR became rivals after 1945.",
+        markScheme: ["Valid reasons: ideological differences, disagreement over Eastern Europe, mutual suspicion.", "Explain HOW each caused rivalry.", "L3: two developed reasons."],
+        modelAnswer: "The USA and USSR became rivals mainly because of their opposing beliefs: the USA supported capitalism and democracy while the USSR was communist, and each feared the other would spread its system. This was deepened by their clash over Eastern Europe, where Stalin set up communist governments the West saw as aggression. Growing suspicion on both sides turned wartime allies into Cold War enemies." },
+      { id: "c-exam-2", skill: "Reliability", format: "SBQ", marks: 7, question: "How reliable is this source as evidence of Soviet aims after the war? Explain using the source and your knowledge.",
+        source: { label: "A US newspaper editorial, 1947 (paraphrased)", text: "The editorial warns that the USSR is determined to spread communism across the whole of Europe and must be stopped." },
+        markScheme: ["Content: matches Soviet actions in Eastern Europe?", "Provenance/purpose: a US source in rising tension may be one-sided.", "L3: balanced judgement of usefulness vs bias."],
+        modelAnswer: "The source is partly reliable. Its claim that the USSR was expanding fits real events, since Stalin did install communist governments across Eastern Europe. However, as a US editorial written during rising Cold War tension, it is likely one-sided — it presents Soviet aims purely as aggression and ignores Stalin's fear of invasion and desire for a buffer. It is useful for showing Western attitudes, but not a balanced account of Soviet aims." },
     ],
   },
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // 5. THE BERLIN BLOCKADE & AIRLIFT
-  // ─────────────────────────────────────────────────────────────────────────
-  {
-    id: "ch-berlin",
-    slug: "berlin-blockade",
-    number: "2.2",
-    section: "The Cold War",
-    title: "The Berlin Blockade & Airlift",
-    subtitle: "The Cold War's first great crisis",
-    inquiry: "How did Berlin become the front line of the Cold War?",
-    palette: "berlin",
-    era: "1948–1949",
-    hook: "One city, cut off and surrounded — and a rescue that flew in from the sky.",
-    outcomes: [
-      "Explain why Germany and Berlin were divided",
-      "Explain the causes and events of the Berlin Blockade",
-      "Explain the significance of the Airlift and the formation of NATO",
-    ],
-    characterIds: ["stalin", "truman"],
-    timelineIds: ["berlin-blockade", "nato"],
-    pages: [
-      {
-        id: "b-1",
-        kicker: "After 1945",
-        title: "A city split in four",
-        scene: "divided-line",
-        narration: [
-          "After the war, Germany was divided into zones controlled by the USA, Britain, France and the USSR. Its capital, Berlin, was also split — even though it lay deep inside the Soviet zone.",
-          "This left West Berlin as an island of the democratic West, surrounded entirely by communist East Germany.",
-        ],
-        highlights: ["divided into zones", "Berlin", "West Berlin", "surrounded"],
-      },
-      {
-        id: "b-2",
-        kicker: "1948",
-        title: "The city is cut off",
-        scene: "divided-line",
-        narration: [
-          "In 1948 the Western powers began to rebuild their zones and introduced a new currency, strengthening West Germany.",
-          "Stalin was alarmed. To force the West out of Berlin, he blockaded the city — closing all road, rail and canal routes into West Berlin. Over two million people were cut off from food and fuel.",
-        ],
-        highlights: ["new currency", "blockaded", "road, rail and canal", "cut off"],
-        dialogues: [
-          {
-            speaker: "stalin",
-            characterId: "stalin",
-            side: "right",
-            text: "If the West cannot supply Berlin, they will have to leave it to us.",
-          },
-        ],
-      },
-      {
-        id: "b-3",
-        kicker: "1948–49",
-        title: "Rescue from the sky",
-        scene: "berlin-airlift",
-        narration: [
-          "The West refused to abandon Berlin — but fighting through the blockade risked war. Instead, they chose to supply the city entirely by air.",
-          "For almost a year, planes landed day and night carrying food, coal and supplies. At its peak a plane touched down every few minutes. The Berlin Airlift kept the city alive.",
-        ],
-        highlights: ["supply the city entirely by air", "day and night", "Berlin Airlift", "alive"],
-      },
-      {
-        id: "b-4",
-        kicker: "1949",
-        title: "A divided Germany, a divided world",
-        scene: "iron-curtain",
-        narration: [
-          "After almost a year, Stalin admitted defeat and lifted the blockade. The West had won a great propaganda victory without firing a shot.",
-          "But the crisis hardened the divide. Germany split permanently into West and East, and the Western powers formed a military alliance, NATO, to defend against the Soviet threat.",
-        ],
-        highlights: ["lifted the blockade", "propaganda victory", "West and East", "NATO"],
-        choice: {
-          question: "You are the West in 1948. Berlin is blockaded. What do you do?",
-          options: [
-            {
-              label: "Supply Berlin by air",
-              outcome:
-                "This was the Airlift — a peaceful solution that kept the city alive and won global sympathy.",
-              historical: true,
-            },
-            {
-              label: "Force through the blockade",
-              outcome:
-                "This risked direct war with the USSR, which both sides wanted to avoid.",
-            },
-            {
-              label: "Abandon West Berlin",
-              outcome:
-                "This would hand Stalin a huge victory and shake Western allies' confidence.",
-            },
-          ],
-          reality:
-            "The West chose the Airlift, supplying two million people by air for nearly a year. It avoided war, kept Berlin free, and embarrassed Stalin, who eventually lifted the blockade. The crisis confirmed the division of Germany and led directly to the formation of NATO.",
-        },
-      },
-      {
-        id: "b-5",
-        kicker: "The Airlift by numbers",
-        title: "A city fed from the sky",
-        scene: "berlin-airlift",
-        narration: [
-          "For almost a year, planes flew into West Berlin day and night — at the peak, one landing every few minutes.",
-          "They carried everything the city needed: food, medicine and, above all, coal. Some pilots even dropped sweets for the children — the 'raisin bombers'.",
-          "It was a staggering effort, and it worked. Unable to stop it without starting a war, Stalin finally lifted the blockade.",
-        ],
-        highlights: ["West Berlin", "blockade"],
-      },
-      {
-        id: "b-6",
-        kicker: "1949 · 1955",
-        title: "Two Germanys, two alliances",
-        scene: "iron-curtain",
-        narration: [
-          "The crisis split Germany for good. In 1949 the Western zones became West Germany, and the Soviet zone became communist East Germany.",
-          "To defend against the Soviet threat, the West formed a military alliance: NATO. Years later the communist states answered with the Warsaw Pact.",
-          "Europe now stood in two armed camps — the shape of the Cold War for the next forty years.",
-        ],
-        highlights: ["NATO", "Warsaw Pact"],
-      },
-    ],
-    boosters: [
-      {
-        afterPage: 1,
-        booster: {
-          type: "recall",
-          prompt: "Check your understanding.",
-          question: "Why was West Berlin in such a vulnerable position?",
-          answer:
-            "West Berlin was controlled by the Western powers, but it lay deep inside the Soviet zone of Germany — an island of the West completely surrounded by communist East Germany.",
-        },
-      },
-      {
-        afterPage: 3,
-        booster: {
-          type: "order",
-          prompt: "Order the events of the Berlin crisis.",
-          items: [
-            "Germany and Berlin divided into zones",
-            "West introduces a new currency",
-            "Stalin blockades West Berlin (1948)",
-            "The Berlin Airlift supplies the city",
-            "Blockade lifted; NATO formed (1949)",
-          ],
-        },
-      },
-    ],
-    bigPicture: {
-      title: "Why Berlin mattered",
-      nodes: [
-        {
-          id: "n1",
-          label: "Divided Germany",
-          icon: "🧱",
-          detail: "Germany and Berlin were split between the West and the USSR.",
-        },
-        {
-          id: "n2",
-          label: "Western revival",
-          icon: "💵",
-          detail: "Rebuilding and a new currency alarmed Stalin.",
-        },
-        {
-          id: "n3",
-          label: "Blockade",
-          icon: "🚧",
-          detail: "Stalin cut off West Berlin to force the West out.",
-        },
-        {
-          id: "n4",
-          label: "Airlift",
-          icon: "✈️",
-          detail: "The West supplied the city by air, avoiding war and winning sympathy.",
-        },
-        {
-          id: "n5",
-          label: "NATO & permanent divide",
-          icon: "🛡️",
-          detail:
-            "Germany split for decades and the West formed NATO to defend itself.",
-        },
-      ],
-    },
-    exam: [
-      {
-        id: "b-exam-1",
-        skill: "Explain (SEQ)",
-        format: "SEQ",
-        marks: 8,
-        question: "Explain why Stalin blockaded Berlin in 1948.",
-        markScheme: [
-          "Valid reasons: fear of a strong West Germany, the new currency, wanting the West out of Berlin.",
-          "Explain HOW each reason led to the blockade.",
-          "L3: two developed reasons with links.",
-        ],
-        modelAnswer:
-          "Stalin blockaded Berlin mainly because he was alarmed by the West rebuilding its zones and introducing a new currency, which suggested a strong, capitalist West Germany was forming on the USSR's doorstep. He also wanted to force the Western powers out of West Berlin, which sat deep inside the Soviet zone and acted as an embarrassing island of Western influence. By cutting off supplies, Stalin hoped to pressure the West into abandoning the city.",
-      },
-      {
-        id: "b-exam-2",
-        skill: "Judgement (SEQ)",
-        format: "SEQ",
-        marks: 12,
-        question:
-          "'The Berlin Airlift was a success for the West.' How far do you agree?",
-        markScheme: [
-          "FOR: kept Berlin free, avoided war, propaganda victory, led to NATO.",
-          "AGAINST: Germany split permanently, tension increased, Cold War deepened.",
-          "L4/L5: balanced judgement with a supported conclusion.",
-        ],
-        modelAnswer:
-          "The Airlift was largely a success for the West. It kept West Berlin free without firing a shot, forced Stalin to lift the blockade, and won a major propaganda victory by showing Western determination. However, it also deepened the Cold War: Germany was now permanently divided, tension increased, and the crisis led to the formation of NATO and a hardened East–West divide. On balance it was a success for the West in the short term, but it came at the cost of a more divided and dangerous Europe.",
-      },
-    ],
-  },
-
-  // ─────────────────────────────────────────────────────────────────────────
-  // 6. THE KOREAN WAR
-  // ─────────────────────────────────────────────────────────────────────────
+  // ── 8. CASE STUDY: THE KOREAN WAR ────────────────────────────────────────
   {
     id: "ch-korea",
-    slug: "the-korean-war",
-    number: "2.3",
+    slug: "korean-war",
+    number: "8",
     section: "The Cold War",
     title: "The Korean War",
     subtitle: "The Cold War turns hot",
@@ -1218,17 +760,12 @@ export const CHAPTERS: Chapter[] = [
     era: "1950–1953",
     hook: "For the first time, the superpowers' rivalry exploded into open war — on a divided peninsula in Asia.",
     outcomes: [
-      "Explain why Korea was divided and how the war began",
-      "Explain the roles of the USA, the UN and China",
-      "Explain the outcome and significance of the Korean War",
+      "Explain the post-war partition of Korea and the rise of communist China",
+      "Explain the roles of the key players in the war",
+      "Explain the armistice and its aftermath",
     ],
     characterIds: ["kim-il-sung", "mao", "truman"],
-    timelineIds: [
-      "korea-divided",
-      "korea-invasion",
-      "china-enters-korea",
-      "korea-armistice",
-    ],
+    timelineIds: ["korea-divided", "korea-invasion", "china-enters-korea", "korea-armistice"],
     pages: [
       {
         id: "k-1",
@@ -1236,647 +773,282 @@ export const CHAPTERS: Chapter[] = [
         title: "A country cut in two",
         scene: "divided-line",
         narration: [
-          "When the Second World War ended, Korea was split in two along a line called the 38th parallel. The north became communist, backed by the USSR; the south became capitalist, backed by the USA.",
-          "In the north, Kim Il Sung dreamed of uniting the whole country under communism. In the south, a rival government looked to America for support.",
-          "Two hostile Koreas, glaring at each other across a line — a Cold War fault line waiting to crack.",
+          "After the war, Korea was occupied and then partitioned along the 38th parallel — a communist North backed by the USSR, a capitalist South backed by the USA.",
+          "The border simmered with clashes. In the North, Kim Il Sung dreamed of uniting the whole country under communism.",
         ],
         highlights: ["38th parallel", "communist", "capitalist"],
         dialogues: [
-          {
-            speaker: "kim-il-sung",
-            characterId: "kim-il-sung",
-            side: "left",
-            text: "Korea must be one nation — a communist nation.",
-          },
+          { speaker: "kim-il-sung", characterId: "kim-il-sung", side: "left", text: "Korea must be one nation — a communist nation." },
         ],
       },
       {
         id: "k-2",
-        kicker: "June 1950",
-        title: "The North strikes",
-        scene: "marching-troops",
+        kicker: "1949–1950",
+        title: "A communist bloc grows",
+        scene: "world-map",
         narration: [
-          "In June 1950, North Korean troops swept across the 38th parallel, invading the south to unite Korea by force.",
-          "The attack was sudden and powerful. Within weeks the North had overrun almost the whole peninsula, pinning the South into a small corner in the far south.",
-          "To the watching USA, this looked like communism on the march — and it feared that if Korea fell, other countries would follow.",
+          "In 1949 China too became communist, under Mao. A vast new communist power stood in Asia, soon bound to the USSR by a Sino-Soviet alliance.",
+          "To the USA, communism seemed to be spreading fast. So when North Korea invaded the South in June 1950, America saw a line that had to be held.",
         ],
-        highlights: ["invading", "communism"],
+        highlights: ["communist", "Sino-Soviet alliance", "invaded"],
       },
       {
         id: "k-3",
-        kicker: "Containment in action",
-        title: "The world answers",
-        scene: "world-map",
+        kicker: "Roles in the war",
+        title: "The world takes sides",
+        scene: "marching-troops",
         narration: [
-          "The USA saw the invasion as a test of containment — and feared the 'domino theory': that if one country fell to communism, its neighbours would topple next.",
-          "This time the United Nations acted. With the USSR absent from the vote, the UN agreed to send forces to defend South Korea — most of them American, led by General MacArthur.",
-          "The UN troops drove the North back, past the 38th parallel, all the way towards the Yalu River on China's border.",
+          "The USA led a United Nations force to defend South Korea — containment in action — driving the North back towards China's border.",
+          "Alarmed, communist China sent huge numbers of troops that hurled the UN forces back. North Korea, South Korea, the USA, the UN, China and the USSR were all now entangled in one war.",
         ],
-        highlights: ["containment", "domino theory", "United Nations"],
+        highlights: ["United Nations", "containment", "China"],
+        dialogues: [
+          { speaker: "mao", characterId: "mao", side: "right", text: "We cannot let a hostile army sit on our border. China will act." },
+        ],
       },
       {
         id: "k-4",
-        kicker: "Late 1950",
-        title: "China enters the war",
-        scene: "marching-troops",
-        narration: [
-          "China watched in alarm as UN forces neared its border. Communist China, under Mao, would not allow enemy armies on its doorstep.",
-          "Hundreds of thousands of Chinese troops poured across the border, hurling the UN forces back down the peninsula.",
-          "The front line swung violently — and then settled, roughly back at the 38th parallel where it had all begun.",
-        ],
-        highlights: ["China", "38th parallel"],
-        dialogues: [
-          {
-            speaker: "mao",
-            characterId: "mao",
-            side: "right",
-            text: "We cannot let a hostile army sit on our border. China will act.",
-          },
-        ],
-      },
-      {
-        id: "k-5",
         kicker: "1953",
-        title: "Stalemate and armistice",
+        title: "Armistice and aftermath",
         scene: "handshake",
         narration: [
-          "Neither side could win. The war ground into a bloody stalemate along the 38th parallel, and in 1953 the two sides signed an armistice — a ceasefire, not a true peace.",
-          "Korea stayed divided, almost exactly where it had started, and remains split to this day.",
-          "The Cold War had turned 'hot' for the first time — yet the superpowers had avoided fighting each other directly. That pattern would shape the decades ahead.",
+          "The war ground into stalemate at the 38th parallel. In 1953 an armistice ended the fighting, leaving a heavily guarded demilitarised zone between the two Koreas — still there today.",
+          "The war deepened the Cold War: it hardened US policy in Asia and sharpened the tension between NATO and the Warsaw Pact.",
         ],
-        highlights: ["stalemate", "armistice", "divided"],
+        highlights: ["armistice", "demilitarised zone", "NATO", "Warsaw Pact"],
         choice: {
           question: "You are the USA in 1950. North Korea has invaded the South. What do you do?",
           options: [
-            {
-              label: "Send forces to defend the South",
-              outcome:
-                "This is what the USA did, through the UN — containment put into action.",
-              historical: true,
-            },
-            {
-              label: "Stay out of a distant war",
-              outcome:
-                "The USA feared that doing nothing would let communism spread unchecked — the domino theory.",
-            },
-            {
-              label: "Attack China and the USSR directly",
-              outcome:
-                "Far too dangerous — it risked a third world war, which both sides wanted to avoid.",
-            },
+            { label: "Send forces through the UN", outcome: "This is what the USA did — containment in action.", historical: true },
+            { label: "Stay out of a distant war", outcome: "The USA feared this would let communism spread unchecked." },
+            { label: "Attack China and the USSR", outcome: "Far too dangerous — it risked a third world war." },
           ],
-          reality:
-            "The USA led a UN force to defend South Korea, applying containment in Asia. After China intervened, the war became a stalemate ending in the 1953 armistice. Korea stayed divided — showing that the superpowers would fight through limited, 'proxy' wars but pull back from direct all-out war.",
+          reality: "The USA led a UN force to defend South Korea. After China intervened, the war became a stalemate ending in the 1953 armistice, leaving Korea divided — showing the superpowers would fight through limited wars but pull back from direct all-out war.",
         },
       },
     ],
     boosters: [
-      {
-        afterPage: 0,
-        booster: {
-          type: "recall",
-          prompt: "Quick check before the story continues.",
-          question: "Why was Korea divided after 1945?",
-          answer:
-            "After the Second World War, Korea was split at the 38th parallel into a communist North (backed by the USSR) and a capitalist South (backed by the USA) — a Cold War division.",
-        },
-      },
-      {
-        afterPage: 3,
-        booster: {
-          type: "order",
-          prompt: "Order the events of the Korean War.",
-          items: [
-            "Korea divided at the 38th parallel (1945)",
-            "North Korea invades the South (1950)",
-            "UN forces push the North back",
-            "China enters and drives the UN back",
-            "Armistice; Korea stays divided (1953)",
-          ],
-        },
-      },
+      { afterPage: 0, booster: { type: "recall", prompt: "Quick check.", question: "Why was Korea divided after 1945?", answer: "After the war Korea was partitioned at the 38th parallel into a communist North (backed by the USSR) and a capitalist South (backed by the USA) — a Cold War division." } },
+      { afterPage: 2, booster: { type: "order", prompt: "Order the events of the Korean War.", items: ["Korea divided at the 38th parallel (1945)", "China becomes communist (1949)", "North invades the South (1950)", "UN forces push north; China enters", "Armistice; Korea stays divided (1953)"] } },
     ],
     bigPicture: {
       title: "Why the Cold War turned hot in Korea",
       nodes: [
-        {
-          id: "n1",
-          label: "A divided Korea",
-          icon: "🗺️",
-          detail:
-            "Korea was split at the 38th parallel into a communist North and a capitalist South.",
-        },
-        {
-          id: "n2",
-          label: "The North invades",
-          icon: "⚔️",
-          detail:
-            "In 1950 the North attacked the South to unite Korea under communism.",
-        },
-        {
-          id: "n3",
-          label: "Containment in action",
-          icon: "🛡️",
-          detail:
-            "The USA led a UN force to stop communism spreading, fearing the domino theory.",
-        },
-        {
-          id: "n4",
-          label: "China intervenes",
-          icon: "🇨🇳",
-          detail:
-            "As UN forces neared its border, China sent troops and pushed them back.",
-        },
-        {
-          id: "n5",
-          label: "Stalemate & division",
-          icon: "🤝",
-          detail:
-            "The 1953 armistice left Korea divided at the 38th parallel — a war with no winner.",
-        },
+        { id: "n1", label: "A divided Korea", icon: "🗺️", detail: "Partitioned at the 38th parallel into North and South." },
+        { id: "n2", label: "Communist China", icon: "🇨🇳", detail: "China turned communist (1949), allied to the USSR." },
+        { id: "n3", label: "The North invades", icon: "⚔️", detail: "In 1950 the North attacked to unite Korea by force." },
+        { id: "n4", label: "The world responds", icon: "🛡️", detail: "A UN force under the USA fought; China intervened." },
+        { id: "n5", label: "Armistice & aftermath", icon: "🤝", detail: "1953 armistice, a DMZ, and sharper NATO–Warsaw tension." },
       ],
     },
     exam: [
-      {
-        id: "k-exam-1",
-        skill: "Explain (SEQ)",
-        format: "SEQ",
-        marks: 8,
-        question: "Explain why war broke out in Korea in 1950.",
-        markScheme: [
-          "Valid reasons: the division of Korea, Cold War rivalry, Kim Il Sung's aim to unite Korea, superpower backing.",
-          "Explain HOW each reason led to war.",
-          "L3: two developed reasons with clear links.",
-        ],
-        modelAnswer:
-          "War broke out largely because Korea had been divided at the 38th parallel into a communist North and a capitalist South, creating two hostile states. Cold War rivalry meant each was backed by a superpower, raising the stakes. When the North's leader Kim Il Sung invaded the South in 1950 to unite Korea under communism, the USA saw it as communism spreading and intervened — turning a local invasion into a Cold War conflict.",
-      },
-      {
-        id: "k-exam-2",
-        skill: "Judgement (SEQ)",
-        format: "SEQ",
-        marks: 12,
-        question:
-          "'The Korean War was a success for the policy of containment.' How far do you agree?",
-        markScheme: [
-          "FOR: communism was stopped from taking the South; South Korea survived; showed US resolve.",
-          "AGAINST: huge cost and casualties; Korea left divided; China strengthened; communism not rolled back.",
-          "L4/L5: a balanced judgement with a supported conclusion.",
-        ],
-        modelAnswer:
-          "In one sense containment succeeded: South Korea was saved from communism and the USA showed it would resist Soviet-backed expansion. However, the war was hugely costly and ended in stalemate, with Korea left divided exactly as before and communist China emerging stronger. Communism was contained but not defeated. On balance, the Korean War was a limited success for containment — it held the line, but at great cost and without a clear victory.",
-      },
+      { id: "k-exam-1", skill: "Explain (SEQ)", format: "SEQ", marks: 8, question: "Explain why war broke out in Korea in 1950.",
+        markScheme: ["Valid reasons: division of Korea, Cold War rivalry, Kim Il Sung's aim, superpower/communist backing.", "Explain HOW each led to war.", "L3: two developed reasons."],
+        modelAnswer: "War broke out largely because Korea had been divided at the 38th parallel into a communist North and a capitalist South, creating two hostile states. Cold War rivalry, sharpened by the rise of communist China, raised the stakes. When Kim Il Sung's North invaded the South in 1950 to unite Korea under communism, the USA saw it as communism spreading and intervened — turning a local invasion into a Cold War conflict." },
+      { id: "k-exam-2", skill: "Judgement (SEQ)", format: "SEQ", marks: 12, question: "'The Korean War was a success for the policy of containment.' How far do you agree?",
+        markScheme: ["FOR: communism stopped from taking the South; South survived.", "AGAINST: huge cost; Korea left divided; China strengthened.", "L4/L5: balanced judgement with a conclusion."],
+        modelAnswer: "In one sense containment succeeded: South Korea was saved from communism and the USA showed it would resist Soviet-backed expansion. However, the war was hugely costly and ended in stalemate, with Korea left divided and communist China emerging stronger. Communism was contained but not defeated. On balance the Korean War was a limited success for containment — it held the line, but at great cost and without a clear victory." },
     ],
   },
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // 7. THE CUBAN MISSILE CRISIS
-  // ─────────────────────────────────────────────────────────────────────────
+  // ── 9. CASE STUDY: THE VIETNAM WAR ───────────────────────────────────────
   {
-    id: "ch-cuba",
-    slug: "cuban-missile-crisis",
-    number: "2.4",
+    id: "ch-vietnam",
+    slug: "vietnam-war",
+    number: "9",
     section: "The Cold War",
-    title: "The Cuban Missile Crisis",
-    subtitle: "Thirteen days on the edge of nuclear war",
-    inquiry: "How close did the Cold War come to turning hot?",
-    palette: "cuba",
-    era: "1962",
-    hook: "Ninety miles from America, Soviet missiles appear. The world holds its breath.",
+    title: "The Vietnam War",
+    subtitle: "The Cold War in the jungle",
+    inquiry: "Why did the USA fight — and fail — in Vietnam?",
+    palette: "vietnam",
+    era: "1954–1975",
+    hook: "A divided nation, a stubborn insurgency, and a superpower drawn into a war it could not win.",
     outcomes: [
-      "Explain why the USSR placed missiles in Cuba",
-      "Describe how the crisis unfolded and was resolved",
-      "Explain the consequences of the crisis for the Cold War",
+      "Explain the partition of Vietnam and instability in the South",
+      "Explain the roles of the key players in the conflict",
+      "Explain the end of the war and its immediate aftermath",
     ],
-    characterIds: ["kennedy", "khrushchev", "castro"],
-    timelineIds: ["cuba-crisis"],
+    characterIds: ["ho-chi-minh", "ngo-dinh-diem", "mao"],
+    timelineIds: ["vietnam-partition", "vietnam-escalation", "vietnam-end"],
     pages: [
       {
-        id: "cu-1",
-        kicker: "1959–1962 · Cuba",
-        title: "A communist neighbour",
-        scene: "island-map",
+        id: "v-1",
+        kicker: "1954",
+        title: "A nation divided",
+        scene: "divided-line",
         narration: [
-          "Cuba, an island just 90 miles from the USA, had become communist under Fidel Castro and allied itself with the Soviet Union.",
-          "For the USA, having a communist state so close was alarming. For the USSR, Cuba was a valuable friend — and a perfect place to base missiles within range of America.",
+          "In 1954 Vietnam was partitioned by the Geneva Accords: a communist North under Ho Chi Minh, and a non-communist South.",
+          "In the North, communist control was consolidated. The South was to hold national elections to reunite the country — but the promise would not be kept.",
         ],
-        highlights: ["90 miles", "communist", "Castro", "missiles"],
-      },
-      {
-        id: "cu-2",
-        kicker: "October 1962",
-        title: "The photographs",
-        scene: "missiles-standoff",
-        narration: [
-          "In October 1962, American spy planes photographed Soviet nuclear missile sites being built in Cuba.",
-          "These missiles could strike American cities within minutes. President Kennedy and his advisers faced a terrifying decision — how to respond without starting a nuclear war.",
-        ],
-        highlights: ["spy planes", "nuclear missile sites", "Kennedy", "nuclear war"],
+        highlights: ["Geneva Accords", "communist", "elections"],
         dialogues: [
-          {
-            speaker: "kennedy",
-            characterId: "kennedy",
-            side: "left",
-            text: "These missiles cannot be allowed to stay. But one wrong move could end the world.",
-          },
+          { speaker: "ho-chi-minh", characterId: "ho-chi-minh", side: "left", text: "Vietnam is one country. It will be united — and it will be free." },
         ],
       },
       {
-        id: "cu-3",
-        kicker: "Thirteen days",
-        title: "The standoff",
-        scene: "missiles-standoff",
+        id: "v-2",
+        kicker: "1955–1960s",
+        title: "Trouble in the South",
+        scene: "angry-crowd",
         narration: [
-          "Kennedy ordered a naval 'quarantine' — a blockade to stop Soviet ships carrying more missiles from reaching Cuba.",
-          "Soviet ships steamed towards the blockade. For thirteen days the world watched, fearing that any clash could trigger nuclear war. Then, at the last moment, the Soviet ships turned back.",
+          "There was deep discontent over the Geneva Accords, and the national elections due in 1956 were never held — for fear the communists would win.",
+          "The South's leader, Ngo Dinh Diem, grew unpopular through harsh and corrupt rule. The North supported a growing insurgency against him in the South.",
         ],
-        highlights: ["quarantine", "blockade", "thirteen days", "turned back"],
+        highlights: ["elections", "Ngo Dinh Diem", "insurgency"],
       },
       {
-        id: "cu-4",
-        kicker: "Resolution",
-        title: "Stepping back from the brink",
-        scene: "handshake",
+        id: "v-3",
+        kicker: "Roles in the war",
+        title: "The superpowers step in",
+        scene: "marching-troops",
         narration: [
-          "Behind the scenes, Kennedy and Khrushchev negotiated. Khrushchev agreed to remove the missiles from Cuba; in return, the USA promised not to invade Cuba and quietly removed some of its own missiles near the USSR.",
-          "The world had come closer to nuclear war than ever before. Shaken, both sides took steps to reduce the danger — including a direct 'hotline' between their leaders.",
+          "As the South weakened, the USA poured in aid and then troops, fearing the domino theory — that if Vietnam fell, its neighbours would follow.",
+          "The North was backed by the USSR and communist China. What began as a local struggle became a full Cold War battleground fought in the jungle.",
         ],
-        highlights: ["negotiated", "remove the missiles", "not to invade", "hotline"],
+        highlights: ["domino theory", "USSR", "China"],
+      },
+      {
+        id: "v-4",
+        kicker: "1973–1975",
+        title: "The end, and détente",
+        scene: "world-map",
+        narration: [
+          "The war proved unwinnable for the USA. Facing huge costs and fierce opposition at home, American forces withdrew.",
+          "In 1975 the North's victory reunified Vietnam under communism. Yet even as the USA lost, the superpowers were cautiously easing tension — the beginning of détente.",
+        ],
+        highlights: ["withdrew", "reunification", "détente"],
         choice: {
-          question: "You are Kennedy. Soviet missiles are in Cuba. What is your first move?",
+          question: "You advise the US President in the 1960s. Should the USA send more troops to Vietnam?",
           options: [
-            {
-              label: "Blockade Cuba and negotiate",
-              outcome:
-                "This is what Kennedy chose — firm but not an immediate act of war, leaving room to talk.",
-              historical: true,
-            },
-            {
-              label: "Invade Cuba immediately",
-              outcome:
-                "This risked killing Soviet troops and triggering all-out nuclear war.",
-            },
-            {
-              label: "Do nothing",
-              outcome:
-                "Leaving missiles 90 miles away was politically and militarily unacceptable to the USA.",
-            },
+            { label: "Yes — stop the dominoes", outcome: "The USA escalated for exactly this reason — but the war became a quagmire.", historical: true },
+            { label: "No — it is unwinnable", outcome: "Some argued this; in the end the USA did withdraw, but only after huge costs." },
+            { label: "Negotiate a settlement", outcome: "Attempted eventually, but the North was determined to unite Vietnam." },
           ],
-          reality:
-            "Kennedy chose a naval blockade combined with secret negotiation. This applied pressure while avoiding an immediate attack, giving Khrushchev room to back down. Both leaders, frightened by how close they had come, then worked to ease tension — a turning point that made the Cold War slightly less dangerous.",
+          reality: "Fearing the domino theory, the USA escalated its involvement — but could not defeat a determined insurgency backed by the USSR and China. Facing mounting costs and opposition at home, it withdrew, and in 1975 Vietnam was reunified under communism.",
         },
-      },
-      {
-        id: "cu-5",
-        kicker: "1959–1962",
-        title: "Why Cuba turned to the USSR",
-        scene: "island-map",
-        narration: [
-          "Cuba had not always been a Soviet ally. After Castro's revolution the USA turned hostile, and in 1961 it backed a failed invasion at the Bay of Pigs.",
-          "Fearing another attack, Castro looked to the Soviet Union for protection. Khrushchev was glad to help — and to place missiles on America's doorstep.",
-          "And so the stage was set for the most dangerous crisis of the Cold War.",
-        ],
-        highlights: ["Bay of Pigs"],
-      },
-      {
-        id: "cu-6",
-        kicker: "The resolution",
-        title: "The secret deal",
-        scene: "handshake",
-        narration: [
-          "The public deal was simple: the USSR would remove its missiles from Cuba, and the USA promised never to invade the island.",
-          "But there was a secret too — the USA quietly agreed to remove its own missiles from Turkey, near the Soviet border. Both sides could claim they had not been humbled.",
-          "Shaken by how close they had come, they set up a telephone 'hotline' and began, slowly, to ease tension — a thaw known as détente.",
-        ],
-        highlights: ["détente"],
       },
     ],
     boosters: [
-      {
-        afterPage: 1,
-        booster: {
-          type: "match",
-          prompt: "Match each leader to their role in the crisis.",
-          pairs: [
-            { left: "Kennedy", right: "US President who ordered the blockade" },
-            { left: "Khrushchev", right: "Soviet leader who placed the missiles" },
-            { left: "Castro", right: "Communist leader of Cuba" },
-          ],
-        },
-      },
-      {
-        afterPage: 3,
-        booster: {
-          type: "recall",
-          prompt: "Check your understanding.",
-          question: "How was the Cuban Missile Crisis finally resolved?",
-          answer:
-            "Through negotiation: Khrushchev agreed to remove the missiles from Cuba, and in return the USA promised not to invade Cuba and secretly removed some of its own missiles near the USSR.",
-        },
-      },
+      { afterPage: 1, booster: { type: "recall", prompt: "Check your understanding.", question: "Why were the 1956 elections in Vietnam never held?", answer: "The South (and the USA) feared the communists under Ho Chi Minh would win, so the elections promised by the Geneva Accords were never carried out — deepening the conflict." } },
+      { afterPage: 3, booster: { type: "order", prompt: "Order the Vietnam War's key stages.", items: ["Vietnam partitioned (Geneva Accords, 1954)", "1956 elections never held", "Insurgency in the South grows", "USA sends troops (domino theory)", "US withdrawal; reunification (1975)"] } },
     ],
     bigPicture: {
-      title: "Thirteen days that changed the Cold War",
+      title: "The Cold War in Vietnam",
       nodes: [
-        {
-          id: "n1",
-          label: "Communist Cuba",
-          icon: "🇨🇺",
-          detail: "Cuba allied with the USSR, close to the USA.",
-        },
-        {
-          id: "n2",
-          label: "Soviet missiles",
-          icon: "🚀",
-          detail: "The USSR secretly placed nuclear missiles on Cuba.",
-        },
-        {
-          id: "n3",
-          label: "US blockade",
-          icon: "🚢",
-          detail: "Kennedy quarantined Cuba and demanded the missiles' removal.",
-        },
-        {
-          id: "n4",
-          label: "Negotiation",
-          icon: "🤝",
-          detail: "Both leaders stepped back and made a deal to avoid war.",
-        },
-        {
-          id: "n5",
-          label: "Reduced tension",
-          icon: "☎️",
-          detail:
-            "The scare led to steps like the hotline to make future crises less dangerous.",
-        },
+        { id: "n1", label: "Divided Vietnam", icon: "🌿", detail: "Partitioned in 1954 into a communist North and non-communist South." },
+        { id: "n2", label: "Unstable South", icon: "⚠️", detail: "Diem's harsh rule and no elections bred an insurgency." },
+        { id: "n3", label: "US involvement", icon: "🛡️", detail: "The USA escalated, fearing the domino theory." },
+        { id: "n4", label: "Communist backing", icon: "🇨🇳", detail: "The North was supported by the USSR and China." },
+        { id: "n5", label: "Withdrawal & détente", icon: "🕊️", detail: "The USA withdrew; Vietnam reunified; tension eased." },
       ],
     },
     exam: [
-      {
-        id: "cu-exam-1",
-        skill: "Explain (SEQ)",
-        format: "SEQ",
-        marks: 8,
-        question: "Explain why the USSR placed nuclear missiles in Cuba in 1962.",
-        markScheme: [
-          "Valid reasons: to protect communist Cuba, to match US missiles, to gain a strategic advantage.",
-          "Explain HOW each reason motivated the USSR.",
-          "L3: two developed reasons with links.",
-        ],
-        modelAnswer:
-          "The USSR placed missiles in Cuba partly to protect its communist ally from a feared US invasion, giving Castro powerful protection. It also wanted to close the gap in nuclear power, since the USA had missiles based near the USSR; placing missiles in Cuba, just 90 miles from America, gave the Soviets a similar advantage. In this way Khrushchev hoped to strengthen the USSR's position in the Cold War.",
-      },
-      {
-        id: "cu-exam-2",
-        skill: "Comparison",
-        format: "SBQ",
-        marks: 7,
-        question:
-          "How similar are these two sources in their view of the crisis? Explain using the sources and your knowledge.",
-        source: {
-          label: "Two paraphrased sources",
-          text:
-            "Source A (US): Kennedy stood firm and forced the Soviets to back down. Source B (Soviet): Khrushchev wisely avoided war by making a deal to remove the missiles.",
-        },
-        markScheme: [
-          "Identify similarities (both see the crisis ending peacefully / their own leader as wise).",
-          "Identify differences (each credits its own side).",
-          "L3: developed comparison of content AND provenance.",
-        ],
-        modelAnswer:
-          "The two sources are similar in agreeing that the crisis ended without war and that their own leader acted wisely. However, they differ in who they credit: the US source praises Kennedy for standing firm, while the Soviet source praises Khrushchev for avoiding war. This difference reflects their origins, as each side presents its own leader positively. Both are useful for showing how the crisis was remembered differently on either side of the Cold War.",
-      },
+      { id: "v-exam-1", skill: "Explain (SEQ)", format: "SEQ", marks: 8, question: "Explain why the USA became involved in the Vietnam War.",
+        markScheme: ["Valid reasons: domino theory/containment, instability in the South, communist backing of the North.", "Explain HOW each drew the USA in.", "L3: two developed reasons."],
+        modelAnswer: "The USA became involved mainly because of the domino theory — the fear that if South Vietnam fell to communism, its neighbours would follow — making containment seem essential. The growing instability of the South, with Diem's unpopular rule and a rising communist insurgency, threatened to let this happen. As the North, backed by the USSR and China, supported that insurgency, the USA stepped up its aid and then sent troops to hold the line against communism." },
+      { id: "v-exam-2", skill: "Explain (SEQ)", format: "SEQ", marks: 8, question: "Explain why South Vietnam was unstable in the 1950s and 1960s.",
+        markScheme: ["Valid reasons: discontent over Geneva Accords, no 1956 elections, Diem's unpopular rule, Northern-backed insurgency.", "Explain HOW each caused instability.", "L3: two developed reasons."],
+        modelAnswer: "South Vietnam was unstable partly because of anger over the Geneva Accords and the failure to hold the promised 1956 elections, which denied people a peaceful path to reunification. Its leader Ngo Dinh Diem was harsh and corrupt, losing the support of his own people. This discontent was exploited by the North, which backed a growing insurgency in the South — steadily undermining the government." },
     ],
   },
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // 7. THE END OF THE COLD WAR
-  // ─────────────────────────────────────────────────────────────────────────
+  // ── 10. THE END OF THE COLD WAR ──────────────────────────────────────────
   {
     id: "ch-end",
-    slug: "end-of-the-cold-war",
-    number: "2.5",
+    slug: "end-of-cold-war",
+    number: "10",
     section: "The Cold War",
     title: "The End of the Cold War",
     subtitle: "How the long standoff finally thawed",
-    inquiry: "Why did the Cold War come to an end?",
+    inquiry: "Why did the Soviet Union — and the Cold War — collapse?",
     palette: "collapse",
-    era: "1985–1991",
-    hook: "After forty years of fear, the walls came down — and an empire quietly dissolved.",
+    era: "1980s–1991",
+    hook: "After forty years of fear, the walls came down — and a superpower quietly dissolved.",
     outcomes: [
-      "Explain the problems facing the Soviet Union by the 1980s",
-      "Explain the impact of Gorbachev's reforms",
-      "Describe how communist rule ended in Eastern Europe",
+      "Explain the structural weaknesses of the Soviet economy",
+      "Explain the external burdens and the renewed arms race",
+      "Explain the impact of Gorbachev's reforms and the fall of the USSR",
     ],
     characterIds: ["gorbachev"],
     timelineIds: ["wall-falls", "ussr-ends"],
     pages: [
       {
-        id: "e-1",
-        kicker: "1980s · USSR",
-        title: "A system under strain",
+        id: "d-1",
+        kicker: "The 1980s",
+        title: "A system that could not deliver",
         scene: "empty-factory",
         narration: [
-          "By the 1980s the Soviet Union was in deep trouble. Its economy was struggling, living standards were low, and the arms race with the USA was hugely expensive.",
-          "Keeping control of Eastern Europe was also costly and difficult. The system that had once seemed unstoppable was running out of strength.",
+          "At the heart of the crisis lay the Soviet command economy. Planned entirely from the top, it was rigid and inefficient, unable to provide the goods people wanted.",
+          "These structural weaknesses meant living standards fell far behind the West. Ordinary Soviet citizens queued for basics — and began to lose faith.",
         ],
-        highlights: ["economy was struggling", "arms race", "expensive", "running out of strength"],
+        highlights: ["command economy", "structural weaknesses", "living standards"],
       },
       {
-        id: "e-2",
-        kicker: "1985",
-        title: "A reforming leader",
-        scene: "rising-leader",
-        narration: [
-          "In 1985 Mikhail Gorbachev became Soviet leader. He knew the USSR could not go on as before and introduced reforms to modernise the country and reduce tension with the West.",
-          "Crucially, Gorbachev signalled that the USSR would no longer use force to keep the communist governments of Eastern Europe in power.",
-        ],
-        highlights: ["Gorbachev", "reforms", "reduce tension", "no longer use force"],
-        dialogues: [
-          {
-            speaker: "gorbachev",
-            characterId: "gorbachev",
-            side: "left",
-            text: "The Soviet Union cannot sustain this. We must reform, and we must ease tension.",
-          },
-        ],
-      },
-      {
-        id: "e-3",
-        kicker: "1989",
-        title: "The wall comes down",
-        scene: "falling-wall",
-        narration: [
-          "Once people realised the USSR would not send in troops, protests swept across Eastern Europe. One by one, communist governments fell.",
-          "In 1989 the Berlin Wall — the great symbol of the divided world — was opened at last. Crowds crossed freely for the first time in decades.",
-        ],
-        highlights: ["protests", "communist governments fell", "Berlin Wall", "freely"],
-      },
-      {
-        id: "e-4",
-        kicker: "1991",
-        title: "An empire dissolves",
-        scene: "handshake",
-        narration: [
-          "The changes could not be stopped. In 1991 the Soviet Union itself broke apart into separate independent countries.",
-          "The Cold War was over. After more than forty years, the long standoff between the superpowers had ended — not with a war, but with the peaceful collapse of one side.",
-        ],
-        highlights: ["Soviet Union", "broke apart", "Cold War was over", "peaceful collapse"],
-        choice: {
-          question: "You are Gorbachev in 1989. Protests are spreading across Eastern Europe. What do you do?",
-          options: [
-            {
-              label: "Do not use force",
-              outcome:
-                "This is what Gorbachev chose — allowing change and hastening the end of the Cold War.",
-              historical: true,
-            },
-            {
-              label: "Send in the army to crush protests",
-              outcome:
-                "Earlier Soviet leaders had done this, but it was costly and, by the 1980s, the USSR could not afford it.",
-            },
-          ],
-          reality:
-            "Gorbachev chose not to use force. Without the threat of Soviet tanks, communist governments across Eastern Europe collapsed and the Berlin Wall fell. His reforms and restraint, combined with the USSR's deep economic problems, brought the Cold War to a peaceful end.",
-        },
-      },
-      {
-        id: "e-5",
-        kicker: "The 1980s",
-        title: "The weight of the arms race",
+        id: "d-2",
+        kicker: "The burden",
+        title: "The weight the USSR could not carry",
         scene: "money-flow",
         narration: [
-          "For decades the superpowers had poured fortunes into the arms race, each building ever more powerful weapons.",
-          "For the USA it was costly; for the weaker Soviet economy it was crushing. Money that could have fed and housed people was spent on missiles instead.",
-          "By the 1980s the strain had become unbearable — and something had to give.",
+          "On top of a weak economy came crushing external burdens. Huge military spending drained the country, and holding the communist bloc together — with its Warsaw Pact commitments — cost dearly.",
+          "Then, in the 1980s, the USA used its economic might to re-intensify the arms race, a contest the strained Soviet economy simply could not win.",
         ],
-        highlights: ["arms race"],
+        highlights: ["military spending", "Warsaw Pact", "arms race"],
       },
       {
-        id: "e-6",
-        kicker: "Gorbachev's reforms",
-        title: "Glasnost and Perestroika",
+        id: "d-3",
+        kicker: "Gorbachev",
+        title: "Openness and restructuring",
         scene: "handshake",
         narration: [
-          "Gorbachev's answer was two bold reforms. Glasnost — 'openness' — let people speak and criticise freely for the first time in decades.",
-          "Perestroika — 'restructuring' — tried to modernise the struggling economy. He also signed arms agreements with the USA, easing the fear of war.",
-          "But openness let people demand more freedom than the old system could survive.",
+          "Gorbachev tried to save the system with reform: glasnost, or 'openness', and perestroika, the 'restructuring' of the economy.",
+          "But the reforms failed to revive the economy, while openness let people voice long-hidden anger. Confidence in the Soviet government drained away.",
         ],
         highlights: ["glasnost", "perestroika"],
         dialogues: [
-          {
-            speaker: "gorbachev",
-            characterId: "gorbachev",
-            side: "left",
-            text: "We cannot go on as before. The country must open, and it must change.",
-          },
+          { speaker: "gorbachev", characterId: "gorbachev", side: "left", text: "We cannot go on as before. The country must open, and it must change." },
         ],
       },
       {
-        id: "e-7",
-        kicker: "1989",
-        title: "The year of revolutions",
+        id: "d-4",
+        kicker: "1989–1991",
+        title: "The empire dissolves",
         scene: "falling-wall",
         narration: [
-          "In 1989 the changes broke into the open. In Poland, the Solidarity movement won free elections. Hungary opened its border.",
-          "Country by country, communist governments across Eastern Europe fell — and, seeing that Soviet tanks would not come, crowds poured through the Berlin Wall.",
-          "Two years later the Soviet Union itself dissolved. After more than forty years, the Cold War was over.",
+          "Once people saw the USSR would not use force, the communist bloc collapsed. In 1989 the Berlin Wall fell as Eastern Europe broke free.",
+          "Two years later the Soviet Union itself disintegrated into separate nations. The Cold War was over — ended not by war, but by the quiet collapse of one side.",
         ],
-        highlights: ["Solidarity", "Berlin Wall"],
+        highlights: ["Berlin Wall", "disintegrated", "Cold War was over"],
+        choice: {
+          question: "You are Gorbachev in 1989. Protests spread across Eastern Europe. What do you do?",
+          options: [
+            { label: "Do not use force", outcome: "This is what Gorbachev chose — allowing change and hastening the end.", historical: true },
+            { label: "Send in the army", outcome: "Earlier leaders had, but by the 1980s the USSR could not afford it." },
+          ],
+          reality: "Gorbachev chose restraint. Without the threat of Soviet tanks, and with the economy in ruins, the communist bloc collapsed, the Berlin Wall fell, and in 1991 the Soviet Union broke apart — ending the Cold War.",
+        },
       },
     ],
     boosters: [
-      {
-        afterPage: 1,
-        booster: {
-          type: "recall",
-          prompt: "Check your understanding.",
-          question: "Why were Gorbachev's reforms so important to ending the Cold War?",
-          answer:
-            "He reduced tension with the West and, crucially, signalled that the USSR would no longer use force to keep Eastern Europe communist — which allowed those governments to fall.",
-        },
-      },
-      {
-        afterPage: 3,
-        booster: {
-          type: "order",
-          prompt: "Order the end of the Cold War.",
-          items: [
-            "Soviet economy struggles under the arms race",
-            "Gorbachev becomes leader and reforms (1985)",
-            "USSR will not use force in Eastern Europe",
-            "Berlin Wall falls (1989)",
-            "Soviet Union breaks apart (1991)",
-          ],
-        },
-      },
+      { afterPage: 1, booster: { type: "recall", prompt: "Check your understanding.", question: "Name two burdens that strained the Soviet economy.", answer: "Any two of: a weak, inefficient command economy; huge military spending; the cost of holding the communist bloc and Warsaw Pact together; and the renewed 1980s arms race with the USA." } },
+      { afterPage: 3, booster: { type: "order", prompt: "Order the end of the Cold War.", items: ["Command economy struggles", "Costly arms race and bloc commitments", "Gorbachev's reforms (glasnost, perestroika)", "Berlin Wall falls (1989)", "USSR disintegrates (1991)"] } },
     ],
     bigPicture: {
       title: "Why the Cold War ended",
       nodes: [
-        {
-          id: "n1",
-          label: "Soviet weakness",
-          icon: "📉",
-          detail: "A struggling economy and costly arms race strained the USSR.",
-        },
-        {
-          id: "n2",
-          label: "Gorbachev's reforms",
-          icon: "🕊️",
-          detail: "He modernised the USSR and eased tension with the West.",
-        },
-        {
-          id: "n3",
-          label: "No force in the East",
-          icon: "✋",
-          detail: "Gorbachev refused to use troops to hold Eastern Europe.",
-        },
-        {
-          id: "n4",
-          label: "Communism collapses",
-          icon: "🧱",
-          detail: "Governments fell and the Berlin Wall came down in 1989.",
-        },
-        {
-          id: "n5",
-          label: "USSR ends",
-          icon: "🌍",
-          detail: "The Soviet Union broke apart in 1991 and the Cold War ended.",
-        },
+        { id: "n1", label: "Weak economy", icon: "📉", detail: "The command economy could not provide or compete." },
+        { id: "n2", label: "External burdens", icon: "💸", detail: "Military spending and the bloc drained the USSR." },
+        { id: "n3", label: "Renewed arms race", icon: "🚀", detail: "1980s US pressure the Soviets could not match." },
+        { id: "n4", label: "Failed reforms", icon: "🕊️", detail: "Glasnost and perestroika could not save the system." },
+        { id: "n5", label: "Collapse", icon: "🧱", detail: "The bloc fell, the Wall came down, the USSR disintegrated." },
       ],
     },
     exam: [
-      {
-        id: "e-exam-1",
-        skill: "Explain (SEQ)",
-        format: "SEQ",
-        marks: 8,
-        question: "Explain why the Cold War came to an end.",
-        markScheme: [
-          "Valid reasons: Soviet economic problems, the arms race, Gorbachev's reforms, refusal to use force.",
-          "Explain HOW each contributed to the end.",
-          "L3: two developed reasons with links.",
-        ],
-        modelAnswer:
-          "The Cold War ended largely because the Soviet Union was economically exhausted, weakened by a struggling economy and the costly arms race, which meant it could no longer sustain the struggle. This was decisive under Gorbachev, whose reforms eased tension with the West and, crucially, ended the threat of using force in Eastern Europe. Once Soviet troops would not intervene, communist governments collapsed and the divided world came peacefully to an end.",
-      },
-      {
-        id: "e-exam-2",
-        skill: "Judgement (SEQ)",
-        format: "SEQ",
-        marks: 12,
-        question:
-          "'Gorbachev was the main reason the Cold War ended.' How far do you agree?",
-        markScheme: [
-          "FOR: his reforms, easing tension, refusing to use force in Eastern Europe.",
-          "AGAINST: deep Soviet economic weakness, the costly arms race, pressure from within Eastern Europe.",
-          "L4/L5: balanced judgement with a supported conclusion.",
-        ],
-        modelAnswer:
-          "Gorbachev was very important because his reforms and his refusal to use force allowed communist governments in Eastern Europe to fall without Soviet intervention. However, he was not the only reason. The deeper cause was the USSR's severe economic weakness and the crushing cost of the arms race, which made reform necessary in the first place. On balance, Gorbachev was the crucial trigger, but he was responding to long-term Soviet problems that made the end of the Cold War increasingly likely.",
-      },
+      { id: "d-exam-1", skill: "Explain (SEQ)", format: "SEQ", marks: 8, question: "Explain why the Soviet economy was in crisis by the 1980s.",
+        markScheme: ["Valid reasons: inefficient command economy, military spending, cost of the bloc, arms race.", "Explain HOW each caused crisis.", "L3: two developed reasons."],
+        modelAnswer: "The Soviet economy was in crisis mainly because its command system was rigid and inefficient, unable to provide the goods people needed, so living standards fell behind the West. On top of this came crushing burdens: huge military spending and the cost of holding the communist bloc together. When the USA re-intensified the arms race in the 1980s, the strained Soviet economy simply could not keep up." },
+      { id: "d-exam-2", skill: "Judgement (SEQ)", format: "SEQ", marks: 12, question: "'Gorbachev's reforms were the main reason the Cold War ended.' How far do you agree?",
+        markScheme: ["FOR: reforms, openness, refusal to use force.", "AGAINST: deep economic weakness, arms race cost, resistance within the bloc.", "L4/L5: balanced judgement with a conclusion."],
+        modelAnswer: "Gorbachev's reforms were very important: glasnost and perestroika, and his refusal to use force, allowed the communist bloc to collapse. However, he was responding to deeper problems — a failing command economy, crushing military and bloc costs, and a renewed arms race the USSR could not win. On balance, Gorbachev was the decisive trigger, but he was acting on long-term weaknesses that were already pushing the Soviet Union, and the Cold War, towards their end." },
     ],
   },
 ];

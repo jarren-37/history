@@ -110,6 +110,28 @@ export const GLOSSARY: Record<string, string> = {
     "The international peace organisation set up in 1945 to replace the League of Nations. In 1950 it approved a force to defend South Korea (while the USSR was boycotting the vote).",
   armistice:
     "A ceasefire that stops fighting without a full peace treaty. The 1953 Korean armistice ended the fighting but left Korea divided.",
+  "self-determination":
+    "The idea that peoples should rule themselves. After 1919 it guided the creation of new nation-states from the old empires, though borders could not be drawn perfectly.",
+  "Abyssinian Crisis":
+    "Italy's 1935 invasion of Abyssinia, which the League of Nations failed to stop — exposing its helplessness against a great power in the 1930s.",
+  "D-Day":
+    "The 1944 Allied landings in France, which opened a second front against Germany in the west and helped bring the war in Europe to an end.",
+  "island hopping":
+    "The US Pacific strategy of capturing key islands one by one to close in on Japan, avoiding its strongest points.",
+  "atomic bomb":
+    "The devastating new weapon dropped on Japan in 1945, which brought a rapid and shattering end to the Second World War.",
+  "Greater East Asia Co-Prosperity Sphere":
+    "Japan's vision of a vast Asian empire under its leadership, used to justify its expansion and conquest.",
+  "Geneva Accords":
+    "The 1954 agreement that partitioned Vietnam into a communist North and a non-communist South, with elections promised for 1956 that were never held.",
+  "demilitarised zone":
+    "A buffer strip where military forces are banned. The DMZ between North and South Korea was created by the 1953 armistice and still exists today.",
+  "Sino-Soviet alliance":
+    "The alliance between communist China and the USSR after 1949, which strengthened the communist bloc in Asia.",
+  "command economy":
+    "An economy planned and controlled entirely by the state, as in the USSR. Its rigidity and inefficiency left Soviet living standards far behind the West.",
+  superpowers:
+    "The two dominant world powers after 1945 — the USA and the USSR — whose rivalry defined the Cold War.",
 };
 
 /** Case-insensitive lookup of a glossary definition. */

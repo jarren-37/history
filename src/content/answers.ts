@@ -22,70 +22,84 @@ export const QUESTIONS: QA[] = [
   {
     q: "Why did Hitler invade Poland?",
     keys: ["hitler", "invade", "poland", "1939", "start", "war"],
-    chapter: "rise-of-hitler",
+    chapter: "outbreak-europe",
     answer:
       "Hitler wanted to expand German territory and overturn the Treaty of Versailles. Because Britain and France had not stopped his earlier moves (like the Rhineland and the Sudetenland), he believed he could take Poland too. This time Britain and France had promised to defend Poland, so when he invaded in September 1939 they declared war — beginning the Second World War in Europe.",
   },
   {
     q: "What caused the Cold War?",
     keys: ["cause", "cold war", "usa", "ussr", "origins", "why"],
-    chapter: "origins-of-the-cold-war",
+    chapter: "cold-war-origins",
     answer:
       "The Cold War grew out of deep differences between the USA (capitalist and democratic) and the USSR (communist), each fearing the other would spread its system. Wartime conferences revealed disagreement over Eastern Europe, where Stalin set up communist governments. The USA responded with containment — the Truman Doctrine and Marshall Plan — and mutual suspicion turned wartime allies into rivals.",
   },
   {
     q: "Explain the Berlin Blockade.",
     keys: ["berlin", "blockade", "airlift", "stalin", "1948"],
-    chapter: "berlin-blockade",
+    chapter: "cold-war-origins",
     answer:
       "In 1948 Stalin cut off all road, rail and canal routes into West Berlin to force the Western powers out. The West refused to leave and instead supplied the city entirely by air for almost a year — the Berlin Airlift. Stalin eventually lifted the blockade, handing the West a propaganda victory, but Germany was left permanently divided and NATO was formed.",
   },
   {
     q: "What is the difference between NATO and the Warsaw Pact?",
     keys: ["nato", "warsaw", "pact", "difference", "alliance"],
-    chapter: "berlin-blockade",
+    chapter: "cold-war-origins",
     answer:
       "NATO was a defensive military alliance of Western nations, led by the USA, formed in 1949 to protect against the Soviet threat. The Warsaw Pact was the communist answer — an alliance of the USSR and Eastern European states, formed in 1955. Together they show how the Cold War divided Europe into two armed camps.",
   },
   {
     q: "Why did Japan attack Pearl Harbor?",
     keys: ["japan", "pearl harbor", "attack", "usa", "1941", "oil"],
-    chapter: "japans-road-to-war",
+    chapter: "outbreak-asia",
     answer:
       "Japan needed raw materials, especially oil, for its war in China. When the USA cut off supplies to pressure Japan, its leaders decided to seize the resources of Southeast Asia by force. They attacked Pearl Harbor in December 1941 to cripple the US fleet — but this brought the USA fully into the war.",
   },
   {
     q: "Why were Germans angry about the Treaty of Versailles?",
     keys: ["versailles", "treaty", "germans", "angry", "reparations", "guilt"],
-    chapter: "treaty-of-versailles",
+    chapter: "paris-peace-conference",
     answer:
       "Germans were angry because the Treaty forced them to accept sole blame for the war (the War Guilt Clause), pay huge reparations, lose land, and cut their army to 100,000 men. They called it a 'diktat' — a dictated peace — and this resentment later helped Hitler win support by promising to overturn it.",
   },
   {
-    q: "How did the Cuban Missile Crisis end?",
-    keys: ["cuba", "missile", "crisis", "kennedy", "khrushchev", "end", "1962"],
-    chapter: "cuban-missile-crisis",
+    q: "Why did the USA get involved in Vietnam?",
+    keys: ["vietnam", "usa", "america", "domino", "war", "involve", "why"],
+    chapter: "vietnam-war",
     answer:
-      "It ended through negotiation. Khrushchev agreed to remove the Soviet missiles from Cuba, and in return the USA promised not to invade Cuba and secretly removed some of its own missiles near the USSR. Both sides, shaken by how close they came to nuclear war, then took steps to reduce tension, such as setting up a hotline.",
+      "The USA got involved mainly because of the domino theory — the fear that if South Vietnam fell to communism, its neighbours would follow. As South Vietnam grew unstable under the unpopular Diem and a Northern-backed insurgency spread, the USA sent aid and then troops to contain communism. But the war proved unwinnable, and the USA eventually withdrew before Vietnam was reunified under communism in 1975.",
+  },
+  {
+    q: "Why did the Korean War break out?",
+    keys: ["korea", "korean", "war", "38th", "parallel", "1950", "invade"],
+    chapter: "korean-war",
+    answer:
+      "Korea had been divided at the 38th parallel into a communist North (backed by the USSR) and a capitalist South (backed by the USA). With China now communist too, the North's leader Kim Il Sung invaded the South in 1950 to unite Korea. The USA saw it as communism spreading and led a UN force to defend the South — turning the Cold War 'hot'.",
+  },
+  {
+    q: "Why did the Allies win the Second World War?",
+    keys: ["allies", "win", "victory", "world war", "d-day", "atomic", "why"],
+    chapter: "end-of-ww2",
+    answer:
+      "The Allies won through overwhelming strengths — American resources and manpower, the huge Soviet war effort, and strategies like D-Day, island hopping and the atomic bomb. The Axis were also weakened by their own mistakes: Germany fought a costly war on two fronts, and Japan's empire was overextended and could not supply itself.",
   },
   {
     q: "What was appeasement?",
     keys: ["appeasement", "munich", "chamberlain", "sudetenland", "1938"],
-    chapter: "rise-of-hitler",
+    chapter: "outbreak-europe",
     answer:
       "Appeasement was the policy of Britain and France of giving in to some of Hitler's demands to avoid another war. At the Munich Agreement of 1938 they let Germany take the Sudetenland. It bought time but encouraged Hitler to demand more, and failed when he invaded Poland in 1939.",
   },
   {
     q: "Why did the Cold War end?",
     keys: ["cold war", "end", "gorbachev", "collapse", "ussr", "1991"],
-    chapter: "end-of-the-cold-war",
+    chapter: "end-of-cold-war",
     answer:
       "The USSR was economically exhausted by the arms race and the cost of controlling Eastern Europe. Gorbachev's reforms eased tension with the West, and crucially he refused to use force to keep Eastern European governments in power. Communism there collapsed, the Berlin Wall fell in 1989, and the Soviet Union broke apart in 1991.",
   },
   {
     q: "What was the Marshall Plan?",
     keys: ["marshall", "plan", "aid", "money", "europe", "containment"],
-    chapter: "origins-of-the-cold-war",
+    chapter: "cold-war-origins",
     answer:
       "The Marshall Plan was American economic aid to rebuild Western Europe after the war. The idea was that prosperous countries would be less likely to turn communist, so it was part of the US policy of containment. Stalin saw it as an attempt to spread US influence, which deepened the Cold War divide.",
   },

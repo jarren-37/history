@@ -26,8 +26,10 @@ const REGIONS: Region[] = [
   { id: "germany", label: "Germany", cx: 470, cy: 130, rx: 26, ry: 20 },
   { id: "poland", label: "Poland", cx: 520, cy: 120, rx: 24, ry: 16 },
   { id: "ussr", label: "USSR", cx: 640, cy: 120, rx: 90, ry: 55 },
-  { id: "japan", label: "Japan", cx: 720, cy: 230, rx: 22, ry: 16 },
-  { id: "china", label: "China", cx: 650, cy: 240, rx: 40, ry: 26 },
+  { id: "japan", label: "Japan", cx: 730, cy: 235, rx: 20, ry: 15 },
+  { id: "china", label: "China", cx: 645, cy: 245, rx: 40, ry: 26 },
+  { id: "korea", label: "Korea", cx: 700, cy: 220, rx: 12, ry: 18 },
+  { id: "vietnam", label: "Vietnam", cx: 668, cy: 290, rx: 12, ry: 16 },
 ];
 
 interface Arrow {
@@ -58,7 +60,7 @@ const SCENARIOS: Scenario[] = [
     title: "German expansion",
     subtitle: "1936 – 1939",
     palette: "hitler",
-    chapter: "rise-of-hitler",
+    chapter: "outbreak-europe",
     highlight: {
       germany: "aggressor",
       france: "target",
@@ -76,7 +78,7 @@ const SCENARIOS: Scenario[] = [
     title: "Japanese expansion",
     subtitle: "1931 – 1941",
     palette: "japan",
-    chapter: "japans-road-to-war",
+    chapter: "outbreak-asia",
     highlight: {
       japan: "aggressor",
       china: "target",
@@ -94,7 +96,7 @@ const SCENARIOS: Scenario[] = [
     title: "A divided Europe",
     subtitle: "NATO vs the Warsaw Pact",
     palette: "coldwar",
-    chapter: "origins-of-the-cold-war",
+    chapter: "cold-war-origins",
     highlight: {
       usa: "west",
       britain: "west",
@@ -112,7 +114,7 @@ const SCENARIOS: Scenario[] = [
     title: "The Berlin Airlift",
     subtitle: "1948 – 1949",
     palette: "berlin",
-    chapter: "berlin-blockade",
+    chapter: "cold-war-origins",
     highlight: { germany: "target", ussr: "aggressor" },
     arrows: [{ from: "france", to: "germany", bend: -30, label: "supplies by air" }],
     planes: true,
@@ -120,16 +122,33 @@ const SCENARIOS: Scenario[] = [
       "Stalin blockaded West Berlin, deep inside the Soviet zone. The West flew in supplies for nearly a year until he backed down.",
   },
   {
-    id: "cuban-crisis",
-    title: "Cuban Missile Crisis",
-    subtitle: "October 1962",
-    palette: "cuba",
-    chapter: "cuban-missile-crisis",
-    highlight: { usa: "west", cuba: "aggressor", ussr: "east" },
-    arrows: [{ from: "ussr", to: "cuba", bend: 80, label: "missiles" }],
-    ring: "cuba",
+    id: "korean-war",
+    title: "The Korean War",
+    subtitle: "1950 – 1953",
+    palette: "korea",
+    chapter: "korean-war",
+    highlight: { korea: "target", china: "aggressor", ussr: "east", usa: "west" },
+    arrows: [
+      { from: "china", to: "korea", bend: 24, label: "China" },
+      { from: "usa", to: "korea", bend: -70, label: "UN forces" },
+    ],
+    ring: "korea",
     caption:
-      "The USSR placed missiles in Cuba, 90 miles from the USA. Kennedy's naval blockade forced a tense, negotiated retreat.",
+      "Korea, split at the 38th parallel, became the Cold War's first hot war. A UN force led by the USA fought the communist North, and China intervened.",
+  },
+  {
+    id: "vietnam-war",
+    title: "The Vietnam War",
+    subtitle: "1954 – 1975",
+    palette: "vietnam",
+    chapter: "vietnam-war",
+    highlight: { vietnam: "target", china: "east", ussr: "east", usa: "west" },
+    arrows: [
+      { from: "usa", to: "vietnam", bend: -90, label: "US troops" },
+      { from: "china", to: "vietnam", bend: 30, label: "aid to North" },
+    ],
+    caption:
+      "Fearing the domino theory, the USA fought to defend the South, while the communist North was backed by the USSR and China. The USA withdrew, and Vietnam reunified in 1975.",
   },
 ];
 

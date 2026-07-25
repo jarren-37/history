@@ -41,7 +41,7 @@ export default function Home() {
     ? CHAPTERS.find((c) => progress[c.slug] && !progress[c.slug].completed)
     : undefined;
 
-  const ww2 = CHAPTERS.filter((c) => c.section === "World War Two");
+  const ww2 = CHAPTERS.filter((c) => c.section === "The Road to War");
   const cold = CHAPTERS.filter((c) => c.section === "The Cold War");
 
   return (
@@ -105,16 +105,16 @@ export default function Home() {
         <div className="relative z-10 mt-10 grid gap-x-12 gap-y-10 md:grid-cols-2">
           <ContentsPart
             roman="I"
-            title="The Coming of War"
-            subtitle="World War Two"
+            title="The Road to War"
+            subtitle="Unit 1 · 1919–1941"
             chapters={ww2}
             progress={progress}
             hydrated={hydrated}
           />
           <ContentsPart
             roman="II"
-            title="The Long Cold Peace"
-            subtitle="The Cold War"
+            title="The Cold War"
+            subtitle="Unit 2 · 1945–1991"
             chapters={cold}
             progress={progress}
             hydrated={hydrated}

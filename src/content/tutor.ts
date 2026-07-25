@@ -1,8 +1,7 @@
 /**
- * Pre-authored "AI Tutor" and "Exam Memory" content, one entry per chapter.
- * Written to stay strictly within the 2261 syllabus. A real OpenAI key can be
- * plugged into /api/tutor later; until then these deterministic responses power
- * the tutor panel so everything works offline and never invents extra facts.
+ * Pre-authored "AI Tutor" and "Exam Memory" content, one entry per chapter,
+ * keyed by chapter slug. Written to stay strictly within the 2261 syllabus so
+ * everything works offline and never invents extra facts.
  */
 
 export interface TutorContent {
@@ -12,7 +11,6 @@ export interface TutorContent {
   matters: string;
   memorise: string[];
   mistakes: string[];
-  /** Exam Memory Mode: layered summaries + a model exam paragraph. */
   oneSentence: string;
   threeSentence: string;
   fiveSentence: string;
@@ -20,236 +18,316 @@ export interface TutorContent {
 }
 
 export const TUTOR: Record<string, TutorContent> = {
-  "treaty-of-versailles": {
+  "paris-peace-conference": {
     simpler:
-      "After World War One, the winners made Germany sign a harsh peace treaty. Germany lost land, had its army cut, paid huge fines (reparations), and had to accept blame for the war. Germans felt this was unfair and stayed angry for years.",
+      "After WWI, the Big Three made Germany sign the harsh Treaty of Versailles (blame, reparations, disarmament, lost land). New nation-states were created by self-determination, and the League of Nations was set up to keep peace — but it was weak.",
     eli10:
-      "Imagine your team loses a game, and the winners make you say sorry for everything, pay for all the broken equipment, and give away your best players — even though you weren't allowed to argue. You'd feel it was unfair, and you'd stay upset. That's how Germans felt about Versailles.",
+      "The winners of a huge fight made the loser say sorry, pay up and give things away. They also set up a 'club' to stop future fights — but the club had no muscle, so bullies could ignore it.",
     analogy:
-      "Versailles was like squeezing a spring. Every harsh term pressed German anger down further — and years later that pressure sprang back when Hitler promised to release it.",
+      "The League was a referee with a whistle but no power to send anyone off — fine for small squabbles, useless against a determined cheat.",
     matters:
-      "It matters because the anger caused by Versailles is the starting point of the whole story. Without that resentment, Hitler would have had far less to campaign on — so this treaty helps explain how the Second World War became possible.",
+      "It sets the stage for everything after: German resentment and a weak League are the seeds of the next war.",
     memorise: [
-      "5 terms: land loss, army limited to 100,000, reparations, War Guilt Clause, demilitarised Rhineland",
-      "'Diktat' = a dictated peace Germany was forced to sign",
-      "Signed 1919; the League of Nations began 1920",
-      "Key link: resentment → support for Hitler",
+      "Big Three: Clemenceau, Wilson, Lloyd George",
+      "Versailles: War Guilt Clause, reparations, demilitarisation, lost land",
+      "Self-determination → new nation-states from old empires",
+      "League weak: no USA, no army",
     ],
     mistakes: [
-      "Listing terms without explaining WHY they caused anger",
-      "Confusing reparations (payments) with the War Guilt Clause (blame)",
-      "Forgetting to link the Treaty forward to the rise of Hitler",
+      "Listing terms without explaining why they caused anger",
+      "Calling the League a total failure (it had 1920s successes)",
+      "Forgetting the USA never joined the League",
     ],
     oneSentence:
-      "The Treaty of Versailles punished Germany so harshly that lasting resentment helped make another war possible.",
+      "The 1919 peace punished Germany and created a well-meaning but weak League of Nations.",
     threeSentence:
-      "The Treaty of Versailles forced Germany to lose land, limit its army, pay reparations and accept blame for the war. Germans saw it as an unfair 'diktat' and grew deeply resentful. This anger later helped Hitler gain support by promising to overturn the Treaty.",
+      "The Treaty of Versailles blamed and punished Germany, breeding resentment. New nation-states were formed by self-determination. The League of Nations was set up for collective security but was weak, with no US membership and no army.",
     fiveSentence:
-      "After World War One, the victorious powers imposed the Treaty of Versailles on Germany in 1919. Its terms took German land, cut the army to 100,000 men, demanded huge reparations, and blamed Germany through the War Guilt Clause. Germans, who had not been allowed to negotiate, called it a humiliating 'diktat'. This bitterness damaged Germany's new democracy and national pride. Years later, Hitler exploited that resentment by promising to tear the Treaty up.",
+      "At the Paris Peace Conference the Big Three shaped a harsh peace. The Treaty of Versailles forced Germany to accept blame, pay reparations, disarm and lose land. Across Europe, old empires broke up into new nation-states guided by self-determination. To keep the peace, the League of Nations was created on the idea of collective security. But it was weak — the USA never joined and it had no army — so it worked only while the stakes were low.",
     peel: {
-      point: "The Treaty of Versailles was a major long-term cause of the Second World War.",
-      evidence:
-        "It imposed reparations, the War Guilt Clause, army limits and loss of land on Germany.",
-      explain:
-        "These terms created deep resentment, which Hitler later exploited by promising to overturn the Treaty and restore German pride.",
-      link:
-        "In this way the peace of 1919 helped make another war more likely.",
+      point: "The League of Nations was flawed from the start.",
+      evidence: "The USA never joined, it had no army, and it could not compel great powers.",
+      explain: "This meant it relied only on persuasion and sanctions, which determined aggressors could ignore.",
+      link: "So while it managed small disputes in the 1920s, it was not equipped for the crises to come.",
     },
   },
-  "rise-of-hitler": {
+  "nazi-germany": {
     simpler:
-      "The Great Depression left millions of Germans jobless. Hitler promised jobs, pride and an end to Versailles, so people supported him and he became dictator in 1933. He broke the Treaty step by step; Britain and France appeased him until he invaded Poland in 1939.",
+      "The weak Weimar democracy was blamed for Versailles and battered by the Depression. Hitler and the Nazis used propaganda, force and elections to win power in 1933, then built a one-party dictatorship with rearmament, nationalism and the persecution of minorities.",
     eli10:
-      "When everyone is scared and out of work, a loud person promising to fix everything can become very popular — even if their ideas are dangerous. Hitler was that person, and giving in to his demands only made him bolder.",
+      "When people are scared and jobless, a loud leader promising to fix everything can get very popular — even if his ideas are dangerous. Once in charge, Hitler banned everyone who could say no.",
     analogy:
-      "Appeasement was like feeding a bully your lunch to be left alone. It works for a day, but the bully just comes back hungrier — until you have no choice but to stand up to him.",
+      "Weimar was a house with cracked foundations; the Depression was the earthquake; Hitler was the man who promised to rebuild it — then locked everyone inside.",
     matters:
-      "It matters because it shows HOW anger and hard times turn into war. It also raises a big question O-Level loves: was appeasement a reasonable choice or a costly mistake?",
+      "It shows HOW a democracy can collapse into dictatorship — a key source-based case study.",
     memorise: [
-      "Depression (1929) → unemployment → support for Hitler → power (1933)",
-      "Steps: Rhineland 1936 → Sudetenland/Munich 1938 → Poland 1939",
-      "Appeasement = giving in to avoid war",
-      "War declared after the invasion of Poland",
+      "Weimar weaknesses: blamed for Versailles, unstable constitution",
+      "Depression → unemployment → Nazi support",
+      "Nazi methods: propaganda, force (SA), elections",
+      "Consolidation: one-party state, war economy, persecution",
     ],
     mistakes: [
-      "Saying Hitler 'seized' power violently — he came to power legally in 1933",
-      "Getting the order of his actions wrong",
-      "Only blaming appeasement and ignoring Hitler's own aims",
+      "Saying Hitler seized power violently — he was legally made Chancellor",
+      "Ignoring the Weimar weaknesses that came before Hitler",
+      "Forgetting the persecution/control side of Nazi rule",
     ],
     oneSentence:
-      "Depression and resentment brought Hitler to power, and appeasement failed to stop his march to war in 1939.",
+      "Weimar weakness and the Depression let Hitler win power and build a one-party dictatorship.",
     threeSentence:
-      "The Great Depression created mass unemployment that helped Hitler win support and become leader in 1933. He then broke the Treaty of Versailles step by step, while Britain and France appeased him. Appeasement failed when he invaded Poland in 1939, starting the war.",
+      "The Weimar Republic was weak and blamed for Versailles, and the Depression brought mass unemployment. Hitler's Nazis used propaganda, force and elections to gain power in 1933. He then built a one-party dictatorship with rearmament, nationalism and the persecution of minorities.",
     fiveSentence:
-      "The Great Depression of 1929 caused huge unemployment and desperation in Germany. Hitler and the Nazis promised jobs, national pride and an end to Versailles, winning power in 1933. He rebuilt the army and remilitarised the Rhineland in 1936 without being stopped. Britain and France followed appeasement, letting him take the Sudetenland at Munich in 1938. When he invaded Poland in 1939, appeasement collapsed and the Second World War began.",
+      "Germany's Weimar democracy was fragile, blamed for accepting Versailles and prone to instability. The Great Depression then caused mass unemployment and desperation. Hitler and the Nazi Party exploited this with powerful propaganda, the force of the SA, and success in elections, so that in 1933 he was legally made Chancellor. He quickly destroyed the democracy, banning rivals to create a one-party state. His rule cut unemployment and rearmed Germany, but rested on fierce nationalism, tight control and the brutal persecution of minorities.",
+    peel: {
+      point: "The Depression was crucial to Hitler's rise.",
+      evidence: "It caused mass unemployment that the Weimar government could not solve.",
+      explain: "Desperate Germans abandoned moderate parties for the Nazis, who promised jobs and pride.",
+      link: "So economic collapse turned a fringe party into a movement that could take power.",
+    },
+  },
+  "militarist-japan": {
+    simpler:
+      "Japan's weak, distrusted democracy struggled with economic hardship and the Depression. Ultranationalist army officers won support through military success and assassinated moderates. By the 1930s the militarists ruled, controlling industry, militarising schools and crushing unions.",
+    eli10:
+      "When the normal leaders looked weak and times were hard, the army stepped in promising strength — and scared off anyone who disagreed.",
+    analogy:
+      "Japan's democracy was a captain the crew stopped trusting in a storm; the army seized the wheel, promising to steer to safety through conquest.",
+    matters:
+      "It's the Asian parallel to Nazi Germany — how hardship and weak democracy produce military dictatorship.",
+    memorise: [
+      "Weak, distrusted democracy",
+      "Economic troubles: inflation, unemployment, landlord–tenant disputes, Depression",
+      "Ultranationalists: military successes + assassinations",
+      "Control: state-run industry, militarised education, crushed unions",
+    ],
+    mistakes: [
+      "Forgetting the economic causes of the army's rise",
+      "Ignoring political assassinations as a method",
+      "Confusing this domestic chapter with the outbreak of war",
+    ],
+    oneSentence:
+      "Weak democracy and economic misery let Japan's militarists seize power and reshape society for war.",
+    threeSentence:
+      "Japan's democracy was weak and distrusted, and economic hardship worsened by the Depression spread anger. Ultranationalists gained support through military success and silenced moderates with assassinations. By the 1930s the militarists controlled the government, industry, education and labour.",
+    fiveSentence:
+      "In the 1920s Japan had a democracy, but it was seen as weak and corrupt. Economic troubles — inflation, unemployment and bitter landlord–tenant disputes — were made worse by the Great Depression. Ultranationalist army officers argued that only military strength and empire could save Japan, and their successes made them popular. They also used assassination to remove moderate leaders. By the 1930s the militarists dominated the government, increasing state control of industry, militarising education and crushing labour unions.",
+    peel: {
+      point: "Economic hardship was central to the militarists' rise.",
+      evidence: "Inflation, unemployment and the Depression caused widespread suffering and anger.",
+      explain: "This discredited the democratic politicians and made the ultranationalists' promise of empire and strength appealing.",
+      link: "So economic misery opened the door for the army to take control.",
+    },
+  },
+  "outbreak-europe": {
+    simpler:
+      "In the 1930s the League failed (disarmament collapsed; the Abyssinian Crisis exposed it). Hitler undid Versailles step by step — Saar, Rhineland, Anschluss, Sudetenland/Czechoslovakia. Britain and France appeased him, but after the Nazi-Soviet Pact he invaded Poland in 1939 and war broke out.",
+    eli10:
+      "Feeding a bully your lunch to be left alone only makes him hungrier. Giving Hitler what he wanted just made him take more — until there was no choice but to fight.",
+    analogy:
+      "Appeasement was letting a burglar take one room, then another, hoping he'd stop — until he took the whole house.",
+    matters:
+      "It answers a classic exam question — why war broke out — and the big debate about appeasement.",
+    memorise: [
+      "League fails: disarmament + Abyssinian Crisis (1935)",
+      "Steps: Saar 1935 → Rhineland 1936 → Anschluss 1938 → Sudetenland/Czechoslovakia 1938–39",
+      "Appeasement = giving in to avoid war (Munich 1938)",
+      "Nazi-Soviet Pact 1939 → invasion of Poland → war",
+    ],
+    mistakes: [
+      "Getting the order of Hitler's actions wrong",
+      "Blaming only appeasement and ignoring Hitler's aims",
+      "Forgetting the Nazi-Soviet Pact's role",
+    ],
+    oneSentence:
+      "A weak League and appeasement let Hitler's step-by-step aggression end in the invasion of Poland and war.",
+    threeSentence:
+      "In the 1930s the League proved powerless, as the Abyssinian Crisis showed. Hitler broke Versailles step by step while Britain and France appeased him. After the Nazi-Soviet Pact, he invaded Poland in 1939 and Britain and France declared war.",
+    fiveSentence:
+      "The League of Nations failed in the 1930s: disarmament collapsed and the Abyssinian Crisis showed it could not stop aggression. Hitler exploited this, undoing Versailles step by step — the Saar, the Rhineland, the Anschluss, and the Sudetenland at Munich. Rather than fight, Britain and France appeased him, but in 1939 he seized the rest of Czechoslovakia, breaking his word. The Nazi-Soviet Pact then removed the fear of a two-front war. Hitler invaded Poland, and Britain and France finally declared war.",
     peel: {
       point: "Appeasement made war more likely but was not its main cause.",
-      evidence:
-        "Britain and France gave in at Munich in 1938, letting Germany take the Sudetenland.",
-      explain:
-        "This convinced Hitler the great powers were weak, encouraging him to invade Poland — yet the deeper cause was his own aim to expand and overturn Versailles.",
-      link:
-        "So appeasement contributed to war, but Hitler's ambitions were the fundamental reason it broke out.",
+      evidence: "Britain and France gave in at Munich in 1938, letting Germany take the Sudetenland.",
+      explain: "This convinced Hitler the powers were weak, encouraging him to invade Poland — yet the deeper cause was his own aim to expand.",
+      link: "So appeasement contributed to war, but Hitler's ambitions were the fundamental reason it broke out.",
     },
   },
-  "japans-road-to-war": {
+  "outbreak-asia": {
     simpler:
-      "Japan was crowded and short of resources. Hit hard by the Depression, its military leaders decided to build an empire, seizing Manchuria and invading China. When the USA cut off oil, Japan attacked Pearl Harbor in 1941, bringing America into the war.",
+      "The League could not stop Japan taking Manchuria (1931). Japan invaded China (1937) for an empire — the Co-Prosperity Sphere — and needed oil. When the USA cut off oil, Japan attacked Pearl Harbor in 1941, bringing America into the war.",
     eli10:
-      "If you run a factory but have no materials of your own, you might try to grab a neighbour's supplies. Japan did that with land and resources — and when the biggest neighbour (the USA) cut it off, Japan lashed out.",
+      "Japan grabbed its neighbours' land for supplies. When the biggest neighbour (the USA) cut off its fuel, Japan lashed out and hit Pearl Harbor.",
     analogy:
-      "Japan's expansion was like a runner who can't stop: each conquest needed more fuel, which meant grabbing more land, which needed even more fuel — until it collided with the USA.",
+      "Japan was a runner who couldn't stop: each conquest needed more fuel, which meant grabbing more land — until it collided with the USA.",
     matters:
-      "It matters because it explains how the war spread beyond Europe into the Asia-Pacific and why the USA joined the fighting.",
+      "It explains how the war spread to the Asia-Pacific and drew in the USA.",
     memorise: [
-      "Cause: few resources + Depression → desire for empire",
-      "Manchuria 1931 → China 1937 → Pearl Harbor 1941",
-      "League condemned Manchuria but had no army to act",
-      "US oil embargo pushed Japan to attack",
+      "Manchuria 1931 → League powerless → Japan leaves 1933",
+      "China 1937; Greater East Asia Co-Prosperity Sphere",
+      "US–Japan relations worsen; US oil embargo",
+      "Pearl Harbor 1941 → USA enters the war",
     ],
     mistakes: [
-      "Forgetting the resource/economic motive behind expansion",
-      "Not linking the US oil embargo to Pearl Harbor",
-      "Mixing up the dates of Manchuria and China",
+      "Forgetting the League's failure over Manchuria",
+      "Not linking the oil embargo to Pearl Harbor",
+      "Mixing up the Manchuria (1931) and China (1937) dates",
     ],
     oneSentence:
-      "Japan's need for resources drove it to build an empire and, after a US oil embargo, to attack Pearl Harbor in 1941.",
+      "Japan's expansion for resources and empire, plus a US oil embargo, led to the attack on Pearl Harbor in 1941.",
     threeSentence:
-      "Lacking resources and hit by the Depression, Japan's military leaders pursued expansion, seizing Manchuria in 1931 and invading China in 1937. This aggression alarmed the USA, which cut off oil. Rather than back down, Japan attacked Pearl Harbor in 1941, bringing the USA into the war.",
+      "The League failed to stop Japan seizing Manchuria in 1931. Japan invaded China in 1937 for empire and resources, worsening relations with the USA, which cut off oil. Rather than back down, Japan attacked Pearl Harbor in 1941, bringing the USA into the war.",
     fiveSentence:
-      "Japan was a crowded island short of raw materials, and the Depression made its economic problems worse. Military leaders argued that building an empire would solve this, so Japan seized resource-rich Manchuria in 1931. The League of Nations condemned it but had no army to stop Japan. In 1937 Japan launched a full invasion of China, worsening relations with the USA, which cut off oil. Facing this embargo, Japan attacked Pearl Harbor in 1941 and drew America fully into the war.",
+      "In 1931 Japan seized Manchuria, and the League could only condemn it. Japan invaded China in 1937, aiming to build the Greater East Asia Co-Prosperity Sphere, and its war devoured resources such as oil. As Japan pushed south, relations with the USA collapsed and the USA cut off oil. Facing this embargo, Japan chose to seize resources by force, attacking Pearl Harbor in 1941 — a strike that brought the full weight of the USA into the war.",
     peel: {
-      point: "Japan expanded mainly because it needed resources.",
-      evidence:
-        "It seized Manchuria (1931) for coal and iron and invaded China (1937), needing ever more oil and steel.",
-      explain:
-        "Its dependence on imports, especially US oil, meant that when the USA imposed an embargo, Japan chose to seize resources by force rather than retreat.",
-      link:
-        "This resource-driven expansion led directly to the attack on Pearl Harbor and war in the Asia-Pacific.",
+      point: "The US oil embargo was the trigger for Pearl Harbor.",
+      evidence: "The USA cut off oil to pressure Japan over its aggression in China.",
+      explain: "This forced Japan to choose between abandoning its empire or seizing resources by force, and it chose war.",
+      link: "So the embargo turned a slow-burning rivalry into the attack that brought the USA into the war.",
     },
   },
-  "origins-of-the-cold-war": {
+  "end-of-ww2": {
     simpler:
-      "The USA (capitalist, democratic) and USSR (communist) had beaten Hitler together but distrusted each other. They clashed over Eastern Europe, where Stalin set up communist governments. The USA responded with containment — the Truman Doctrine and Marshall Plan — and the world split in two.",
+      "The Allies won because of overwhelming strengths — US resources and manpower, the huge Soviet effort, and strategies like D-Day, island hopping and the atomic bomb. The Axis lost partly through their own weaknesses: Germany's two-front war and poor command, Japan's overextended empire.",
     eli10:
-      "Two friends team up to beat a bully, but they believe in totally opposite rules for the playground. Once the bully's gone, they stop trusting each other and each tries to get everyone on their side.",
+      "One team had way more players and supplies and smarter plans; the other spread itself too thin and made big mistakes. The result wasn't close.",
     analogy:
-      "The Cold War began like two chess players who never actually capture a piece — they just keep threatening, blocking and building up, each afraid of the other's next move.",
+      "The Axis were two boxers who punched themselves out and fought on too many fronts; the Allies were fresh, better-fed and better-organised.",
     matters:
-      "It matters because these origins set up every later Cold War crisis — Berlin, Cuba and the rest all grow from this basic USA–USSR divide.",
+      "It explains why the war ended — and sets up the two superpowers who would dominate the Cold War.",
     memorise: [
-      "USA = capitalism/democracy; USSR = communism",
-      "Conferences: Yalta and Potsdam (1945) showed disagreement",
-      "Iron Curtain speech: Churchill, 1946",
-      "Containment = Truman Doctrine + Marshall Plan (1947)",
+      "Allied strengths: US resources/manpower, Soviet role, D-Day, island hopping, atomic bomb",
+      "German weakness: ineffective command, war on two fronts",
+      "Japanese weakness: overextension, can't ship raw materials home",
     ],
     mistakes: [
-      "Treating it as a 'hot' war — it was rivalry, not direct fighting between the two",
-      "Ignoring that Stalin wanted a buffer for security, not only expansion",
+      "Naming only one cause of victory",
+      "Forgetting the Soviet contribution in the east",
+      "Confusing 'strengths of the Allies' with 'weaknesses of the Axis'",
+    ],
+    oneSentence:
+      "The Allies won through overwhelming resources and strategy, helped by serious Axis weaknesses.",
+    threeSentence:
+      "The Allies had overwhelming strengths: American resources and manpower, the Soviet war effort, and strategies like D-Day, island hopping and the atomic bomb. The Axis had crippling weaknesses — Germany's two-front war and poor command, Japan's overextended empire. Together these brought victory in 1945.",
+    fiveSentence:
+      "When the USA entered the war it brought vast economic resources and manpower, out-producing the Axis. In the east the Soviet Union destroyed huge German forces. The Allies used war-winning strategies: D-Day opened a second front, island hopping closed in on Japan, and the atomic bomb ended the war. Germany was weakened by an ineffective command structure and a self-inflicted war on two fronts. Japan was overextended, unable to ship raw materials home — so both Axis powers were ground down to defeat by 1945.",
+    peel: {
+      point: "Allied strengths were the decisive factor in victory.",
+      evidence: "US industry and manpower and the Soviet army overwhelmed the Axis, backed by strategies like D-Day and the atomic bomb.",
+      explain: "These advantages were made even more effective by Axis weaknesses such as Germany's two-front war and Japan's overextension.",
+      link: "So Allied strengths won the war, magnified by the enemy's own mistakes.",
+    },
+  },
+  "cold-war-origins": {
+    simpler:
+      "The USA and USSR emerged as superpowers with opposite systems and grew to distrust each other over Eastern Europe (the 'Iron Curtain'). The USA used containment (Truman Doctrine, Marshall Plan); the USSR responded with the Berlin Blockade and its own bloc, and Europe split into NATO and the Warsaw Pact.",
+    eli10:
+      "Two friends who beat a bully together fell out because they believed in totally opposite rules — and each tried to get everyone on their side.",
+    analogy:
+      "Two chess players who never capture a piece — just threaten, block and build up, each afraid of the other's next move.",
+    matters:
+      "These origins set up every later Cold War crisis, from Korea to the fall of the USSR.",
+    memorise: [
+      "USA = capitalism/democracy; USSR = communism",
+      "Yalta & Potsdam (1945) → mistrust; Iron Curtain (1946)",
+      "Containment = Truman Doctrine + Marshall Plan (1947)",
+      "Soviet response: Berlin Blockade (1948); NATO 1949 vs Warsaw Pact 1955",
+    ],
+    mistakes: [
+      "Treating it as a 'hot' war — it was rivalry, not direct fighting",
+      "Ignoring Stalin's fear of invasion (buffer, not only expansion)",
       "Confusing the Truman Doctrine (support) with the Marshall Plan (money)",
     ],
     oneSentence:
-      "Opposing beliefs and disputes over Eastern Europe turned the USA and USSR from wartime allies into Cold War rivals.",
+      "Opposing beliefs and the division of Europe turned the USA and USSR into Cold War rivals of containment and response.",
     threeSentence:
-      "The USA and USSR held opposite beliefs and each feared the other would spread its system. They clashed over Soviet control of Eastern Europe, which Churchill called the 'Iron Curtain'. The USA adopted containment through the Truman Doctrine and Marshall Plan, deepening the divide into a Cold War.",
+      "The USA and USSR emerged as superpowers with opposing systems and clashed over Eastern Europe, the 'Iron Curtain'. The USA adopted containment through the Truman Doctrine and Marshall Plan. The USSR responded with the Berlin Blockade, and Europe split into NATO and the Warsaw Pact.",
     fiveSentence:
-      "The USA and USSR had been allies against Hitler but believed in opposite systems: capitalism and democracy versus communism. At the Yalta and Potsdam conferences their disagreements, especially over Eastern Europe, became clear. Stalin installed communist governments there, which the West saw as aggression and Churchill described as an 'Iron Curtain'. In response the USA adopted containment, promising support against communism (the Truman Doctrine) and sending aid (the Marshall Plan). Mutual suspicion hardened, and Europe split into two hostile camps.",
+      "The war left the USA and USSR as rival superpowers believing in opposite systems — capitalism and democracy versus communism. At Yalta and Potsdam their alliance broke down over Eastern Europe, where Stalin installed communist governments behind what Churchill called an 'Iron Curtain'. The USA answered with containment: the Truman Doctrine promised support against communism, and the Marshall Plan rebuilt Western Europe. Stalin struck back with the Berlin Blockade, defeated by the Berlin Airlift. Europe hardened into two armed camps — NATO and the Warsaw Pact.",
     peel: {
       point: "Ideological differences were a key cause of the Cold War.",
-      evidence:
-        "The USA supported capitalism and democracy while the USSR was communist, and each feared the spread of the other's system.",
-      explain:
-        "This distrust shaped their clash over Eastern Europe and led the USA to adopt containment through the Truman Doctrine and Marshall Plan.",
-      link:
-        "As a result, former allies became rivals and the Cold War began.",
+      evidence: "The USA backed capitalism and democracy while the USSR was communist, and each feared the other's spread.",
+      explain: "This distrust shaped the clash over Eastern Europe and drove US containment and the Soviet response.",
+      link: "So former allies became rivals, and the Cold War began.",
     },
   },
-  "berlin-blockade": {
+  "korean-war": {
     simpler:
-      "Germany and Berlin were split between the West and the USSR, leaving West Berlin surrounded by communist East Germany. In 1948 Stalin blockaded it; the West supplied the city by air for nearly a year (the Airlift). Stalin gave up, Germany split for good, and NATO was formed.",
+      "Korea was split at the 38th parallel (communist North, capitalist South). With China now communist, the North invaded in 1950. The USA led a UN force (containment); China intervened. The 1953 armistice left Korea divided, with a DMZ and sharper NATO–Warsaw tension.",
     eli10:
-      "Imagine an island of your friends stuck in the middle of a rival's territory. The rival blocks all the roads, so you fly in food by helicopter every few minutes until they give up. That's the Berlin Airlift.",
+      "Two halves of one country, one charges across the line, the other's big friend (the USA/UN) jumps in, then the neighbour (China) joins — and it ends right back at the line.",
     analogy:
-      "The Airlift was a tug-of-war won without pulling: the West didn't force the blockade, it simply out-lasted it from the sky.",
+      "A tug-of-war over a line: the North pulled, the UN pulled back, China pulled again — and the rope ended up where it started.",
     matters:
-      "It matters because it was the Cold War's first big crisis and showed both sides would avoid direct war — while making the division of Europe permanent.",
+      "It's the first time the Cold War became a real war, showing containment and the domino theory in action.",
     memorise: [
-      "Germany + Berlin split into 4 zones after the war",
-      "West Berlin sat inside the Soviet zone",
-      "Blockade 1948 → Airlift 1948–49 → blockade lifted",
-      "Results: Germany divided (West/East) + NATO formed 1949",
+      "Korea partitioned at the 38th parallel (1945)",
+      "Communist China (1949) + Sino-Soviet alliance",
+      "1950 North invades → UN force led by USA → China enters",
+      "1953 armistice; DMZ; NATO–Warsaw tension rises",
     ],
     mistakes: [
-      "Confusing the Blockade (1948–49) with the later Berlin Wall (1961)",
-      "Saying the West 'fought' through the blockade — they flew over it",
-      "Forgetting NATO formed as a result",
+      "Saying a side 'won' — it ended in stalemate",
+      "Forgetting the UN and China's roles",
+      "Confusing armistice (ceasefire) with a peace treaty",
     ],
     oneSentence:
-      "Stalin's blockade of West Berlin was defeated by the Airlift, cementing a divided Germany and leading to NATO.",
+      "The Korean War (1950–53) was the Cold War's first 'hot' conflict, ending in a stalemate that left Korea divided.",
     threeSentence:
-      "After the war, West Berlin lay isolated inside the Soviet zone, and in 1948 Stalin blockaded it to force the West out. The West supplied the city entirely by air for almost a year until Stalin lifted the blockade. Germany was divided permanently and the Western powers formed NATO.",
+      "Korea was divided at the 38th parallel, and the rise of communist China raised the stakes. When the North invaded in 1950, the USA led a UN force to contain communism, and China intervened. A 1953 armistice left Korea divided with a demilitarised zone.",
     fiveSentence:
-      "After the war Germany and Berlin were divided into four zones, leaving West Berlin surrounded by the Soviet zone. Alarmed by Western moves to strengthen West Germany, Stalin blockaded West Berlin in 1948, cutting off supplies to two million people. Rather than risk war, the West supplied the city by air in the Berlin Airlift. After nearly a year Stalin admitted defeat and lifted the blockade. Germany then split permanently, and the West formed NATO to defend against the Soviet threat.",
+      "After the war Korea was partitioned at the 38th parallel into a communist North and a capitalist South. In 1949 China too became communist, allied to the USSR, and America feared communism was spreading. When the North invaded the South in 1950, the USA led a United Nations force to defend it — containment in action — pushing towards China's border. China then sent huge numbers of troops, driving the UN back to a stalemate. The 1953 armistice left Korea divided by a demilitarised zone and sharpened tension between NATO and the Warsaw Pact.",
     peel: {
-      point: "The Berlin Airlift was a significant success for the West.",
-      evidence:
-        "The West supplied two million people by air for almost a year until Stalin lifted the blockade.",
-      explain:
-        "This kept West Berlin free without fighting and won a propaganda victory, though it also confirmed Germany's division and led to NATO.",
-      link:
-        "So the Airlift was a clear short-term success, but it deepened the Cold War divide.",
+      point: "The Korean War was a limited success for containment.",
+      evidence: "The USA-led UN force stopped North Korea taking the South.",
+      explain: "But the war ended in stalemate with Korea still divided and China strengthened, so communism was contained, not defeated.",
+      link: "It held the line, but at great cost and without a clear victory.",
     },
   },
-  "cuban-missile-crisis": {
+  "vietnam-war": {
     simpler:
-      "Cuba was communist and close to the USA. In 1962 the USSR secretly placed nuclear missiles there. Kennedy blockaded Cuba and demanded their removal. After thirteen tense days, Khrushchev agreed to remove them in return for US promises, and nuclear war was avoided.",
+      "Vietnam was split in 1954 (communist North under Ho Chi Minh, unstable South). The promised 1956 elections were never held, and Diem's harsh rule bred an insurgency backed by the North. Fearing the domino theory, the USA sent troops — but could not win, withdrew, and Vietnam reunified under communism in 1975.",
     eli10:
-      "Your rival sets up something dangerous right next to your house. You block the path and say 'take it away' — but very carefully, because one wrong move could blow everything up. Both sides step back just in time.",
+      "A divided country where the popular side was communist; the USA propped up the shaky other side, got stuck in a jungle war it couldn't win, and eventually left.",
     analogy:
-      "The crisis was like two people pointing at each other at the edge of a cliff — the winner wasn't who pushed hardest, but who found a way for both to step back.",
+      "The USA waded into quicksand: the harder it pushed, the deeper it sank — until it had to pull out.",
     matters:
-      "It matters because it was the closest the Cold War came to nuclear war, and the fright afterwards led both sides to reduce tension.",
+      "It's the second Cold War case study, showing the limits of containment and the start of détente.",
     memorise: [
-      "Cuba communist under Castro, allied to USSR, 90 miles from USA",
-      "Oct 1962: US spy planes find Soviet missiles",
-      "Kennedy's response = naval blockade ('quarantine')",
-      "Deal: USSR removes missiles; USA won't invade + removes some missiles",
+      "Vietnam partitioned 1954 (Geneva Accords)",
+      "1956 elections never held; Diem unpopular; Northern-backed insurgency",
+      "USA in for the domino theory; North backed by USSR & China",
+      "US withdrawal → reunification 1975 → détente",
     ],
     mistakes: [
-      "Saying the crisis led to war — it was resolved peacefully",
-      "Forgetting the secret US concession (removing its own missiles)",
-      "Ignoring why the USSR placed missiles (protect Cuba + balance)",
+      "Forgetting the domino theory as the US motive",
+      "Ignoring the South's instability and Diem's unpopularity",
+      "Thinking the USA 'won' — it withdrew and the North united Vietnam",
     ],
     oneSentence:
-      "The 1962 Cuban Missile Crisis brought the world to the brink of nuclear war before both sides negotiated a peaceful end.",
+      "Fearing the domino theory, the USA fought in Vietnam but could not win, withdrawing before the North reunified the country in 1975.",
     threeSentence:
-      "In 1962 the USSR secretly placed nuclear missiles in communist Cuba, close to the USA. Kennedy responded with a naval blockade and demanded their removal, creating thirteen tense days. Khrushchev agreed to remove them in return for US promises, and nuclear war was avoided.",
+      "Vietnam was partitioned in 1954, with an unstable South whose promised elections were never held. Fearing the domino theory, the USA backed the South against a Northern-supported insurgency. Unable to win, the USA withdrew, and Vietnam was reunified under communism in 1975.",
     fiveSentence:
-      "Cuba became communist under Castro and allied itself with the USSR, just 90 miles from the USA. In October 1962 US spy planes discovered Soviet nuclear missile sites being built there. Kennedy ordered a naval blockade of Cuba and demanded the missiles' removal. For thirteen days the world feared nuclear war as Soviet ships approached. Finally Khrushchev agreed to remove the missiles in return for a US promise not to invade Cuba and to quietly remove some of its own missiles.",
+      "The Geneva Accords partitioned Vietnam in 1954 into a communist North under Ho Chi Minh and a non-communist South. The elections promised for 1956 were never held, for fear the communists would win, and the South's leader Ngo Dinh Diem grew unpopular. The North backed a growing insurgency in the South, and — fearing the domino theory — the USA sent aid and then troops, while the North was supported by the USSR and China. The war proved unwinnable and hugely costly, so the USA withdrew. In 1975 the North's victory reunified Vietnam under communism, even as the superpowers began to ease tension in a period of détente.",
     peel: {
-      point: "The USSR placed missiles in Cuba to protect its ally and balance US power.",
-      evidence:
-        "Cuba was a communist state 90 miles from the USA, and the USA already had missiles near the USSR.",
-      explain:
-        "Missiles in Cuba would defend Castro from invasion and give the USSR a similar threat close to American soil, strengthening its Cold War position.",
-      link:
-        "This is why Khrushchev took the risk that triggered the crisis.",
+      point: "The domino theory drove US involvement in Vietnam.",
+      evidence: "The USA feared that if South Vietnam fell to communism, its neighbours would follow.",
+      explain: "This made containing communism in Vietnam seem essential, so the USA escalated its aid and sent troops.",
+      link: "So a Cold War fear turned a local conflict into a major American war.",
     },
   },
-  "end-of-the-cold-war": {
+  "end-of-cold-war": {
     simpler:
-      "By the 1980s the USSR was worn out by economic problems and the arms race. Gorbachev reformed the system and refused to use force in Eastern Europe. Communist governments collapsed, the Berlin Wall fell in 1989, and the USSR broke apart in 1991 — ending the Cold War.",
+      "The Soviet command economy was inefficient and living standards lagged. Military spending, the cost of the bloc, and a renewed 1980s arms race crushed it. Gorbachev's glasnost and perestroika failed to revive the economy but let anger surface; the bloc collapsed, the Wall fell (1989) and the USSR broke up (1991).",
     eli10:
-      "Imagine holding a heavy door shut for forty years. Eventually you're exhausted and let go — and the door swings open on its own. Gorbachev letting go is what ended the Cold War.",
+      "Imagine holding a heavy door shut for forty years while broke and exhausted — eventually you let go, and it swings open on its own.",
     analogy:
-      "The USSR was like a machine running on empty. Gorbachev's choice not to force things was simply taking his foot off a pedal that had run out of fuel.",
+      "The USSR was a machine running on empty; Gorbachev's reforms simply took his foot off a pedal that had already run out of fuel.",
     matters:
-      "It matters because it explains how a decades-long, dangerous standoff ended peacefully rather than in war — a rare and important outcome.",
+      "It explains how a decades-long, dangerous standoff ended peacefully.",
     memorise: [
-      "1980s: Soviet economy weak; arms race too costly",
-      "Gorbachev becomes leader 1985; reforms + eases tension",
-      "Key choice: no force to hold Eastern Europe",
-      "Berlin Wall falls 1989; USSR ends 1991",
+      "Command economy: inefficient, low living standards",
+      "Burdens: military spending, holding the bloc/Warsaw Pact",
+      "1980s: US re-intensified the arms race",
+      "Gorbachev: glasnost + perestroika → bloc collapse, Wall falls 1989, USSR ends 1991",
     ],
     mistakes: [
       "Crediting only Gorbachev and ignoring deep economic weakness",
@@ -257,55 +335,16 @@ export const TUTOR: Record<string, TutorContent> = {
       "Mixing up 1989 (Wall falls) and 1991 (USSR ends)",
     ],
     oneSentence:
-      "Soviet weakness and Gorbachev's reforms and restraint brought the Cold War to a peaceful end by 1991.",
+      "Soviet economic weakness, unbearable burdens and Gorbachev's failed reforms brought the peaceful collapse of the USSR by 1991.",
     threeSentence:
-      "By the 1980s the USSR was exhausted by economic problems and the costly arms race. Gorbachev's reforms eased tension and he refused to use force to hold Eastern Europe. Communist governments fell, the Berlin Wall came down in 1989, and the USSR broke apart in 1991.",
+      "The Soviet command economy was inefficient and could not compete, while military spending, the cost of the bloc and a renewed arms race drained it. Gorbachev's reforms failed to revive the economy but let people voice their anger. The communist bloc collapsed, the Berlin Wall fell in 1989, and the USSR disintegrated in 1991.",
     fiveSentence:
-      "By the 1980s the Soviet Union faced serious economic problems and could no longer afford the arms race or control of Eastern Europe. In 1985 Gorbachev became leader and introduced reforms while easing tension with the West. Crucially, he signalled that the USSR would not use force to keep Eastern European governments in power. Protests spread and communist governments collapsed, and in 1989 the Berlin Wall was opened. In 1991 the Soviet Union itself broke apart, ending the Cold War.",
+      "By the 1980s the Soviet command economy was rigid and inefficient, leaving living standards far behind the West. On top of this came crushing burdens: huge military spending and the cost of holding the communist bloc together. When the USA re-intensified the arms race, the strained Soviet economy could not keep up. Gorbachev tried to save the system with glasnost and perestroika, but the reforms failed to revive the economy while openness unleashed long-hidden anger. Confidence collapsed, the bloc broke free, the Berlin Wall fell in 1989, and in 1991 the Soviet Union itself disintegrated.",
     peel: {
-      point: "Gorbachev was crucial to ending the Cold War, but not the only cause.",
-      evidence:
-        "His reforms eased tension and he refused to use force in Eastern Europe, allowing communist governments to fall.",
-      explain:
-        "However, he was responding to deep Soviet economic weakness and the crushing cost of the arms race, which made change necessary.",
-      link:
-        "So Gorbachev was the decisive trigger acting on long-term problems that were already pushing the Cold War towards its end.",
-    },
-  },
-  "the-korean-war": {
-    simpler:
-      "After WWII, Korea was split at the 38th parallel into a communist North and a capitalist South. In 1950 the North invaded to unite Korea. The USA led a UN force to stop communism spreading; China then joined in. The war ended in 1953 in a stalemate, with Korea still divided.",
-    eli10:
-      "Imagine two halves of one playground with a line down the middle. One side charges across to take over, so the other side's big friend jumps in to stop them — then the neighbour joins too. After lots of pushing, everyone ends up back at the same line.",
-    analogy:
-      "Korea was a tug-of-war over a line: the North pulled, the UN pulled back, China pulled again — and after all that effort, the rope ended up right where it started, at the 38th parallel.",
-    matters:
-      "It matters because it's the first time the Cold War turned into real fighting. It shows containment and the domino theory in action, and why the superpowers fought through 'proxy' wars rather than each other.",
-    memorise: [
-      "Korea split at the 38th parallel (1945): North communist, South capitalist",
-      "North invades 1950 → USA leads a UN force (USSR boycotting the vote)",
-      "China enters late 1950 → stalemate",
-      "1953 armistice = ceasefire; Korea stays divided",
-    ],
-    mistakes: [
-      "Saying a side 'won' — it ended in stalemate/division",
-      "Forgetting the UN and China's roles",
-      "Confusing armistice (ceasefire) with a full peace treaty",
-    ],
-    oneSentence:
-      "The Korean War (1950–53) was the first 'hot' Cold War conflict, ending in a stalemate that left Korea divided at the 38th parallel.",
-    threeSentence:
-      "After 1945 Korea was divided into a communist North and a capitalist South. When the North invaded in 1950, the USA led a UN force to contain communism, and China then intervened. The war ended in a 1953 armistice with Korea still divided.",
-    fiveSentence:
-      "After the Second World War, Korea was split at the 38th parallel into a communist North backed by the USSR and a capitalist South backed by the USA. In 1950 the North invaded to unite Korea under communism. Seeing this as communism spreading, the USA led a United Nations force that pushed the North back towards China's border. Alarmed, China sent troops that drove the UN forces back to the 38th parallel. The war ended in a 1953 armistice, leaving Korea divided — the Cold War's first 'hot' war.",
-    peel: {
-      point: "The Korean War was a limited success for containment.",
-      evidence:
-        "The USA led a UN force that stopped North Korea taking over the South, saving South Korea from communism.",
-      explain:
-        "However, the war ended in stalemate with Korea still divided and China strengthened, so communism was contained but not defeated.",
-      link:
-        "It held the line against communism, but at great cost and without a clear victory.",
+      point: "Gorbachev was the trigger, but Soviet weakness was the deeper cause.",
+      evidence: "His glasnost and perestroika and refusal to use force let the bloc collapse.",
+      explain: "But he was responding to a failing command economy and crushing military and bloc costs that made change unavoidable.",
+      link: "So Gorbachev was decisive, acting on long-term weaknesses already pushing the USSR towards collapse.",
     },
   },
 };

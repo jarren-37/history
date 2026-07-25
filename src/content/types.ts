@@ -144,7 +144,7 @@ export interface Chapter {
   slug: string;
   /** Section + order, e.g. "1.1". */
   number: string;
-  section: "World War Two" | "The Cold War";
+  section: "The Road to War" | "The Cold War";
   title: string;
   subtitle: string;
   /** The driving inquiry question of the chapter. */

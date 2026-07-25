@@ -13,6 +13,8 @@ export type PaletteKey =
   | "berlin"
   | "korea"
   | "cuba"
+  | "vietnam"
+  | "endwar"
   | "collapse"
   | "neutral";
 
@@ -103,6 +105,26 @@ export const PALETTES: Record<PaletteKey, Palette> = {
     surface: "#eceffb",
     motif: "🚀",
     mood: "Thirteen days",
+  },
+  vietnam: {
+    key: "vietnam",
+    name: "Jungle Green",
+    primary: "#4b7a3f",
+    secondary: "#a9c48f",
+    deep: "#274a20",
+    surface: "#e9f1e0",
+    motif: "🌿",
+    mood: "The jungle war",
+  },
+  endwar: {
+    key: "endwar",
+    name: "Victory Dusk",
+    primary: "#b06a3a",
+    secondary: "#e0b98a",
+    deep: "#5e3418",
+    surface: "#f6ecdd",
+    motif: "🎆",
+    mood: "The guns fall silent",
   },
   collapse: {
     key: "collapse",
