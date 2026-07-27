@@ -291,6 +291,25 @@ body {
   background-image: var(--paper-noise);
 }
 
+/* ── Text that sits directly on the dark wooden desk (outside parchment) ──
+   Parchment cards keep dark ink; anything on the bare desk must be light. */
+.h-desk {
+  color: #f4dcae;
+}
+.t-desk {
+  color: rgba(236, 214, 172, 0.82);
+}
+.lbl-desk {
+  color: rgba(236, 214, 172, 0.62);
+}
+.lnk-desk {
+  color: rgba(236, 214, 172, 0.72);
+  transition: color 0.2s ease;
+}
+.lnk-desk:hover {
+  color: #fff2d8;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

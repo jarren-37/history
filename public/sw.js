@@ -1,4 +1,4 @@
-/* Project Chronicle service worker — offline-first PWA.
+/* Lexicon service worker — offline-first PWA.
  *
  * Strategy:
  *  - Precache the app shell (core routes, offline fallback, icons, manifest).
@@ -6,14 +6,15 @@
  *  - Static assets (Next.js chunks, fonts, images): cache-first with runtime
  *    caching, so once a page is visited it works fully offline.
  */
-const VERSION = "chronicle-v2";
+const VERSION = "lexicon-v1";
 const CORE = [
   "/",
-  "/timeline",
-  "/characters",
-  "/map",
-  "/exam",
-  "/search",
+  "/collection",
+  "/games",
+  "/write",
+  "/review",
+  "/daily",
+  "/profile",
   "/offline.html",
   "/manifest.webmanifest",
   "/icons/icon.svg",

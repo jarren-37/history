@@ -1,244 +1,289 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { CHAPTERS } from "@/content/chapters";
-import { getPalette } from "@/content/palettes";
-import { useApp } from "@/lib/store";
-import { BookCover } from "@/components/BookCover";
-import { InkDivider, CornerFlourish, WaxSeal, DustMotes } from "@/components/Ornaments";
+import { ROOMS } from "@/content/rooms";
+import { WORDS } from "@/content/words";
+import { getPalette, paletteVars } from "@/content/palettes";
+import { useApp, todayKey } from "@/lib/store";
+import { wordOfDay } from "@/lib/daily";
+import { Reveal } from "@/components/ui";
+import { Librarian } from "@/components/Librarian";
+import { AchievementToast } from "@/components/AchievementToast";
 
-const MODES = [
-  { href: "/timeline", label: "The Timeline", icon: "🕰️" },
-  { href: "/characters", label: "The Cast", icon: "🎭" },
-  { href: "/map", label: "The Atlas", icon: "🗺️" },
-  { href: "/exam", label: "The Examinations", icon: "🪶" },
-  { href: "/search", label: "The Index", icon: "🔍" },
-];
+export default function HomePage() {
+  const {
+    hydrated,
+    discoveredCount,
+    masteredCount,
+    level,
+    streak,
+    has,
+    dueWordIds,
+  } = useApp();
 
-export default function Home() {
-  const { progress, hydrated } = useApp();
-  const [opened, setOpened] = useState(false);
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    if (sessionStorage.getItem("chronicle:opened") === "1") setOpened(true);
-    setReady(true);
-  }, []);
-
-  const openBook = () => {
-    setOpened(true);
-    sessionStorage.setItem("chronicle:opened", "1");
-  };
-
-  if (!ready) return <div className="min-h-screen" />;
-  if (!opened) return <BookCover onOpened={openBook} />;
-
-  const completed = Object.values(progress).filter((p) => p.completed).length;
-  const overall = hydrated ? Math.round((completed / CHAPTERS.length) * 100) : 0;
-  const inProgress = hydrated
-    ? CHAPTERS.find((c) => progress[c.slug] && !progress[c.slug].completed)
-    : undefined;
-
-  const ww2 = CHAPTERS.filter((c) => c.section === "The Road to War");
-  const cold = CHAPTERS.filter((c) => c.section === "The Cold War");
+  const total = WORDS.length;
+  const due = hydrated ? dueWordIds().length : 0;
+  const wotd = wordOfDay(todayKey());
 
   return (
-    <div className="relative mx-auto max-w-5xl px-3 py-8 sm:px-4">
-      <DustMotes count={14} />
-      <motion.div
-        initial={{ opacity: 0, rotateX: 18, y: 30 }}
-        animate={{ opacity: 1, rotateX: 0, y: 0 }}
-        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-        className="page page-frame relative overflow-hidden rounded-[18px] px-5 py-10 sm:px-12 sm:py-12"
-        style={{ transformPerspective: 1400 }}
-      >
-        <CornerFlourish className="absolute left-3 top-3 h-12 w-12" />
-        <CornerFlourish className="absolute right-3 top-3 h-12 w-12 -scale-x-100" />
-        <CornerFlourish className="absolute bottom-3 left-3 h-12 w-12 -scale-y-100" />
-        <CornerFlourish className="absolute bottom-3 right-3 h-12 w-12 -scale-100" />
+    <div className="mx-auto max-w-6xl px-4 pb-20 pt-6 sm:px-6">
+      <AchievementToast />
 
-        {/* Header */}
-        <header className="relative z-10 text-center">
-          <p className="font-hand text-2xl text-[var(--ink-faint)]">Project Chronicle</p>
-          <h1 className="mt-1 font-display text-4xl font-black text-[var(--ink)] sm:text-6xl">
-            Table of Contents
+      {/* ── Hero ── */}
+      <section className="relative overflow-hidden rounded-4xl border border-[var(--border)] bg-[color-mix(in_srgb,var(--parch)_86%,transparent)] px-6 py-10 text-center shadow-soft-lg sm:px-10 sm:py-14">
+        <div className="aurora" />
+        {/* floating letters */}
+        {["A", "e", "Q", "z", "&", "ß", "æ", "W"].map((ch, i) => (
+          <motion.span
+            key={i}
+            aria-hidden
+            className="pointer-events-none absolute font-display text-3xl font-bold text-[var(--gold)] opacity-20 sm:text-5xl"
+            style={{ left: `${8 + i * 11}%`, top: `${(i % 3) * 26 + 8}%` }}
+            animate={{ y: [0, -14, 0], rotate: [0, (i - 4) * 4, 0] }}
+            transition={{ duration: 6 + i, repeat: Infinity, ease: "easeInOut" }}
+          >
+            {ch}
+          </motion.span>
+        ))}
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="relative"
+        >
+          <div className="text-5xl">📖</div>
+          <h1 className="gold-text mt-3 font-display text-5xl font-black tracking-tight sm:text-7xl">
+            Lexicon
           </h1>
-          <InkDivider className="mx-auto mt-4 h-5 w-64" />
-          <p className="mx-auto mt-3 max-w-md font-serif text-lg italic text-[var(--ink-soft)]">
-            “History is not a list of dates — it is one long, unfolding story.
-            Turn the page, and begin.”
+          <p className="mx-auto mt-2 max-w-xl font-hand text-2xl text-ink-soft sm:text-3xl">
+            The Vocabulary Adventure
           </p>
-        </header>
+          <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-relaxed text-ink-soft sm:text-lg">
+            An ancient library where words are treasures. Explore its halls,
+            uncover rare vocabulary, and become a master of the English language
+            — for the O-Level, and for life.
+          </p>
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+            <Link
+              href="#halls"
+              className="rounded-full bg-gradient-to-r from-[#e6c15a] to-[#b8892b] px-7 py-3.5 font-display text-lg font-extrabold text-[#2a1a0a] shadow-lg transition-transform hover:scale-105 active:scale-95"
+            >
+              {discoveredCount > 0
+                ? "Continue the adventure"
+                : "Begin your adventure"}
+            </Link>
+            <Link
+              href="/daily"
+              className="rounded-full border-2 border-[var(--gold)] px-6 py-3 font-display text-base font-bold text-[var(--c-deep)] transition-transform hover:scale-105 active:scale-95"
+            >
+              🗓️ Today's quest
+            </Link>
+          </div>
+        </motion.div>
+      </section>
 
-        {/* Progress ex-libris */}
-        {hydrated && (
-          <div className="relative z-10 mt-6 flex flex-col items-center gap-4">
-            <div className="flex items-center justify-center gap-4">
-              <WaxSeal size={64} label={`${overall}%`} />
-              <p className="font-serif text-[var(--ink-soft)]">
-                {completed === 0
-                  ? inProgress
-                    ? "Your journey has begun — keep reading."
-                    : "Your journey has not yet begun."
-                  : `${completed} of ${CHAPTERS.length} chapters read.`}
-              </p>
+      {/* ── Scholar stats ── */}
+      <section className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <StatCard
+          icon="🎓"
+          label={hydrated ? level.title : "Scholar"}
+          value={hydrated ? `Level ${level.level}` : "Level —"}
+          sub={hydrated ? `${level.into}/${level.span} XP to next` : ""}
+        />
+        <StatCard
+          icon="📚"
+          label="Words found"
+          value={`${discoveredCount}/${total}`}
+          sub={`${Math.round((discoveredCount / total) * 100)}% of the Lexicon`}
+        />
+        <StatCard
+          icon="👑"
+          label="Mastered"
+          value={`${masteredCount}`}
+          sub="fully learned"
+        />
+        <StatCard
+          icon="🔥"
+          label="Day streak"
+          value={hydrated ? `${streak.count}` : "—"}
+          sub={
+            due > 0 ? `${due} word${due > 1 ? "s" : ""} to review` : "all reviewed"
+          }
+          highlight={due > 0}
+          href={due > 0 ? "/review" : undefined}
+        />
+      </section>
+
+      {/* ── Librarian + Daily ── */}
+      <section className="mt-6 grid gap-4 lg:grid-cols-5">
+        <Reveal className="lg:col-span-3">
+          <div className="page p-4 sm:p-5">
+            <Librarian />
+          </div>
+        </Reveal>
+        <Reveal delay={0.1} className="lg:col-span-2">
+          <Link
+            href="/daily"
+            className="lift block h-full rounded-2xl border border-[var(--border)] p-5"
+            style={{
+              ...paletteVars(wotd.room),
+              background:
+                "linear-gradient(180deg, var(--c-surface), color-mix(in srgb, var(--c-primary) 12%, var(--parch)))",
+            }}
+          >
+            <div className="text-[11px] font-bold uppercase tracking-widest text-ink-faint">
+              Word of the Day
             </div>
-            {inProgress && (
-              <Link
-                href={`/chapters/${inProgress.slug}`}
-                className="lift flex items-center gap-2 rounded-full px-5 py-2.5 font-display text-sm font-bold text-[#f6e6c4]"
-                style={{
-                  background: "linear-gradient(180deg,#a5433a,#6f2620)",
-                  boxShadow:
-                    "inset 0 1px 0 rgba(255,220,180,0.3), 0 4px 12px rgba(0,0,0,0.35)",
-                }}
-              >
-                📖 Continue “{inProgress.title}” →
-              </Link>
-            )}
+            <div className="mt-2 flex items-center gap-3">
+              <span className="text-4xl">{wotd.motif}</span>
+              <div>
+                <div className="font-display text-2xl font-extrabold text-ink">
+                  {has(wotd.id) ? wotd.word : "A word awaits…"}
+                </div>
+                <div className="font-hand text-lg text-ink-soft">
+                  {has(wotd.id) ? wotd.pronunciation : "Claim today's adventure"}
+                </div>
+              </div>
+            </div>
+            <p className="mt-3 text-sm text-ink-soft">
+              {has(wotd.id)
+                ? wotd.meaning
+                : "A new quest, a hidden word and bonus treasure are waiting in today's adventure."}
+            </p>
+            <span className="mt-3 inline-block font-bold text-[var(--c-deep)]">
+              Open today's quest →
+            </span>
+          </Link>
+        </Reveal>
+      </section>
+
+      {/* ── Halls ── */}
+      <section id="halls" className="mt-10 scroll-mt-20">
+        <Reveal>
+          <div className="mb-4">
+            <h2 className="h-desk font-display text-3xl font-extrabold">
+              The Halls of the Lexicon
+            </h2>
+            <p className="t-desk">
+              Every hall is a world of words. Step inside and start discovering.
+            </p>
           </div>
-        )}
-
-        {/* Two parts, like facing pages */}
-        <div className="relative z-10 mt-10 grid gap-x-12 gap-y-10 md:grid-cols-2">
-          <ContentsPart
-            roman="I"
-            title="The Road to War"
-            subtitle="Unit 1 · 1919–1941"
-            chapters={ww2}
-            progress={progress}
-            hydrated={hydrated}
-          />
-          <ContentsPart
-            roman="II"
-            title="The Cold War"
-            subtitle="Unit 2 · 1945–1991"
-            chapters={cold}
-            progress={progress}
-            hydrated={hydrated}
-          />
+        </Reveal>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {ROOMS.map((room, i) => {
+            const found = room.objects.filter((o) => has(o.wordId)).length;
+            const totalInRoom = room.objects.length;
+            const pal = getPalette(room.palette);
+            const complete = found === totalInRoom && totalInRoom > 0;
+            return (
+              <Reveal key={room.id} delay={Math.min(i * 0.04, 0.3)}>
+                <Link
+                  href={`/room/${room.id}`}
+                  className="lift group block overflow-hidden rounded-3xl border-2"
+                  style={{
+                    ...paletteVars(room.palette),
+                    borderColor: `color-mix(in srgb, ${pal.primary} 45%, transparent)`,
+                    background: `linear-gradient(160deg, ${pal.surface}, color-mix(in srgb, ${pal.primary} 20%, var(--parch)))`,
+                  }}
+                >
+                  <div
+                    className="relative flex h-28 items-center justify-center overflow-hidden"
+                    style={{
+                      background: `radial-gradient(80% 120% at 50% 0%, ${pal.secondary}, transparent 70%)`,
+                    }}
+                  >
+                    <span className="text-6xl transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6">
+                      {room.motif}
+                    </span>
+                    {complete && (
+                      <span className="absolute right-2 top-2 rounded-full bg-emerald-600 px-2 py-0.5 text-[10px] font-bold text-white shadow">
+                        ✓ Complete
+                      </span>
+                    )}
+                  </div>
+                  <div className="p-4">
+                    <div
+                      className="text-[11px] font-bold uppercase tracking-widest"
+                      style={{ color: pal.deep }}
+                    >
+                      {room.theme}
+                    </div>
+                    <div className="font-display text-lg font-extrabold leading-tight text-ink">
+                      {room.name}
+                    </div>
+                    <p className="mt-1 line-clamp-2 text-sm text-ink-soft">
+                      {room.tagline}
+                    </p>
+                    <div className="mt-3 flex items-center gap-2">
+                      <div className="h-2 flex-1 overflow-hidden rounded-full bg-[color-mix(in_srgb,var(--ink)_12%,transparent)]">
+                        <div
+                          className="h-full rounded-full"
+                          style={{
+                            width: `${(found / totalInRoom) * 100}%`,
+                            background: pal.primary,
+                          }}
+                        />
+                      </div>
+                      <span
+                        className="text-xs font-bold"
+                        style={{ color: pal.deep }}
+                      >
+                        {found}/{totalInRoom}
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              </Reveal>
+            );
+          })}
         </div>
-
-        <InkDivider className="mx-auto mt-12 h-5 w-72" />
-
-        {/* The reading room */}
-        <div className="relative z-10 mt-6 text-center">
-          <p className="font-display text-sm font-bold uppercase tracking-[0.25em] text-[var(--ink-faint)]">
-            The Reading Room
-          </p>
-          <div className="mt-4 flex flex-wrap justify-center gap-2.5">
-            {MODES.map((m) => (
-              <Link
-                key={m.href}
-                href={m.href}
-                className="lift flex items-center gap-2 rounded-full border border-[var(--parch-edge)] bg-[var(--parch-2)] px-4 py-2 font-display text-sm font-bold text-[var(--ink-soft)] transition-colors hover:text-[var(--wax)]"
-              >
-                <span aria-hidden>{m.icon}</span>
-                {m.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </motion.div>
+      </section>
     </div>
   );
 }
 
-function ContentsPart({
-  roman,
-  title,
-  subtitle,
-  chapters,
-  progress,
-  hydrated,
+function StatCard({
+  icon,
+  label,
+  value,
+  sub,
+  highlight,
+  href,
 }: {
-  roman: string;
-  title: string;
-  subtitle: string;
-  chapters: typeof CHAPTERS;
-  progress: Record<string, { completed: boolean; page: number; total: number }>;
-  hydrated: boolean;
+  icon: string;
+  label: string;
+  value: string;
+  sub?: string;
+  highlight?: boolean;
+  href?: string;
 }) {
-  return (
-    <section>
-      <div className="mb-4 text-center">
-        <p className="font-display text-sm font-bold uppercase tracking-[0.3em] text-[var(--gold)]">
-          Part the {roman}
-        </p>
-        <h2 className="font-display text-2xl font-black text-[var(--ink)]">{title}</h2>
-        <p className="font-hand text-lg text-[var(--ink-faint)]">{subtitle}</p>
+  const inner = (
+    <div
+      className={`page flex h-full items-center gap-3 p-3.5 sm:p-4 ${
+        highlight ? "ring-2 ring-[var(--wax)]" : ""
+      }`}
+    >
+      <span className="text-3xl">{icon}</span>
+      <div className="min-w-0">
+        <div className="font-display text-xl font-extrabold leading-none text-ink">
+          {value}
+        </div>
+        <div className="mt-1 truncate text-xs font-bold uppercase tracking-wide text-ink-faint">
+          {label}
+        </div>
+        {sub && (
+          <div className="mt-0.5 truncate text-[11px] text-ink-soft">{sub}</div>
+        )}
       </div>
-      <ol className="space-y-1">
-        {chapters.map((c, i) => {
-          const p = getPalette(c.palette);
-          const prog = progress[c.slug];
-          const done = hydrated && prog?.completed;
-          const reading = hydrated && prog && !prog.completed;
-          const pct = prog
-            ? prog.completed
-              ? 100
-              : Math.round(((prog.page + 1) / prog.total) * 100)
-            : 0;
-          return (
-            <motion.li
-              key={c.id}
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.1 + i * 0.06 }}
-            >
-              <Link
-                href={`/chapters/${c.slug}`}
-                className="group flex items-center gap-3 border-b border-dotted border-[var(--parch-edge)] py-2.5"
-              >
-                <span
-                  className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-lg transition-transform group-hover:scale-110"
-                  style={{
-                    background: `radial-gradient(circle at 35% 30%, ${p.secondary}, ${p.primary})`,
-                    boxShadow: `0 0 0 2px var(--parch), 0 0 0 3px ${p.primary}55, 0 3px 8px rgba(0,0,0,0.25)`,
-                  }}
-                >
-                  {p.motif}
-                </span>
-                <span className="min-w-0 flex-1">
-                  <span className="block truncate font-display text-lg font-bold leading-tight text-[var(--ink)] transition-colors group-hover:text-[var(--wax)]">
-                    {c.title}
-                  </span>
-                  <span className="block truncate font-serif text-sm italic text-[var(--ink-faint)]">
-                    {c.era} · {c.subtitle}
-                  </span>
-                  {reading && (
-                    <span className="mt-1.5 flex items-center gap-2">
-                      <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-[var(--parch-deep)]">
-                        <span
-                          className="block h-full rounded-full"
-                          style={{
-                            width: `${pct}%`,
-                            background: `linear-gradient(90deg, ${p.secondary}, ${p.primary})`,
-                          }}
-                        />
-                      </span>
-                      <span className="font-hand text-xs text-[var(--ink-faint)]">
-                        {pct}%
-                      </span>
-                    </span>
-                  )}
-                </span>
-                <span className="shrink-0 font-hand text-lg text-[var(--ink-faint)]">
-                  {done ? (
-                    <span className="text-[var(--wax)]">✦ read</span>
-                  ) : reading ? (
-                    <span className="text-[var(--c-primary)]">resume →</span>
-                  ) : (
-                    `no. ${c.number}`
-                  )}
-                </span>
-              </Link>
-            </motion.li>
-          );
-        })}
-      </ol>
-    </section>
+    </div>
+  );
+  return href ? (
+    <Link href={href} className="lift block">
+      {inner}
+    </Link>
+  ) : (
+    inner
   );
 }

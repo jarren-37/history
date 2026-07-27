@@ -1,8 +1,8 @@
 {
   "id": "/",
-  "name": "Project Chronicle — The History Storybook",
-  "short_name": "Chronicle",
-  "description": "An enchanted, handcrafted storybook that teaches Singapore O-Level Combined History (2261). Learn through story, not memorisation.",
+  "name": "Lexicon — The Vocabulary Adventure",
+  "short_name": "Lexicon",
+  "description": "An enchanted library where words are treasures. Discover, collect and master English vocabulary for the Singapore O-Level — and for life.",
   "start_url": "/?source=pwa",
   "scope": "/",
   "display": "standalone",
@@ -12,7 +12,7 @@
   "lang": "en",
   "background_color": "#241708",
   "theme_color": "#2a1a0b",
-  "categories": ["education", "books", "reference"],
+  "categories": ["education", "books", "reference", "games"],
   "icons": [
     {
       "src": "/icons/icon-192.png",
@@ -47,27 +47,27 @@
   ],
   "shortcuts": [
     {
-      "name": "Table of Contents",
-      "short_name": "Contents",
+      "name": "The Great Hall",
+      "short_name": "Home",
       "url": "/?source=shortcut",
       "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
     },
     {
-      "name": "The Timeline",
-      "short_name": "Timeline",
-      "url": "/timeline",
+      "name": "Today's Adventure",
+      "short_name": "Daily",
+      "url": "/daily",
       "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
     },
     {
-      "name": "The Cast",
-      "short_name": "Characters",
-      "url": "/characters",
+      "name": "Your Collection",
+      "short_name": "Collection",
+      "url": "/collection",
       "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
     },
     {
-      "name": "Examinations",
-      "short_name": "Exams",
-      "url": "/exam",
+      "name": "The Games Room",
+      "short_name": "Games",
+      "url": "/games",
       "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
     }
   ]

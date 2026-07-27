@@ -1,8 +1,8 @@
 {
-  "name": "project-chronicle",
+  "name": "lexicon",
   "version": "1.0.0",
   "private": true,
-  "description": "The Storybook that teaches Singapore O-Level Combined History (2261)",
+  "description": "Lexicon — The Vocabulary Adventure. An enchanted library for mastering English vocabulary (Singapore O-Level and beyond).",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

@@ -32,14 +32,14 @@ const hand = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "Project Chronicle — The History Storybook",
+  title: "Lexicon — The Vocabulary Adventure",
   description:
-    "An interactive animated storybook for Singapore O-Level Combined History (2261). Learn through story, not memorisation.",
+    "An enchanted library where words are treasures. Discover, collect and master English vocabulary for the Singapore O-Level — and for life. Learn through play, not memorisation.",
   manifest: "/manifest.webmanifest",
-  applicationName: "Project Chronicle",
+  applicationName: "Lexicon",
   appleWebApp: {
     capable: true,
-    title: "Chronicle",
+    title: "Lexicon",
     statusBarStyle: "default",
   },
   icons: {
@@ -80,7 +80,7 @@ export default function RootLayout({
         {/* Prevent theme flash: apply stored theme before paint. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var s=JSON.parse(localStorage.getItem('chronicle:v1')||'{}');var d=s.theme?s.theme==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark');}catch(e){}})();`,
+            __html: `(function(){try{var s=JSON.parse(localStorage.getItem('lexicon:v1')||'{}');var d=s.theme?s.theme==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark');}catch(e){}})();`,
           }}
         />
       </head>

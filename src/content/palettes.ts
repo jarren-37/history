@@ -1,140 +1,151 @@
-// Per-chapter colour palettes.
-// Each chapter has a unique palette so that colour itself becomes a memory cue
-// (as described in the design brief: Cold War = blue, WW2 = red, Japan = orange...).
+// Per-hall colour palettes for LEXICON.
 //
-// Every value is a plain hex string so palettes can be injected as inline CSS
-// variables and animated smoothly with Framer Motion.
+// Each themed hall carries its own colour so that colour itself becomes a
+// memory cue — Nature is verdant green, Conflict is smouldering crimson,
+// Success is triumphant gold. Values are plain hex so palettes can be injected
+// as inline CSS variables and animated smoothly with Framer Motion.
 
 export type PaletteKey =
-  | "versailles"
-  | "hitler"
-  | "japan"
-  | "coldwar"
-  | "berlin"
-  | "korea"
-  | "cuba"
-  | "vietnam"
-  | "endwar"
-  | "collapse"
+  | "nature"
+  | "emotion"
+  | "conflict"
+  | "success"
+  | "failure"
+  | "science"
+  | "politics"
+  | "travel"
+  | "relationships"
+  | "technology"
+  | "education"
   | "neutral";
 
 export interface Palette {
   key: PaletteKey;
   name: string;
-  /** Primary accent — buttons, highlights, the "spine" of the story. */
+  /** Primary accent — buttons, highlights, the "spine" of the hall. */
   primary: string;
   /** A lighter partner used for gradients and soft fills. */
   secondary: string;
   /** Deep tone for text-on-colour and dramatic scenes. */
   deep: string;
-  /** Very soft tinted surface for cards on light backgrounds. */
+  /** Very soft tinted surface for cards on parchment. */
   surface: string;
-  /** Emoji motif used on covers / progress markers. */
+  /** Emoji motif used on doors / progress markers. */
   motif: string;
-  /** A short mood word shown on the chapter cover. */
+  /** A short mood word shown on the hall's door. */
   mood: string;
 }
 
 export const PALETTES: Record<PaletteKey, Palette> = {
-  versailles: {
-    key: "versailles",
-    name: "Treaty Red",
-    primary: "#d6455b",
-    secondary: "#f6a5a0",
-    deep: "#7c2233",
-    surface: "#fdeeec",
-    motif: "📜",
-    mood: "A fragile peace",
+  nature: {
+    key: "nature",
+    name: "Verdant Green",
+    primary: "#3f8f5a",
+    secondary: "#a9d8ab",
+    deep: "#234f31",
+    surface: "#e8f4e6",
+    motif: "🌿",
+    mood: "Wild and breathing",
   },
-  hitler: {
-    key: "hitler",
-    name: "Crimson Storm",
+  emotion: {
+    key: "emotion",
+    name: "Heartsong Rose",
+    primary: "#d15a86",
+    secondary: "#f4b8cd",
+    deep: "#7c2e4d",
+    surface: "#fceaf1",
+    motif: "🎭",
+    mood: "The colour of feeling",
+  },
+  conflict: {
+    key: "conflict",
+    name: "Smouldering Crimson",
     primary: "#c0392b",
     secondary: "#e79a86",
     deep: "#5e1e1a",
-    surface: "#fbe9e4",
-    motif: "🕯️",
-    mood: "The rising storm",
+    surface: "#fbe7e2",
+    motif: "⚔️",
+    mood: "Tension in the air",
   },
-  japan: {
-    key: "japan",
-    name: "Rising Sun Orange",
-    primary: "#e07b39",
-    secondary: "#f6c37a",
-    deep: "#8a3d17",
-    surface: "#fdf1e3",
-    motif: "🌅",
-    mood: "An empire reaches out",
+  success: {
+    key: "success",
+    name: "Triumphant Gold",
+    primary: "#c9962b",
+    secondary: "#f0d488",
+    deep: "#7a5a12",
+    surface: "#fbf1d8",
+    motif: "🏆",
+    mood: "The summit calls",
   },
-  coldwar: {
-    key: "coldwar",
-    name: "Cold War Blue",
-    primary: "#2f6fb0",
-    secondary: "#8fc0e6",
-    deep: "#1c3d63",
-    surface: "#e8f1fa",
-    motif: "❄️",
-    mood: "A world divides",
-  },
-  berlin: {
-    key: "berlin",
-    name: "Berlin Grey",
-    primary: "#5c6b7a",
-    secondary: "#a7b4c0",
-    deep: "#2e3742",
+  failure: {
+    key: "failure",
+    name: "Ashen Slate",
+    primary: "#6b7482",
+    secondary: "#b3bcc7",
+    deep: "#353c46",
     surface: "#eef1f4",
-    motif: "🧱",
-    mood: "A city on the edge",
+    motif: "🌫️",
+    mood: "Lessons in the dust",
   },
-  korea: {
-    key: "korea",
-    name: "Frontline Teal",
-    primary: "#2f8f83",
-    secondary: "#8fd3c7",
-    deep: "#184a45",
-    surface: "#e6f5f1",
-    motif: "🗺️",
-    mood: "A line drawn in war",
+  science: {
+    key: "science",
+    name: "Aether Teal",
+    primary: "#2f9aa8",
+    secondary: "#93d7dd",
+    deep: "#165059",
+    surface: "#e3f5f6",
+    motif: "🔬",
+    mood: "Curiosity uncaged",
   },
-  cuba: {
-    key: "cuba",
-    name: "Brink Indigo",
-    primary: "#4257a8",
-    secondary: "#9aa7e0",
-    deep: "#232b5c",
-    surface: "#eceffb",
-    motif: "🚀",
-    mood: "Thirteen days",
+  politics: {
+    key: "politics",
+    name: "Senate Indigo",
+    primary: "#5a5ab0",
+    secondary: "#adaee4",
+    deep: "#2e2c63",
+    surface: "#ececfb",
+    motif: "⚖️",
+    mood: "Power and persuasion",
   },
-  vietnam: {
-    key: "vietnam",
-    name: "Jungle Green",
-    primary: "#4b7a3f",
-    secondary: "#a9c48f",
-    deep: "#274a20",
-    surface: "#e9f1e0",
-    motif: "🌿",
-    mood: "The jungle war",
+  travel: {
+    key: "travel",
+    name: "Voyager Blue",
+    primary: "#2f7bb0",
+    secondary: "#9cc9e8",
+    deep: "#1b4468",
+    surface: "#e6f1fa",
+    motif: "🧭",
+    mood: "Beyond the horizon",
   },
-  endwar: {
-    key: "endwar",
-    name: "Victory Dusk",
-    primary: "#b06a3a",
-    secondary: "#e0b98a",
-    deep: "#5e3418",
-    surface: "#f6ecdd",
-    motif: "🎆",
-    mood: "The guns fall silent",
+  relationships: {
+    key: "relationships",
+    name: "Ember Coral",
+    primary: "#e0743a",
+    secondary: "#f4c199",
+    deep: "#8a3d17",
+    surface: "#fdefe3",
+    motif: "🤝",
+    mood: "Bonds and belonging",
   },
-  collapse: {
-    key: "collapse",
-    name: "Thaw Violet",
+  technology: {
+    key: "technology",
+    name: "Circuit Violet",
     primary: "#8459b3",
     secondary: "#c6a7e4",
     deep: "#432a63",
-    surface: "#f3ecfa",
-    motif: "🕊️",
-    mood: "The great thaw",
+    surface: "#f2ecfa",
+    motif: "⚙️",
+    mood: "The machine awakes",
+  },
+  education: {
+    key: "education",
+    name: "Scholar Amber",
+    primary: "#b0803a",
+    secondary: "#e6c78a",
+    deep: "#5e3f18",
+    surface: "#f7eeda",
+    motif: "📜",
+    mood: "The mind sharpened",
   },
   neutral: {
     key: "neutral",
@@ -144,7 +155,7 @@ export const PALETTES: Record<PaletteKey, Palette> = {
     deep: "#4a3f30",
     surface: "#f6f0e6",
     motif: "📖",
-    mood: "The whole story",
+    mood: "The whole Lexicon",
   },
 };
 

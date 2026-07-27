@@ -214,3 +214,91 @@ export function playQuill(): void {
   src.start(t);
   src.stop(t + dur + 0.02);
 }
+
+/** Play a single soft bell-like note. Internal helper. */
+function tone(
+  c: Ctx,
+  freq: number,
+  start: number,
+  dur: number,
+  peak: number,
+  type: OscillatorType = "sine"
+): void {
+  const o = c.createOscillator();
+  o.type = type;
+  o.frequency.value = freq;
+  const g = c.createGain();
+  g.gain.setValueAtTime(0.0001, start);
+  g.gain.exponentialRampToValueAtTime(peak, start + 0.02);
+  g.gain.exponentialRampToValueAtTime(0.0001, start + dur);
+  o.connect(g);
+  g.connect(c.destination);
+  o.start(start);
+  o.stop(start + dur + 0.02);
+}
+
+/**
+ * The shimmering chime when a word treasure is revealed — a rising arpeggio
+ * with a soft sparkle on top. Every discovery should feel rewarding.
+ */
+export function playDiscovery(): void {
+  const c = ensure();
+  if (!c) return;
+  void resumeAudio();
+  const t = c.currentTime;
+  // A gentle major arpeggio (C, E, G, C) — the sound of "aha!".
+  [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => {
+    tone(c, f, t + i * 0.09, 0.6, 0.09 - i * 0.008, i === 3 ? "triangle" : "sine");
+  });
+  // A faint high sparkle.
+  tone(c, 2093, t + 0.36, 0.5, 0.025, "sine");
+}
+
+/** A small positive/negative feedback chime for quizzes and games. */
+export function playChime(success: boolean): void {
+  const c = ensure();
+  if (!c) return;
+  void resumeAudio();
+  const t = c.currentTime;
+  if (success) {
+    tone(c, 659.25, t, 0.28, 0.08);
+    tone(c, 987.77, t + 0.1, 0.32, 0.07);
+  } else {
+    tone(c, 311.13, t, 0.3, 0.06, "triangle");
+    tone(c, 233.08, t + 0.11, 0.34, 0.05, "triangle");
+  }
+}
+
+/** A quick sparkle for earning XP. */
+export function playXp(): void {
+  const c = ensure();
+  if (!c) return;
+  void resumeAudio();
+  const t = c.currentTime;
+  tone(c, 880, t, 0.18, 0.05, "sine");
+  tone(c, 1318.5, t + 0.06, 0.22, 0.045, "sine");
+}
+
+/**
+ * Speak a word aloud using the browser's built-in speech synthesis — no audio
+ * files, works offline. Prefers a clear English voice and a gentle pace.
+ * No-ops safely when speech is unavailable.
+ */
+export function speak(text: string): void {
+  if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+  try {
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.rate = 0.9;
+    u.pitch = 1;
+    const voices = window.speechSynthesis.getVoices();
+    const preferred =
+      voices.find((v) => /en-GB/i.test(v.lang)) ??
+      voices.find((v) => /^en/i.test(v.lang)) ??
+      voices[0];
+    if (preferred) u.voice = preferred;
+    window.speechSynthesis.speak(u);
+  } catch {
+    /* speech is best-effort */
+  }
+}
