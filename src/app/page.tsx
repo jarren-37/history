@@ -49,11 +49,10 @@ const SUBJECTS: Subject[] = [
     tagline: "The art of transforming matter",
     blurb:
       "Enter a magical workshop of bubbling flasks and ancient furnaces. Brew compounds, watch bonds form, and master the elements.",
-    href: null,
+    href: "/chemistry",
     bg: "linear-gradient(155deg,#3c2a12,#10241a)",
     glow: "#cf8a3a",
     text: "#f0e4cf",
-    soon: true,
   },
   {
     brand: "The Inventor's Observatory",
@@ -62,11 +61,10 @@ const SUBJECTS: Subject[] = [
     tagline: "The rules that govern the universe",
     blurb:
       "Step into a steampunk observatory of gears and lightning. Build circuits, launch satellites and bend invisible fields.",
-    href: null,
+    href: "/physics",
     bg: "linear-gradient(155deg,#1a2140,#080b18)",
     glow: "#5a8bff",
     text: "#e6ecff",
-    soon: true,
   },
 ];
 
@@ -159,7 +157,8 @@ export default function AthenaeumHub() {
         </div>
 
         <p className="mt-10 text-center text-sm text-[rgba(236,214,172,0.6)]">
-          More halls are being built. The Atelier and the Observatory open soon.
+          Four halls, four worlds — each with its own story to discover. More
+          knowledge awaits within.
         </p>
       </div>
     </div>
@@ -221,7 +220,7 @@ function SubjectDoor({ subject: s }: { subject: Subject }) {
               className="inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 font-display text-base font-extrabold shadow-lg transition-transform group-hover:scale-105"
               style={{ background: s.glow, color: "#1a1206" }}
             >
-              Enter {s.brand} →
+              Step inside →
             </span>
           )}
         </div>

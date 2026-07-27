@@ -302,3 +302,57 @@ export function speak(text: string): void {
     /* speech is best-effort */
   }
 }
+
+/** A soft "blip" of a rising bubble — for the Alchemist's Atelier. */
+export function playBubble(): void {
+  const c = ensure();
+  if (!c) return;
+  void resumeAudio();
+  const t = c.currentTime;
+  const o = c.createOscillator();
+  o.type = "sine";
+  o.frequency.setValueAtTime(280, t);
+  o.frequency.exponentialRampToValueAtTime(820, t + 0.14);
+  const g = c.createGain();
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(0.06, t + 0.03);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + 0.16);
+  o.connect(g);
+  g.connect(c.destination);
+  o.start(t);
+  o.stop(t + 0.18);
+}
+
+/** A crackle of electricity — for the Inventor's Observatory. */
+export function playZap(): void {
+  const c = ensure();
+  if (!c) return;
+  void resumeAudio();
+  const t = c.currentTime;
+  const dur = 0.22;
+  const src = c.createBufferSource();
+  src.buffer = noiseBuffer(c, dur);
+  const bp = c.createBiquadFilter();
+  bp.type = "bandpass";
+  bp.frequency.setValueAtTime(3200, t);
+  bp.frequency.exponentialRampToValueAtTime(900, t + dur);
+  bp.Q.value = 4;
+  const g = c.createGain();
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(0.09, t + 0.01);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  src.connect(bp);
+  bp.connect(g);
+  g.connect(c.destination);
+  src.start(t);
+  src.stop(t + dur + 0.02);
+}
+
+/** A brass clockwork tick — for the Observatory. */
+export function playTick(): void {
+  const c = ensure();
+  if (!c) return;
+  void resumeAudio();
+  const t = c.currentTime;
+  tone(c, 1400, t, 0.05, 0.05, "square");
+}

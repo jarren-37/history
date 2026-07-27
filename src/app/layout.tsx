@@ -78,7 +78,7 @@ export default function RootLayout({
             paint, chosen by the URL (each subject persists its own theme). */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var p=location.pathname;var k=p.indexOf('/history')===0?'chronicle:v1':p.indexOf('/english')===0?'lexicon:v1':'athenaeum:v1';var s=JSON.parse(localStorage.getItem(k)||'{}');var d=s.theme?s.theme==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark');}catch(e){}})();`,
+            __html: `(function(){try{var p=location.pathname;var k=p.indexOf('/history')===0?'chronicle:v1':p.indexOf('/english')===0?'lexicon:v1':p.indexOf('/chemistry')===0?'atelier:v1':p.indexOf('/physics')===0?'observatory:v1':'athenaeum:v1';var s=JSON.parse(localStorage.getItem(k)||'{}');var d=s.theme?s.theme==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark');}catch(e){}})();`,
           }}
         />
       </head>

@@ -6,15 +6,13 @@
  *  - Static assets (Next.js chunks, fonts, images): cache-first with runtime
  *    caching, so once a page is visited it works fully offline.
  */
-const VERSION = "lexicon-v1";
+const VERSION = "athenaeum-v1";
 const CORE = [
   "/",
-  "/collection",
-  "/games",
-  "/write",
-  "/review",
-  "/daily",
-  "/profile",
+  "/history",
+  "/english",
+  "/chemistry",
+  "/physics",
   "/offline.html",
   "/manifest.webmanifest",
   "/icons/icon.svg",

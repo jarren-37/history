@@ -310,6 +310,37 @@ body {
   color: #fff2d8;
 }
 
+/* ── Science subjects (Atelier / Observatory) ──────────────────────────────
+   Accent-themed range sliders used by the interactive stations. */
+.sci-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--sci-ink, #fff) 22%, transparent);
+  outline: none;
+}
+.sci-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--sci-accent, #d98a3a);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 10px var(--sci-glow, #d98a3a);
+  cursor: pointer;
+}
+.sci-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--sci-accent, #d98a3a);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 10px var(--sci-glow, #d98a3a);
+  cursor: pointer;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
