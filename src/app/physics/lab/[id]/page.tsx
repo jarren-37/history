@@ -5,6 +5,7 @@ import { RocketGantry } from "@/components/physics/RocketGantry";
 import { CircuitBench } from "@/components/physics/CircuitBench";
 import { WaveTable } from "@/components/physics/WaveTable";
 import { Orrery } from "@/components/physics/Orrery";
+import { Magnetism } from "@/components/physics/Magnetism";
 
 export function generateStaticParams() {
   return STATIONS.map((s) => ({ id: s.id }));
@@ -25,6 +26,8 @@ export default function LabPage({ params }: { params: { id: string } }) {
       return <WaveTable />;
     case "gravity":
       return <Orrery />;
+    case "magnetism":
+      return <Magnetism />;
     default:
       notFound();
   }

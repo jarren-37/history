@@ -61,9 +61,14 @@ export default function ObservatoryHome() {
 
       {/* Stations */}
       <section className="mt-8">
-        <h2 className="mb-3 font-display text-2xl font-extrabold" style={{ color: "var(--sci-ink)" }}>
-          Stations of the Observatory
-        </h2>
+        <div className="mb-3 flex items-center justify-between">
+          <h2 className="font-display text-2xl font-extrabold" style={{ color: "var(--sci-ink)" }}>
+            Stations of the Observatory
+          </h2>
+          <Link href="/physics/games" className="rounded-full border px-4 py-1.5 text-sm font-bold transition-transform hover:scale-105" style={{ borderColor: "var(--sci-accent)", color: "var(--sci-accent)" }}>
+            🎲 Games Room →
+          </Link>
+        </div>
         <div className="grid gap-4 sm:grid-cols-2">
           {STATIONS.map((s, i) => {
             const done = isDone(s.id);

@@ -41,6 +41,14 @@ export const STATIONS: Station[] = [
     tagline: "Fire a satellite at just the right speed to catch a stable orbit.",
     xp: 50,
   },
+  {
+    id: "magnetism",
+    name: "The Lodestone Array",
+    icon: "🧲",
+    topic: "Magnetism & Induction",
+    tagline: "Bend invisible fields, then conjure electricity from pure motion.",
+    xp: 45,
+  },
 ];
 
 export function getStation(id: string): Station | undefined {

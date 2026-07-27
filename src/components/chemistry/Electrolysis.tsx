@@ -152,8 +152,7 @@ export function Electrolysis() {
           xp={st.xp}
           disabled={!understood}
           onComplete={() => complete("electrolysis", st.xp)}
-          nextHref="/chemistry/masterpiece"
-          nextLabel="The Masterpiece →"
+          nextHref="/chemistry/lab/organic"
           hint="Switch on the power and answer the question first."
         />
       </div>

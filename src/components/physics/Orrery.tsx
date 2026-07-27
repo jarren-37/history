@@ -202,8 +202,7 @@ export function Orrery() {
           xp={st.xp}
           disabled={!understood || !everStable}
           onComplete={() => complete("gravity", st.xp)}
-          nextHref="/physics/masterpiece"
-          nextLabel="The Masterpiece →"
+          nextHref="/physics/lab/magnetism"
           hint="Achieve a stable orbit and answer the question first."
         />
       </div>

@@ -42,6 +42,14 @@ export const STATIONS: Station[] = [
     tagline: "Pass a current through a molten compound and tear it into its elements.",
     xp: 50,
   },
+  {
+    id: "organic",
+    name: "The Carbon Forge",
+    icon: "🧬",
+    topic: "Organic Chemistry",
+    tagline: "Forge carbon into chains and watch a family of molecules grow.",
+    xp: 45,
+  },
 ];
 
 export function getStation(id: string): Station | undefined {
