@@ -1,12 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, EB_Garamond, Caveat } from "next/font/google";
 import "./globals.css";
-import { AppProvider } from "@/lib/store";
-import { NavBar } from "@/components/NavBar";
 import { ServiceWorker } from "@/components/ServiceWorker";
-import { Ambience } from "@/components/Ambience";
 
-// Decorative display serif for illuminated chapter titles.
+// Decorative display serif for illuminated titles.
 const display = Fraunces({
   subsets: ["latin"],
   axes: ["opsz", "SOFT"],
@@ -32,14 +29,14 @@ const hand = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "Lexicon — The Vocabulary Adventure",
+  title: "The Athenaeum — a hall of all knowledge",
   description:
-    "An enchanted library where words are treasures. Discover, collect and master English vocabulary for the Singapore O-Level — and for life. Learn through play, not memorisation.",
+    "The Athenaeum is a candlelit hall where every subject is its own world: Chronicle (History), Lexicon (English), and — soon — the Alchemist's Atelier (Chemistry) and the Inventor's Observatory (Physics). Learn through story and play, not memorisation.",
   manifest: "/manifest.webmanifest",
-  applicationName: "Lexicon",
+  applicationName: "The Athenaeum",
   appleWebApp: {
     capable: true,
-    title: "Lexicon",
+    title: "Athenaeum",
     statusBarStyle: "default",
   },
   icons: {
@@ -77,20 +74,17 @@ export default function RootLayout({
       className={`${display.variable} ${serif.variable} ${hand.variable}`}
     >
       <head>
-        {/* Prevent theme flash: apply stored theme before paint. */}
+        {/* Prevent theme flash: apply the right subject's stored theme before
+            paint, chosen by the URL (each subject persists its own theme). */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var s=JSON.parse(localStorage.getItem('lexicon:v1')||'{}');var d=s.theme?s.theme==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark');}catch(e){}})();`,
+            __html: `(function(){try{var p=location.pathname;var k=p.indexOf('/history')===0?'chronicle:v1':p.indexOf('/english')===0?'lexicon:v1':'athenaeum:v1';var s=JSON.parse(localStorage.getItem(k)||'{}');var d=s.theme?s.theme==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark');}catch(e){}})();`,
           }}
         />
       </head>
       <body>
-        <AppProvider>
-          <NavBar />
-          <main className="min-h-screen">{children}</main>
-          <Ambience />
-          <ServiceWorker />
-        </AppProvider>
+        {children}
+        <ServiceWorker />
       </body>
     </html>
   );
