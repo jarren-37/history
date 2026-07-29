@@ -6,6 +6,7 @@ import { CircuitBench } from "@/components/physics/CircuitBench";
 import { WaveTable } from "@/components/physics/WaveTable";
 import { Orrery } from "@/components/physics/Orrery";
 import { Magnetism } from "@/components/physics/Magnetism";
+import { HeatForge } from "@/components/physics/HeatForge";
 
 export function generateStaticParams() {
   return STATIONS.map((s) => ({ id: s.id }));
@@ -28,6 +29,8 @@ export default function LabPage({ params }: { params: { id: string } }) {
       return <Orrery />;
     case "magnetism":
       return <Magnetism />;
+    case "thermal":
+      return <HeatForge />;
     default:
       notFound();
   }

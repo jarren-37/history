@@ -6,6 +6,7 @@ import { ReactionCauldron } from "@/components/chemistry/ReactionCauldron";
 import { EnergyMountain } from "@/components/chemistry/EnergyMountain";
 import { Electrolysis } from "@/components/chemistry/Electrolysis";
 import { OrganicForge } from "@/components/chemistry/OrganicForge";
+import { PeriodicTable } from "@/components/chemistry/PeriodicTable";
 
 export function generateStaticParams() {
   return STATIONS.map((s) => ({ id: s.id }));
@@ -28,6 +29,8 @@ export default function LabPage({ params }: { params: { id: string } }) {
       return <Electrolysis />;
     case "organic":
       return <OrganicForge />;
+    case "periodic":
+      return <PeriodicTable />;
     default:
       notFound();
   }

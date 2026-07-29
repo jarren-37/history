@@ -49,6 +49,14 @@ export const STATIONS: Station[] = [
     tagline: "Bend invisible fields, then conjure electricity from pure motion.",
     xp: 45,
   },
+  {
+    id: "thermal",
+    name: "The Heat Forge",
+    icon: "🌡️",
+    topic: "Thermal Physics",
+    tagline: "Turn up the heat and watch particles wake, race and change state.",
+    xp: 45,
+  },
 ];
 
 export function getStation(id: string): Station | undefined {

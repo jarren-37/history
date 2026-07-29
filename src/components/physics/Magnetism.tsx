@@ -163,8 +163,7 @@ export function Magnetism() {
           xp={st.xp}
           disabled={!understood || !moved}
           onComplete={() => complete("magnetism", st.xp)}
-          nextHref="/physics/games"
-          nextLabel="The Games Room →"
+          nextHref="/physics/lab/thermal"
           hint="Move the magnet and answer the question first."
         />
       </div>

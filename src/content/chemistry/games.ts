@@ -13,6 +13,12 @@ export const GAMES: GameMeta[] = [
     icon: "⚖️",
     tagline: "Balance the chemical equation to bring the alchemical engine to life.",
   },
+  {
+    slug: "brew",
+    name: "Brew the Compound",
+    icon: "⚗️",
+    tagline: "Combine the right ions to brew each compound the recipe demands.",
+  },
 ];
 
 export function getGame(slug: string): GameMeta | undefined {

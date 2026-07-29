@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { GAMES, getGame } from "@/content/physics/games";
 import { SatelliteGame } from "@/components/physics/SatelliteGame";
+import { GridRescue } from "@/components/physics/GridRescue";
 
 export function generateStaticParams() {
   return GAMES.map((g) => ({ slug: g.slug }));
@@ -16,6 +17,8 @@ export default function PhysicsGameRoute({ params }: { params: { slug: string } 
   switch (params.slug) {
     case "satellite":
       return <SatelliteGame />;
+    case "grid":
+      return <GridRescue />;
     default:
       notFound();
   }

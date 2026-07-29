@@ -50,6 +50,14 @@ export const STATIONS: Station[] = [
     tagline: "Forge carbon into chains and watch a family of molecules grow.",
     xp: 45,
   },
+  {
+    id: "periodic",
+    name: "The Table of Elements",
+    icon: "🔮",
+    topic: "The Periodic Table",
+    tagline: "Read the great map of matter — groups, periods and the trends within.",
+    xp: 45,
+  },
 ];
 
 export function getStation(id: string): Station | undefined {

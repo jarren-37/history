@@ -123,8 +123,7 @@ export function OrganicForge() {
           xp={st.xp}
           disabled={!understood || !built}
           onComplete={() => complete("organic", st.xp)}
-          nextHref="/chemistry/games"
-          nextLabel="The Games Room →"
+          nextHref="/chemistry/lab/periodic"
           hint="Build a chain and answer the question first."
         />
       </div>
