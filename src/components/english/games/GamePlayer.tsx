@@ -11,6 +11,7 @@ import { WordDuel } from "./WordDuel";
 import { ContextDetective } from "./ContextDetective";
 import { SynonymMatch } from "./SynonymMatch";
 import { LostLetters } from "./LostLetters";
+import { SentenceBuilder } from "./SentenceBuilder";
 
 export function GamePlayer({ slug }: { slug: string }) {
   const { hydrated, collection } = useApp();
@@ -74,6 +75,7 @@ export function GamePlayer({ slug }: { slug: string }) {
           {slug === "detective" && <ContextDetective pool={pool} />}
           {slug === "synonyms" && <SynonymMatch pool={pool} />}
           {slug === "letters" && <LostLetters pool={pool} />}
+          {slug === "builder" && <SentenceBuilder />}
         </>
       )}
     </div>

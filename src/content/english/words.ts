@@ -1956,6 +1956,310 @@ export const WORDS: Word[] = [
     },
     motif: "🔎",
   },
+
+  // ── ADDITIONAL TREASURES ──────────────────────────────────────────────────
+  {
+    id: "indignant",
+    word: "indignant",
+    pronunciation: "in-DIG-nuhnt",
+    ipa: "/ɪnˈdɪɡnənt/",
+    class: "adjective",
+    difficulty: 4,
+    rarity: "epic",
+    room: "emotion",
+    meaning: "angry because something feels unfair or wrong.",
+    synonyms: ["outraged", "affronted", "aggrieved", "resentful"],
+    antonyms: ["pleased", "content", "unbothered"],
+    mistake:
+      "Indignant is anger at injustice, not ordinary annoyance. It carries a sense of wounded fairness.",
+    trick:
+      "Someone robbed of their DIGNITY becomes in-DIGN-ant — anger at being wronged.",
+    story:
+      "When the prize was handed to the boy who had cheated, she rose from her seat, indignant, unable to let such unfairness pass in silence.",
+    examples: [
+      "He was indignant at being blamed for something he did not do.",
+      "An indignant crowd gathered outside the courthouse.",
+    ],
+    olevel:
+      "Rather than writing 'she was angry', I described how she flushed with indignant fury at the blatant injustice.",
+    collocations: ["indignant response", "righteous indignation", "indignant tone"],
+    phrases: ["how dare you", "up in arms"],
+    quiz: {
+      prompt: "Someone indignant feels angry because…",
+      options: [
+        "something is unfair or wrong",
+        "they are very hungry",
+        "they are extremely tired",
+        "they won a prize",
+      ],
+      answer: 0,
+      explain: "Indignant is anger provoked by unfairness or injustice.",
+    },
+    motif: "😤",
+  },
+  {
+    id: "defiant",
+    word: "defiant",
+    pronunciation: "dih-FY-uhnt",
+    ipa: "/dɪˈfaɪənt/",
+    class: "adjective",
+    difficulty: 3,
+    rarity: "rare",
+    room: "conflict",
+    meaning: "boldly refusing to obey or give in.",
+    synonyms: ["rebellious", "unyielding", "insubordinate", "bold"],
+    antonyms: ["obedient", "submissive", "compliant"],
+    mistake:
+      "Defiant is open, bold resistance — stronger than merely disagreeing.",
+    trick:
+      "To 'defy' someone is to stand against them; a defiant person openly defies.",
+    story:
+      "Bruised but unbroken, she lifted her chin and met the tyrant's glare with a defiant stare that refused to look away.",
+    examples: [
+      "The prisoners remained defiant to the very end.",
+      "He gave a defiant shake of the head and stood his ground.",
+    ],
+    olevel:
+      "The novel's power lies in that single defiant gesture, a small act of resistance that says more than any speech could.",
+    collocations: ["defiant stare", "defiant gesture", "openly defiant"],
+    phrases: ["stand one's ground", "refuse to back down"],
+    quiz: {
+      prompt: "A defiant person is one who…",
+      options: [
+        "boldly refuses to obey",
+        "quietly does as told",
+        "is easily frightened",
+        "agrees with everyone",
+      ],
+      answer: 0,
+      explain: "Defiant means openly and boldly resisting authority.",
+    },
+    motif: "✊",
+  },
+  {
+    id: "tenacious",
+    word: "tenacious",
+    pronunciation: "tuh-NAY-shuhs",
+    ipa: "/təˈneɪʃəs/",
+    class: "adjective",
+    difficulty: 4,
+    rarity: "epic",
+    room: "success",
+    meaning: "holding on firmly; refusing to give up.",
+    synonyms: ["determined", "persistent", "dogged", "steadfast"],
+    antonyms: ["irresolute", "yielding", "half-hearted"],
+    mistake:
+      "Tenacious is about gripping on and not letting go — of a goal, a belief, or literally.",
+    trick:
+      "'Ten' fingers gripping tight and refusing to release — tenacious hangs on.",
+    story:
+      "Like ivy that will not be pulled from a wall, her tenacious grip on the dream held firm through every rejection.",
+    examples: [
+      "A tenacious reporter, she chased the story for years.",
+      "The climber kept a tenacious hold on the icy ledge.",
+    ],
+    olevel:
+      "It was her tenacious refusal to accept defeat — not raw talent — that finally carried her to the top of the class.",
+    collocations: ["tenacious grip", "tenacious spirit", "fiercely tenacious"],
+    phrases: ["never let go", "hold on tight"],
+    quiz: {
+      prompt: "'Tenacious' most nearly means…",
+      options: ["persistent and unwilling to give up", "lazy and careless", "shy and quiet", "cruel and unkind"],
+      answer: 0,
+      explain: "Tenacious means holding on firmly and refusing to quit.",
+    },
+    motif: "🦾",
+  },
+  {
+    id: "dwindle",
+    word: "dwindle",
+    pronunciation: "DWIN-dl",
+    ipa: "/ˈdwɪndl/",
+    class: "verb",
+    difficulty: 3,
+    rarity: "rare",
+    room: "failure",
+    meaning: "to gradually become smaller, weaker or fewer.",
+    synonyms: ["shrink", "diminish", "decline", "wane"],
+    antonyms: ["grow", "increase", "flourish"],
+    mistake:
+      "Dwindle is a slow, gradual shrinking — not a sudden drop.",
+    trick:
+      "Picture a candle burning down: the flame 'dwindles' smaller and smaller.",
+    story:
+      "As winter dragged on, the villagers' supplies dwindled to a few handfuls of grain, and hope grew thinner with each cold morning.",
+    examples: [
+      "Their savings slowly dwindled to nothing.",
+      "The crowd dwindled as the rain grew heavier.",
+    ],
+    olevel:
+      "The writer charts how the family's fortune dwindled year by year, each small loss quietly foreshadowing the ruin to come.",
+    collocations: ["dwindle away", "steadily dwindle", "dwindling supplies"],
+    phrases: ["run low", "peter out"],
+    quiz: {
+      prompt: "If something dwindles, it…",
+      options: [
+        "gradually becomes smaller or fewer",
+        "suddenly doubles",
+        "stays exactly the same",
+        "grows quickly",
+      ],
+      answer: 0,
+      explain: "Dwindle means to shrink slowly over time.",
+    },
+    motif: "📉",
+  },
+  {
+    id: "sceptical",
+    word: "sceptical",
+    pronunciation: "SKEP-tih-kuhl",
+    ipa: "/ˈskɛptɪkəl/",
+    class: "adjective",
+    difficulty: 3,
+    rarity: "rare",
+    room: "science",
+    meaning: "not easily convinced; having doubts.",
+    synonyms: ["doubtful", "unconvinced", "dubious", "questioning"],
+    antonyms: ["credulous", "convinced", "trusting"],
+    mistake:
+      "British spelling is 'sceptical' (American 'skeptical'). It means doubting, not negative or rude.",
+    trick:
+      "A sceptic 'skips' believing until there's proof — sceptical minds demand evidence.",
+    story:
+      "The old scientist raised an eyebrow, sceptical of the miracle cure, and quietly reached for a test tube to see for himself.",
+    examples: [
+      "I'm sceptical about claims that sound too good to be true.",
+      "She gave the salesman a sceptical look.",
+    ],
+    olevel:
+      "A good reader stays sceptical, weighing the writer's claims against the evidence rather than swallowing them whole.",
+    collocations: ["deeply sceptical", "sceptical look", "remain sceptical"],
+    phrases: ["take with a pinch of salt", "seeing is believing"],
+    quiz: {
+      prompt: "A sceptical person is one who…",
+      options: [
+        "doubts and needs convincing",
+        "believes everything instantly",
+        "is always cheerful",
+        "never asks questions",
+      ],
+      answer: 0,
+      explain: "Sceptical means doubtful and not easily convinced.",
+    },
+    motif: "🤨",
+  },
+  {
+    id: "unanimous",
+    word: "unanimous",
+    pronunciation: "yoo-NAN-ih-muhs",
+    ipa: "/juːˈnænɪməs/",
+    class: "adjective",
+    difficulty: 4,
+    rarity: "epic",
+    room: "politics",
+    meaning: "fully agreed on by everyone, with no one opposing.",
+    synonyms: ["united", "undivided", "of one mind", "consensual"],
+    antonyms: ["divided", "split", "contested"],
+    mistake:
+      "Unanimous means EVERYONE agrees — not just a majority. One dissenter and it isn't unanimous.",
+    trick:
+      "'Uni-' (one) + 'anim' (mind) → everyone of one mind: unanimous.",
+    story:
+      "For the first time in years the council was unanimous: every hand rose together, and the decision passed without a single voice against it.",
+    examples: [
+      "The jury reached a unanimous verdict.",
+      "There was unanimous agreement to postpone the trip.",
+    ],
+    olevel:
+      "The vote was unanimous, yet the writer hints that such perfect agreement was less a sign of harmony than of fear.",
+    collocations: ["unanimous decision", "unanimous verdict", "near-unanimous"],
+    phrases: ["with one voice", "hands down"],
+    quiz: {
+      prompt: "A unanimous decision is one where…",
+      options: [
+        "everyone agrees, with no one against",
+        "only half agree",
+        "one person decides alone",
+        "nobody can agree",
+      ],
+      answer: 0,
+      explain: "Unanimous means total agreement — everyone is of one mind.",
+    },
+    motif: "🗳️",
+  },
+  {
+    id: "cordial",
+    word: "cordial",
+    pronunciation: "KAW-dee-uhl",
+    ipa: "/ˈkɔːdiəl/",
+    class: "adjective",
+    difficulty: 3,
+    rarity: "rare",
+    room: "relationships",
+    meaning: "warm, friendly and sincere.",
+    synonyms: ["warm", "genial", "affable", "gracious"],
+    antonyms: ["cold", "hostile", "frosty"],
+    mistake:
+      "Cordial is polite warmth — friendlier than 'formal' but not as close as 'intimate'.",
+    trick:
+      "'Cord' comes from the Latin for heart (cor) — a cordial welcome comes from the heart.",
+    story:
+      "Though they had only just met, the old man's cordial welcome — tea, a warm chair, an easy smile — made the traveller feel instantly at home.",
+    examples: [
+      "The two leaders had a cordial meeting.",
+      "She gave a cordial nod to her new neighbours.",
+    ],
+    olevel:
+      "Beneath their cordial smiles simmered an old rivalry, and the writer lets us feel the tension hiding behind the politeness.",
+    collocations: ["cordial welcome", "cordial relations", "warm and cordial"],
+    phrases: ["on good terms", "roll out the welcome mat"],
+    quiz: {
+      prompt: "A cordial greeting is…",
+      options: ["warm and friendly", "cold and rude", "loud and angry", "silent and cold"],
+      answer: 0,
+      explain: "Cordial means sincerely warm and friendly.",
+    },
+    motif: "🍵",
+  },
+  {
+    id: "coherent",
+    word: "coherent",
+    pronunciation: "koh-HEER-uhnt",
+    ipa: "/kəʊˈhɪərənt/",
+    class: "adjective",
+    difficulty: 4,
+    rarity: "epic",
+    room: "education",
+    meaning: "clear, logical and well organised, with parts that fit together.",
+    synonyms: ["logical", "consistent", "lucid", "orderly"],
+    antonyms: ["confused", "disjointed", "rambling"],
+    mistake:
+      "Coherent is about ideas hanging together logically — not just being loud or confident.",
+    trick:
+      "'Co-' (together) + 'here' (stick) → ideas that stick together make a coherent argument.",
+    story:
+      "His first draft was a jumble, but after an hour of patient ordering, the essay became coherent — each paragraph flowing cleanly into the next.",
+    examples: [
+      "She gave a clear, coherent account of what happened.",
+      "The plan needs to be more coherent before we present it.",
+    ],
+    olevel:
+      "Marks are won not by clever words alone but by a coherent argument, where every point builds logically on the last.",
+    collocations: ["coherent argument", "coherent structure", "clear and coherent"],
+    phrases: ["hang together", "join the dots"],
+    quiz: {
+      prompt: "A coherent essay is one that is…",
+      options: [
+        "clear and logically organised",
+        "long and confusing",
+        "full of spelling errors",
+        "written in a rush",
+      ],
+      answer: 0,
+      explain: "Coherent means the parts fit together in a clear, logical way.",
+    },
+    motif: "🧩",
+  },
 ];
 
 /** Fast lookup by id. */

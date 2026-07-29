@@ -41,6 +41,7 @@ export const ROOMS: Room[] = [
       { id: "e2", label: "rain against a dark window", emoji: "🌧️", hint: "A soft, thoughtful kind of sadness…", wordId: "melancholy", x: 24, y: 44 },
       { id: "e3", label: "a clock outside an exam hall", emoji: "🕰️", hint: "The hands crawl and the stomach tightens…", wordId: "apprehensive", x: 52, y: 66 },
       { id: "e4", label: "a faded childhood photograph", emoji: "🖼️", hint: "A gentle ache for what is gone…", wordId: "wistful", x: 82, y: 62 },
+      { id: "e5", label: "a torn-up unfair verdict", emoji: "😤", hint: "Something here burns with wounded fairness…", wordId: "indignant", x: 15, y: 76 },
     ],
   },
   {
@@ -58,6 +59,7 @@ export const ROOMS: Room[] = [
       { id: "c2", label: "a bottle that hisses and steams", emoji: "🌋", hint: "One shake and it could erupt…", wordId: "volatile", x: 70, y: 34 },
       { id: "c3", label: "two hands meeting over a torn map", emoji: "🕊️", hint: "After all the fighting, a chance to mend…", wordId: "reconcile", x: 48, y: 68 },
       { id: "c4", label: "a lone chess piece across the board", emoji: "♟️", hint: "The one who stands against you…", wordId: "adversary", x: 82, y: 64 },
+      { id: "c5", label: "a raised fist against a wall", emoji: "✊", hint: "It will not back down…", wordId: "defiant", x: 15, y: 74 },
     ],
   },
   {
@@ -75,6 +77,7 @@ export const ROOMS: Room[] = [
       { id: "s2", label: "a rope worn from many climbs", emoji: "🧗", hint: "It failed four times, and tried a fifth…", wordId: "perseverance", x: 66, y: 40 },
       { id: "s3", label: "a golden trophy still warm", emoji: "🏆", hint: "The roar of the crowd still clings to it…", wordId: "triumphant", x: 46, y: 66 },
       { id: "s4", label: "a watchmaker's eyeglass", emoji: "🔍", hint: "Every tiny detail, checked and checked again…", wordId: "meticulous", x: 82, y: 60 },
+      { id: "s5", label: "ivy gripping the old stonework", emoji: "🦾", hint: "It simply refuses to let go…", wordId: "tenacious", x: 15, y: 74 },
     ],
   },
   {
@@ -92,6 +95,7 @@ export const ROOMS: Room[] = [
       { id: "f2", label: "a purse with a hole in it", emoji: "💸", hint: "So much wasted, so carelessly…", wordId: "squander", x: 68, y: 38 },
       { id: "f3", label: "a cracked warning lantern", emoji: "⚠️", hint: "One wrong move puts everything at risk…", wordId: "jeopardise", x: 48, y: 66 },
       { id: "f4", label: "a chair with three legs", emoji: "🤦", hint: "Built with the best intentions, and no skill…", wordId: "inept", x: 82, y: 62 },
+      { id: "f5", label: "a candle burned almost to nothing", emoji: "📉", hint: "Growing smaller by the hour…", wordId: "dwindle", x: 15, y: 74 },
     ],
   },
   {
@@ -109,6 +113,7 @@ export const ROOMS: Room[] = [
       { id: "sc2", label: "a chart of careful measurements", emoji: "📊", hint: "Not opinion — proof you can see…", wordId: "empirical", x: 70, y: 34 },
       { id: "sc3", label: "a spark leaping between two coils", emoji: "⚗️", hint: "One small thing sets everything moving…", wordId: "catalyst", x: 46, y: 68 },
       { id: "sc4", label: "a lake glowing electric blue", emoji: "🌠", hint: "A marvel no one can quite explain…", wordId: "phenomenon", x: 82, y: 62 },
+      { id: "sc5", label: "a raised eyebrow over a 'miracle' bottle", emoji: "🤨", hint: "It believes nothing without proof…", wordId: "sceptical", x: 15, y: 74 },
     ],
   },
   {
@@ -126,6 +131,7 @@ export const ROOMS: Room[] = [
       { id: "p2", label: "a folded top hat", emoji: "🎩", hint: "It knows how to say hard things gently…", wordId: "diplomatic", x: 70, y: 36 },
       { id: "p3", label: "a broken chain on a torch", emoji: "🗽", hint: "The sweet, hard-won right to rule oneself…", wordId: "autonomy", x: 46, y: 66 },
       { id: "p4", label: "a megaphone on a soapbox", emoji: "📣", hint: "A voice raised for a cause…", wordId: "advocate", x: 82, y: 60 },
+      { id: "p5", label: "a show of every hand at once", emoji: "🗳️", hint: "Not one voice against…", wordId: "unanimous", x: 15, y: 74 },
     ],
   },
   {
@@ -161,6 +167,7 @@ export const ROOMS: Room[] = [
       { id: "r2", label: "two cups sharing one saucer", emoji: "🫱", hint: "Strangers who suddenly feel like old friends…", wordId: "rapport", x: 68, y: 36 },
       { id: "r3", label: "a torn photograph, both halves kept", emoji: "💔", hint: "Once close, now far — and quietly missed…", wordId: "estranged", x: 46, y: 66 },
       { id: "r4", label: "a dog waiting at a gate", emoji: "🔗", hint: "Loyal through every season, asking nothing…", wordId: "devoted", x: 82, y: 62 },
+      { id: "r5", label: "a fresh pot of tea for a guest", emoji: "🍵", hint: "A warm welcome, straight from the heart…", wordId: "cordial", x: 15, y: 74 },
     ],
   },
   {
@@ -195,6 +202,7 @@ export const ROOMS: Room[] = [
       { id: "ed2", label: "a well with no visible bottom", emoji: "🌌", hint: "Ideas that reach all the way down…", wordId: "profound", x: 70, y: 36 },
       { id: "ed3", label: "an inkwell mid-sentence", emoji: "✍️", hint: "The knack of finding exactly the right words…", wordId: "articulate", x: 46, y: 66 },
       { id: "ed4", label: "a child's endless list of 'why?'", emoji: "🔎", hint: "A mind that will not stop asking…", wordId: "inquisitive", x: 82, y: 62 },
+      { id: "ed5", label: "scattered notes ordered into one clear thread", emoji: "🧩", hint: "Every part fits together…", wordId: "coherent", x: 15, y: 74 },
     ],
   },
 ];

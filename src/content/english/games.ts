@@ -37,6 +37,13 @@ export const GAMES: GameMeta[] = [
     tagline: "The letters have scattered — restore each word from its meaning.",
     minWords: 3,
   },
+  {
+    slug: "builder",
+    name: "Sentence Builder",
+    icon: "🧱",
+    tagline: "Reassemble the scattered words into a well-formed sentence.",
+    minWords: 0,
+  },
 ];
 
 export function getGame(slug: string): GameMeta | undefined {
