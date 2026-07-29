@@ -24,6 +24,7 @@ export const ROOMS: Room[] = [
       { id: "n3", label: "a jar of grey dust", emoji: "🏺", hint: "Nothing has grown in it for an age…", wordId: "barren", x: 44, y: 34 },
       { id: "n4", label: "a glowing green valley in a painting", emoji: "🖼️", hint: "So green it seems to shine…", wordId: "verdant", x: 80, y: 40 },
       { id: "n5", label: "a butterfly pinned mid-flight", emoji: "🦋", hint: "Beautiful — and gone almost before you look…", wordId: "ephemeral", x: 14, y: 30 },
+      { id: "n6", label: "a waterfall bursting through the ceiling", emoji: "🌧️", hint: "The rain here does not fall — it pours…", wordId: "torrential", x: 86, y: 78 },
     ],
   },
   {
@@ -114,6 +115,7 @@ export const ROOMS: Room[] = [
       { id: "sc3", label: "a spark leaping between two coils", emoji: "⚗️", hint: "One small thing sets everything moving…", wordId: "catalyst", x: 46, y: 68 },
       { id: "sc4", label: "a lake glowing electric blue", emoji: "🌠", hint: "A marvel no one can quite explain…", wordId: "phenomenon", x: 82, y: 62 },
       { id: "sc5", label: "a raised eyebrow over a 'miracle' bottle", emoji: "🤨", hint: "It believes nothing without proof…", wordId: "sceptical", x: 15, y: 74 },
+      { id: "sc6", label: "a checklist run a hundred times over", emoji: "🔬", hint: "Nothing skipped, nothing assumed, everything tested…", wordId: "rigorous", x: 86, y: 78 },
     ],
   },
   {
@@ -150,6 +152,7 @@ export const ROOMS: Room[] = [
       { id: "t3", label: "a calm sea with ice beneath", emoji: "🌊", hint: "It looks safe. It is not…", wordId: "treacherous", x: 46, y: 66 },
       { id: "t4", label: "a tent folded onto a camel", emoji: "🐫", hint: "Home is wherever tonight's fire is lit…", wordId: "nomadic", x: 80, y: 60 },
       { id: "t5", label: "a four-leaf clover in a missed train ticket", emoji: "🍀", hint: "You weren't even looking — and there it was…", wordId: "serendipity", x: 14, y: 66 },
+      { id: "t6", label: "boots that have climbed every peak", emoji: "🧗", hint: "Fearless, and always first up the mountain…", wordId: "intrepid", x: 86, y: 78 },
     ],
   },
   {
@@ -168,6 +171,7 @@ export const ROOMS: Room[] = [
       { id: "r3", label: "a torn photograph, both halves kept", emoji: "💔", hint: "Once close, now far — and quietly missed…", wordId: "estranged", x: 46, y: 66 },
       { id: "r4", label: "a dog waiting at a gate", emoji: "🔗", hint: "Loyal through every season, asking nothing…", wordId: "devoted", x: 82, y: 62 },
       { id: "r5", label: "a fresh pot of tea for a guest", emoji: "🍵", hint: "A warm welcome, straight from the heart…", wordId: "cordial", x: 15, y: 74 },
+      { id: "r6", label: "two rivals shaking hands, both smiling", emoji: "🕊️", hint: "They disagreed — and parted as friends…", wordId: "amicable", x: 86, y: 78 },
     ],
   },
   {
@@ -185,6 +189,7 @@ export const ROOMS: Room[] = [
       { id: "te2", label: "a dusty machine behind velvet rope", emoji: "📟", hint: "Once mighty, now utterly out of date…", wordId: "obsolete", x: 70, y: 34 },
       { id: "te3", label: "a screen glowing on every wall", emoji: "🌐", hint: "It is everywhere you turn…", wordId: "ubiquitous", x: 46, y: 68 },
       { id: "te4", label: "three tangled pipes merged into one", emoji: "🛠️", hint: "Cut the clutter; let the work flow…", wordId: "streamline", x: 82, y: 60 },
+      { id: "te5", label: "a device unlocked at the first touch", emoji: "👆", hint: "No manual, no lessons — you simply knew how…", wordId: "intuitive", x: 15, y: 74 },
     ],
   },
   {
@@ -203,6 +208,7 @@ export const ROOMS: Room[] = [
       { id: "ed3", label: "an inkwell mid-sentence", emoji: "✍️", hint: "The knack of finding exactly the right words…", wordId: "articulate", x: 46, y: 66 },
       { id: "ed4", label: "a child's endless list of 'why?'", emoji: "🔎", hint: "A mind that will not stop asking…", wordId: "inquisitive", x: 82, y: 62 },
       { id: "ed5", label: "scattered notes ordered into one clear thread", emoji: "🧩", hint: "Every part fits together…", wordId: "coherent", x: 15, y: 74 },
+      { id: "ed6", label: "an owl reading between the lines", emoji: "🦉", hint: "It sees at once what everyone else missed…", wordId: "astute", x: 86, y: 78 },
     ],
   },
 ];

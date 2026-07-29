@@ -2260,6 +2260,235 @@ export const WORDS: Word[] = [
     },
     motif: "🧩",
   },
+  {
+    id: "intuitive",
+    word: "intuitive",
+    pronunciation: "in-TOO-ih-tiv",
+    ipa: "/ɪnˈtjuːɪtɪv/",
+    class: "adjective",
+    difficulty: 3,
+    rarity: "rare",
+    room: "technology",
+    meaning: "easy to understand or use without being taught; known instinctively.",
+    synonyms: ["instinctive", "natural", "user-friendly", "effortless"],
+    antonyms: ["confusing", "counterintuitive", "unclear"],
+    mistake:
+      "Intuitive can describe a person's instinct OR a design that's easy to use — context tells you which.",
+    trick:
+      "An intuitive app you just 'get' — no manual. Your intuition guides you.",
+    story:
+      "The new tablet needed no instructions at all; even her grandmother found it so intuitive that she was sending photos within minutes.",
+    examples: [
+      "The app has a clean, intuitive design.",
+      "She had an intuitive sense of when something was wrong.",
+    ],
+    olevel:
+      "The best technology is intuitive: it disappears into the task, so we think about what we are doing rather than how to do it.",
+    collocations: ["intuitive design", "intuitive interface", "deeply intuitive"],
+    phrases: ["second nature", "just clicks"],
+    quiz: {
+      prompt: "An intuitive tool is one that is…",
+      options: [
+        "easy to use without instructions",
+        "impossible to figure out",
+        "extremely expensive",
+        "very heavy to carry",
+      ],
+      answer: 0,
+      explain: "Intuitive means naturally easy to understand or use.",
+    },
+    motif: "👆",
+  },
+  {
+    id: "torrential",
+    word: "torrential",
+    pronunciation: "tuh-REN-shuhl",
+    ipa: "/təˈrɛnʃəl/",
+    class: "adjective",
+    difficulty: 4,
+    rarity: "epic",
+    room: "nature",
+    meaning: "(of rain) falling in huge, rushing amounts.",
+    synonyms: ["pouring", "driving", "torrent-like", "heavy"],
+    antonyms: ["light", "drizzling", "gentle"],
+    mistake:
+      "Torrential is used mostly for rain (a 'torrent' of water). Don't use it for a light shower.",
+    trick:
+      "A 'torrent' is a violent rushing stream — torrential rain comes down in torrents.",
+    story:
+      "The torrential rain hammered the tin roof so loudly that the children had to shout, while streets turned to rivers within the hour.",
+    examples: [
+      "Torrential rain flooded the low-lying roads.",
+      "They sheltered under an awning from the torrential downpour.",
+    ],
+    olevel:
+      "The torrential rain mirrors the character's grief — relentless, overwhelming, and impossible to hold back.",
+    collocations: ["torrential rain", "torrential downpour", "torrential floods"],
+    phrases: ["raining cats and dogs", "the heavens opened"],
+    quiz: {
+      prompt: "Torrential rain is…",
+      options: [
+        "very heavy, rushing rain",
+        "a light drizzle",
+        "warm sunshine",
+        "a gentle mist",
+      ],
+      answer: 0,
+      explain: "Torrential describes rain falling in huge, rushing amounts.",
+    },
+    motif: "🌧️",
+  },
+  {
+    id: "intrepid",
+    word: "intrepid",
+    pronunciation: "in-TREP-id",
+    ipa: "/ɪnˈtrɛpɪd/",
+    class: "adjective",
+    difficulty: 4,
+    rarity: "epic",
+    room: "travel",
+    meaning: "fearless and boldly adventurous.",
+    synonyms: ["fearless", "dauntless", "bold", "undaunted"],
+    antonyms: ["timid", "fearful", "cowardly"],
+    mistake:
+      "Intrepid is admiring — it praises brave adventurers, not reckless fools.",
+    trick:
+      "'In-' (not) + 'trepid' (from trepidation, fear) → not fearful: intrepid.",
+    story:
+      "While the others turned back at the first storm, the intrepid explorer tightened her boots, checked her compass, and pressed on into the white.",
+    examples: [
+      "An intrepid traveller, he had crossed three deserts alone.",
+      "The intrepid rescue team went in despite the danger.",
+    ],
+    olevel:
+      "The story celebrates the intrepid spirit — that stubborn refusal to let fear decide how far we are willing to go.",
+    collocations: ["intrepid explorer", "intrepid traveller", "intrepid spirit"],
+    phrases: ["boldly go", "without fear"],
+    quiz: {
+      prompt: "An intrepid explorer is one who is…",
+      options: ["fearless and adventurous", "nervous and cautious", "lazy and slow", "unkind and rude"],
+      answer: 0,
+      explain: "Intrepid means brave and boldly adventurous.",
+    },
+    motif: "🧗",
+  },
+  {
+    id: "rigorous",
+    word: "rigorous",
+    pronunciation: "RIG-er-uhs",
+    ipa: "/ˈrɪɡərəs/",
+    class: "adjective",
+    difficulty: 4,
+    rarity: "epic",
+    room: "science",
+    meaning: "extremely thorough, careful and exact.",
+    synonyms: ["thorough", "exacting", "stringent", "meticulous"],
+    antonyms: ["lax", "careless", "casual"],
+    mistake:
+      "Rigorous means demanding and precise (a rigorous test), not simply 'difficult'.",
+    trick:
+      "Rigorous shares a root with 'rigid' — a rigorous method follows the rules exactly, with no shortcuts.",
+    story:
+      "Before she would announce a single result, the scientist ran rigorous checks, repeating each experiment until not a shadow of doubt remained.",
+    examples: [
+      "The drug passed a series of rigorous safety tests.",
+      "He applied rigorous logic to every argument.",
+    ],
+    olevel:
+      "Science advances through rigorous testing, where a beautiful idea counts for nothing until the evidence survives every challenge.",
+    collocations: ["rigorous testing", "rigorous analysis", "rigorous standards"],
+    phrases: ["leave nothing to chance", "by the book"],
+    quiz: {
+      prompt: "A rigorous test is one that is…",
+      options: [
+        "extremely thorough and exact",
+        "quick and careless",
+        "easy and relaxed",
+        "made up on the spot",
+      ],
+      answer: 0,
+      explain: "Rigorous means thorough, careful and precise.",
+    },
+    motif: "🔬",
+  },
+  {
+    id: "astute",
+    word: "astute",
+    pronunciation: "uh-STOOT",
+    ipa: "/əˈstjuːt/",
+    class: "adjective",
+    difficulty: 4,
+    rarity: "epic",
+    room: "education",
+    meaning: "quick to see and understand things; cleverly perceptive.",
+    synonyms: ["shrewd", "perceptive", "sharp", "canny"],
+    antonyms: ["naive", "obtuse", "gullible"],
+    mistake:
+      "Astute is a compliment about sharp judgement — not mere book-cleverness or cunning trickery.",
+    trick:
+      "An astute person is 'a-tuned' to what others miss — they read the room instantly.",
+    story:
+      "One astute glance at the ledger and the old accountant spotted the tiny error that a dozen others had read straight past.",
+    examples: [
+      "An astute observer, she noticed the smallest change in his mood.",
+      "It was an astute business decision.",
+    ],
+    olevel:
+      "The narrator's astute reading of people — a raised eyebrow here, a hesitation there — lets the reader see what the other characters cannot.",
+    collocations: ["astute observation", "politically astute", "astute judgement"],
+    phrases: ["sharp as a tack", "read between the lines"],
+    quiz: {
+      prompt: "An astute person is…",
+      options: [
+        "quick to understand and perceptive",
+        "slow and easily fooled",
+        "loud and boastful",
+        "shy and silent",
+      ],
+      answer: 0,
+      explain: "Astute means shrewd and sharply perceptive.",
+    },
+    motif: "🦉",
+  },
+  {
+    id: "amicable",
+    word: "amicable",
+    pronunciation: "AM-ih-kuh-buhl",
+    ipa: "/ˈæmɪkəbl/",
+    class: "adjective",
+    difficulty: 3,
+    rarity: "rare",
+    room: "relationships",
+    meaning: "friendly and free from serious disagreement.",
+    synonyms: ["friendly", "cordial", "harmonious", "good-natured"],
+    antonyms: ["hostile", "acrimonious", "quarrelsome"],
+    mistake:
+      "Amicable often describes settling a dispute peacefully — an 'amicable agreement' means both sides parted on good terms.",
+    trick:
+      "'Amic' means friend (as in 'amigo') — an amicable parting stays friendly.",
+    story:
+      "Though the business partners went their separate ways, the split was entirely amicable — a handshake, a shared laugh, and no hard feelings.",
+    examples: [
+      "They reached an amicable agreement out of court.",
+      "The neighbours had an amicable relationship.",
+    ],
+    olevel:
+      "Their amicable parting, without a single harsh word, is more moving than any dramatic quarrel could have been.",
+    collocations: ["amicable agreement", "amicable settlement", "amicable relationship"],
+    phrases: ["part on good terms", "no hard feelings"],
+    quiz: {
+      prompt: "An amicable agreement is one reached…",
+      options: [
+        "in a friendly way, without conflict",
+        "after a bitter fight",
+        "by ignoring each other",
+        "through a court battle",
+      ],
+      answer: 0,
+      explain: "Amicable means friendly and free from serious disagreement.",
+    },
+    motif: "🕊️",
+  },
 ];
 
 /** Fast lookup by id. */
