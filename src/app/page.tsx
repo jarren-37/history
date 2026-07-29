@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { levelFromXp } from "@/lib/science/levels";
 
 interface Subject {
   brand: string;
@@ -15,6 +16,42 @@ interface Subject {
   glow: string;
   text: string;
   soon?: boolean;
+  /** localStorage key for this subject's saved progress. */
+  storageKey?: string;
+  /** How to summarise saved progress into a short badge. */
+  kind?: "history" | "english" | "science";
+}
+
+/** Read a subject's saved progress and turn it into a short badge string. */
+function readProgress(s: Subject): string | null {
+  if (!s.storageKey || typeof window === "undefined") return null;
+  try {
+    const raw = window.localStorage.getItem(s.storageKey);
+    if (!raw) return null;
+    const data = JSON.parse(raw);
+    if (s.kind === "history") {
+      const prog = data.progress ?? {};
+      const chapters = Object.values(prog).filter(
+        (p: unknown) => (p as { completed?: boolean })?.completed
+      ).length;
+      return chapters > 0 ? `${chapters} chapter${chapters > 1 ? "s" : ""} read` : null;
+    }
+    if (s.kind === "english") {
+      const words = Object.keys(data.collection ?? {}).length;
+      const lv = levelFromXp(data.xp ?? 0).level;
+      if (!words && !data.xp) return null;
+      return `Lv ${lv} · ${words} word${words === 1 ? "" : "s"}`;
+    }
+    if (s.kind === "science") {
+      const stations = (data.completed ?? []).length;
+      const lv = levelFromXp(data.xp ?? 0).level;
+      if (!stations && !data.xp) return null;
+      return `Lv ${lv} · ${stations} mastered`;
+    }
+  } catch {
+    /* ignore */
+  }
+  return null;
 }
 
 const SUBJECTS: Subject[] = [
@@ -29,6 +66,8 @@ const SUBJECTS: Subject[] = [
     bg: "linear-gradient(155deg,#6b4423,#2e1c0c)",
     glow: "#d8a24a",
     text: "#f3dcae",
+    storageKey: "chronicle:v1",
+    kind: "history",
   },
   {
     brand: "Lexicon",
@@ -41,6 +80,8 @@ const SUBJECTS: Subject[] = [
     bg: "linear-gradient(155deg,#1d5b4f,#0c2a25)",
     glow: "#57c9a9",
     text: "#eafff6",
+    storageKey: "lexicon:v1",
+    kind: "english",
   },
   {
     brand: "The Alchemist's Atelier",
@@ -53,6 +94,8 @@ const SUBJECTS: Subject[] = [
     bg: "linear-gradient(155deg,#3c2a12,#10241a)",
     glow: "#cf8a3a",
     text: "#f0e4cf",
+    storageKey: "atelier:v1",
+    kind: "science",
   },
   {
     brand: "The Inventor's Observatory",
@@ -65,12 +108,15 @@ const SUBJECTS: Subject[] = [
     bg: "linear-gradient(155deg,#1a2140,#080b18)",
     glow: "#5a8bff",
     text: "#e6ecff",
+    storageKey: "observatory:v1",
+    kind: "science",
   },
 ];
 
 export default function AthenaeumHub() {
   const [dark, setDark] = useState(false);
   const [hydrated, setHydrated] = useState(false);
+  const [progress, setProgress] = useState<Record<string, string | null>>({});
 
   useEffect(() => {
     try {
@@ -83,6 +129,9 @@ export default function AthenaeumHub() {
     } catch {
       /* non-fatal */
     }
+    const p: Record<string, string | null> = {};
+    SUBJECTS.forEach((s) => (p[s.subject] = readProgress(s)));
+    setProgress(p);
     setHydrated(true);
   }, []);
 
@@ -151,7 +200,7 @@ export default function AthenaeumHub() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.1 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
             >
-              <SubjectDoor subject={s} />
+              <SubjectDoor subject={s} progress={hydrated ? progress[s.subject] : null} />
             </motion.div>
           ))}
         </div>
@@ -165,7 +214,13 @@ export default function AthenaeumHub() {
   );
 }
 
-function SubjectDoor({ subject: s }: { subject: Subject }) {
+function SubjectDoor({
+  subject: s,
+  progress,
+}: {
+  subject: Subject;
+  progress?: string | null;
+}) {
   const inner = (
     <div
       className="group relative h-full overflow-hidden rounded-3xl border-2 p-6 shadow-soft-lg transition-transform sm:p-7"
@@ -187,6 +242,14 @@ function SubjectDoor({ subject: s }: { subject: Subject }) {
           style={{ background: `color-mix(in srgb, ${s.glow} 30%, transparent)`, color: s.text }}
         >
           Coming soon
+        </span>
+      )}
+      {!s.soon && progress && (
+        <span
+          className="absolute right-4 top-4 rounded-full border px-3 py-1 text-[11px] font-bold"
+          style={{ borderColor: `color-mix(in srgb, ${s.glow} 50%, transparent)`, background: `color-mix(in srgb, ${s.glow} 18%, transparent)`, color: s.text }}
+        >
+          {progress}
         </span>
       )}
 
@@ -220,7 +283,7 @@ function SubjectDoor({ subject: s }: { subject: Subject }) {
               className="inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 font-display text-base font-extrabold shadow-lg transition-transform group-hover:scale-105"
               style={{ background: s.glow, color: "#1a1206" }}
             >
-              Step inside →
+              {progress ? "Continue →" : "Step inside →"}
             </span>
           )}
         </div>

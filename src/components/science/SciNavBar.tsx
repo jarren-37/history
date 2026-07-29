@@ -24,6 +24,8 @@ export function SciNavBar({
   soundOn,
   toggleSound,
   hydrated,
+  level,
+  profileHref,
 }: {
   brand: string;
   motif: string;
@@ -32,6 +34,8 @@ export function SciNavBar({
   soundOn: boolean;
   toggleSound: () => void;
   hydrated: boolean;
+  level?: number;
+  profileHref?: string;
 }) {
   const pathname = usePathname();
 
@@ -101,6 +105,19 @@ export function SciNavBar({
           })}
         </div>
 
+        {profileHref && (
+          <Link
+            href={profileHref}
+            title="Your profile"
+            className="hidden shrink-0 items-center gap-1.5 rounded-xl border px-2.5 py-1.5 sm:flex"
+            style={{ borderColor: "var(--sci-border)", color: "var(--sci-ink)" }}
+          >
+            <span aria-hidden>🎖️</span>
+            <span className="font-display text-sm font-extrabold" style={{ color: "var(--sci-accent)" }}>
+              Lv {hydrated ? (level ?? 1) : "—"}
+            </span>
+          </Link>
+        )}
         <button
           onClick={() => {
             void resumeAudio();

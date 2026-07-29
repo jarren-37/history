@@ -16,7 +16,7 @@ const LINKS: SciNavLink[] = [
 ];
 
 export function NavBar() {
-  const { soundOn, toggleSound, hydrated } = useAtelier();
+  const { soundOn, toggleSound, hydrated, level } = useAtelier();
   return (
     <SciNavBar
       brand="Atelier"
@@ -26,6 +26,8 @@ export function NavBar() {
       soundOn={soundOn}
       toggleSound={toggleSound}
       hydrated={hydrated}
+      level={level.level}
+      profileHref="/chemistry/profile"
     />
   );
 }

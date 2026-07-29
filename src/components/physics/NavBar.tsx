@@ -16,7 +16,7 @@ const LINKS: SciNavLink[] = [
 ];
 
 export function NavBar() {
-  const { soundOn, toggleSound, hydrated } = useObservatory();
+  const { soundOn, toggleSound, hydrated, level } = useObservatory();
   return (
     <SciNavBar
       brand="Observatory"
@@ -26,6 +26,8 @@ export function NavBar() {
       soundOn={soundOn}
       toggleSound={toggleSound}
       hydrated={hydrated}
+      level={level.level}
+      profileHref="/physics/profile"
     />
   );
 }
