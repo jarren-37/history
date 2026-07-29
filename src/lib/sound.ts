@@ -356,3 +356,157 @@ export function playTick(): void {
   const t = c.currentTime;
   tone(c, 1400, t, 0.05, 0.05, "square");
 }
+
+// ── Subject-specific ambient beds ───────────────────────────────────────────
+// Each is self-contained (own master gain, voices and timers) so the science
+// subjects get distinct atmospheres without touching the library drone above.
+
+let atelierMaster: GainNode | null = null;
+let atelierVoices: OscillatorNode[] = [];
+let atelierTimer: ReturnType<typeof setTimeout> | null = null;
+
+/** The Alchemist's Atelier: a warm drone with drifting bubbles and faint fire. */
+export function startAtelierBed(): void {
+  const c = ensure();
+  if (!c || atelierMaster) return;
+  void resumeAudio();
+  const master = c.createGain();
+  master.gain.value = 0;
+  master.connect(c.destination);
+  atelierMaster = master;
+
+  const lp = c.createBiquadFilter();
+  lp.type = "lowpass";
+  lp.frequency.value = 420;
+  lp.connect(master);
+
+  [72, 108, 144].forEach((f, i) => {
+    const o = c.createOscillator();
+    o.type = i === 0 ? "sine" : "triangle";
+    o.frequency.value = f;
+    const g = c.createGain();
+    g.gain.value = 0.1 - i * 0.02;
+    o.connect(g);
+    g.connect(lp);
+    o.start();
+    atelierVoices.push(o);
+  });
+
+  const t = c.currentTime;
+  master.gain.setValueAtTime(0.0001, t);
+  master.gain.linearRampToValueAtTime(0.5, t + 3);
+
+  const bubble = () => {
+    if (!atelierMaster) return;
+    const now = c.currentTime;
+    const o = c.createOscillator();
+    o.type = "sine";
+    o.frequency.setValueAtTime(240 + Math.random() * 120, now);
+    o.frequency.exponentialRampToValueAtTime(700 + Math.random() * 300, now + 0.12);
+    const g = c.createGain();
+    g.gain.setValueAtTime(0.0001, now);
+    g.gain.exponentialRampToValueAtTime(0.05, now + 0.03);
+    g.gain.exponentialRampToValueAtTime(0.0001, now + 0.16);
+    o.connect(g);
+    g.connect(atelierMaster);
+    o.start(now);
+    o.stop(now + 0.2);
+    atelierTimer = setTimeout(bubble, 900 + Math.random() * 2600);
+  };
+  atelierTimer = setTimeout(bubble, 1200);
+}
+
+export function stopAtelierBed(): void {
+  const c = ctx;
+  if (!c || !atelierMaster) return;
+  const t = c.currentTime;
+  atelierMaster.gain.cancelScheduledValues(t);
+  atelierMaster.gain.setValueAtTime(atelierMaster.gain.value, t);
+  atelierMaster.gain.linearRampToValueAtTime(0.0001, t + 1);
+  if (atelierTimer) clearTimeout(atelierTimer);
+  atelierTimer = null;
+  const voices = atelierVoices;
+  atelierVoices = [];
+  atelierMaster = null;
+  setTimeout(() => voices.forEach((v) => { try { v.stop(); } catch { /* stopped */ } }), 1200);
+}
+
+let obsMaster: GainNode | null = null;
+let obsVoices: OscillatorNode[] = [];
+let obsTimer: ReturnType<typeof setTimeout> | null = null;
+
+/** The Inventor's Observatory: an electric hum with a slow clockwork tick. */
+export function startObservatoryBed(): void {
+  const c = ensure();
+  if (!c || obsMaster) return;
+  void resumeAudio();
+  const master = c.createGain();
+  master.gain.value = 0;
+  master.connect(c.destination);
+  obsMaster = master;
+
+  const lp = c.createBiquadFilter();
+  lp.type = "lowpass";
+  lp.frequency.value = 300;
+  lp.connect(master);
+
+  // electric hum
+  [50, 100].forEach((f, i) => {
+    const o = c.createOscillator();
+    o.type = i === 0 ? "sawtooth" : "sine";
+    o.frequency.value = f;
+    const g = c.createGain();
+    g.gain.value = 0.07 - i * 0.03;
+    o.connect(g);
+    g.connect(lp);
+    o.start();
+    obsVoices.push(o);
+  });
+  // faint high shimmer
+  const hp = c.createOscillator();
+  hp.type = "sine";
+  hp.frequency.value = 660;
+  const hg = c.createGain();
+  hg.gain.value = 0.012;
+  hp.connect(hg);
+  hg.connect(master);
+  hp.start();
+  obsVoices.push(hp);
+
+  const t = c.currentTime;
+  master.gain.setValueAtTime(0.0001, t);
+  master.gain.linearRampToValueAtTime(0.5, t + 3);
+
+  const tick = () => {
+    if (!obsMaster) return;
+    const now = c.currentTime;
+    const o = c.createOscillator();
+    o.type = "square";
+    o.frequency.value = 1300;
+    const g = c.createGain();
+    g.gain.setValueAtTime(0.0001, now);
+    g.gain.linearRampToValueAtTime(0.02, now + 0.005);
+    g.gain.exponentialRampToValueAtTime(0.0001, now + 0.06);
+    o.connect(g);
+    g.connect(obsMaster);
+    o.start(now);
+    o.stop(now + 0.08);
+    obsTimer = setTimeout(tick, 1000);
+  };
+  obsTimer = setTimeout(tick, 1000);
+}
+
+export function stopObservatoryBed(): void {
+  const c = ctx;
+  if (!c || !obsMaster) return;
+  const t = c.currentTime;
+  obsMaster.gain.cancelScheduledValues(t);
+  obsMaster.gain.setValueAtTime(obsMaster.gain.value, t);
+  obsMaster.gain.linearRampToValueAtTime(0.0001, t + 1);
+  if (obsTimer) clearTimeout(obsTimer);
+  obsTimer = null;
+  const voices = obsVoices;
+  obsVoices = [];
+  obsMaster = null;
+  setTimeout(() => voices.forEach((v) => { try { v.stop(); } catch { /* stopped */ } }), 1200);
+}

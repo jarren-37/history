@@ -10,6 +10,7 @@ const LINKS: SciNavLink[] = [
   { href: "/chemistry/lab/electrolysis", label: "Electrolysis", icon: "⚡" },
   { href: "/chemistry/lab/organic", label: "Organic", icon: "🧬" },
   { href: "/chemistry/lab/periodic", label: "Table", icon: "🔮" },
+  { href: "/chemistry/lab/separation", label: "Separation", icon: "🧫" },
   { href: "/chemistry/games", label: "Games", icon: "🎲" },
   { href: "/chemistry/masterpiece", label: "Masterpiece", icon: "🏆" },
 ];

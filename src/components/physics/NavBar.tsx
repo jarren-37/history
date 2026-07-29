@@ -10,6 +10,7 @@ const LINKS: SciNavLink[] = [
   { href: "/physics/lab/gravity", label: "Gravity", icon: "🪐" },
   { href: "/physics/lab/magnetism", label: "Magnetism", icon: "🧲" },
   { href: "/physics/lab/thermal", label: "Heat", icon: "🌡️" },
+  { href: "/physics/lab/momentum", label: "Momentum", icon: "🚃" },
   { href: "/physics/games", label: "Games", icon: "🎲" },
   { href: "/physics/masterpiece", label: "Masterpiece", icon: "🏆" },
 ];

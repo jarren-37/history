@@ -57,6 +57,14 @@ export const STATIONS: Station[] = [
     tagline: "Turn up the heat and watch particles wake, race and change state.",
     xp: 45,
   },
+  {
+    id: "momentum",
+    name: "The Collision Track",
+    icon: "🚃",
+    topic: "Momentum",
+    tagline: "Crash two carts together and prove momentum is never lost.",
+    xp: 45,
+  },
 ];
 
 export function getStation(id: string): Station | undefined {

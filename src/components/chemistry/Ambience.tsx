@@ -5,5 +5,5 @@ import { SciAmbience } from "@/components/science/SciAmbience";
 
 export function Ambience() {
   const { soundOn, hydrated } = useAtelier();
-  return <SciAmbience soundOn={soundOn} hydrated={hydrated} />;
+  return <SciAmbience soundOn={soundOn} hydrated={hydrated} bed="atelier" />;
 }

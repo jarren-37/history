@@ -133,8 +133,7 @@ export function PeriodicTable() {
           xp={st.xp}
           disabled={!understood || !sel}
           onComplete={() => complete("periodic", st.xp)}
-          nextHref="/chemistry/masterpiece"
-          nextLabel="The Masterpiece →"
+          nextHref="/chemistry/lab/separation"
           hint="Explore an element and answer the question first."
         />
       </div>

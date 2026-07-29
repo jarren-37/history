@@ -141,8 +141,7 @@ export function HeatForge() {
           xp={st.xp}
           disabled={!understood || !raised}
           onComplete={() => complete("thermal", st.xp)}
-          nextHref="/physics/games"
-          nextLabel="The Games Room →"
+          nextHref="/physics/lab/momentum"
           hint="Change the temperature and answer the question first."
         />
       </div>

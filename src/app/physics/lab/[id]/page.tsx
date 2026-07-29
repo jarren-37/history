@@ -7,6 +7,7 @@ import { WaveTable } from "@/components/physics/WaveTable";
 import { Orrery } from "@/components/physics/Orrery";
 import { Magnetism } from "@/components/physics/Magnetism";
 import { HeatForge } from "@/components/physics/HeatForge";
+import { MomentumTrack } from "@/components/physics/MomentumTrack";
 
 export function generateStaticParams() {
   return STATIONS.map((s) => ({ id: s.id }));
@@ -31,6 +32,8 @@ export default function LabPage({ params }: { params: { id: string } }) {
       return <Magnetism />;
     case "thermal":
       return <HeatForge />;
+    case "momentum":
+      return <MomentumTrack />;
     default:
       notFound();
   }

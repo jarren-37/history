@@ -7,6 +7,7 @@ import { EnergyMountain } from "@/components/chemistry/EnergyMountain";
 import { Electrolysis } from "@/components/chemistry/Electrolysis";
 import { OrganicForge } from "@/components/chemistry/OrganicForge";
 import { PeriodicTable } from "@/components/chemistry/PeriodicTable";
+import { SeparationLab } from "@/components/chemistry/SeparationLab";
 
 export function generateStaticParams() {
   return STATIONS.map((s) => ({ id: s.id }));
@@ -31,6 +32,8 @@ export default function LabPage({ params }: { params: { id: string } }) {
       return <OrganicForge />;
     case "periodic":
       return <PeriodicTable />;
+    case "separation":
+      return <SeparationLab />;
     default:
       notFound();
   }

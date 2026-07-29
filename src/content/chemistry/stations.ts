@@ -58,6 +58,14 @@ export const STATIONS: Station[] = [
     tagline: "Read the great map of matter — groups, periods and the trends within.",
     xp: 45,
   },
+  {
+    id: "separation",
+    name: "The Sorting Bench",
+    icon: "🧫",
+    topic: "Separating Mixtures",
+    tagline: "Every mixture yields to the right technique — choose wisely.",
+    xp: 45,
+  },
 ];
 
 export function getStation(id: string): Station | undefined {
