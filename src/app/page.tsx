@@ -54,6 +54,79 @@ function readProgress(s: Subject): string | null {
   return null;
 }
 
+function readJSON(key: string): Record<string, unknown> {
+  try {
+    return JSON.parse(window.localStorage.getItem(key) || "{}");
+  } catch {
+    return {};
+  }
+}
+
+interface Scholar {
+  totalXp: number;
+  level: number;
+  progress: number;
+  into: number;
+  span: number;
+  title: string;
+  words: number;
+  stations: number;
+  chapters: number;
+  begun: number;
+}
+
+function scholarTitle(l: number): string {
+  if (l >= 12) return "Sage of the Athenaeum";
+  if (l >= 8) return "Polymath";
+  if (l >= 5) return "Scholar";
+  if (l >= 3) return "Junior Scholar";
+  return "Curious Visitor";
+}
+
+/** Aggregate progress across every subject into one Athenaeum-wide identity. */
+function readAthenaeum(): Scholar {
+  const en = readJSON("lexicon:v1");
+  const ch = readJSON("atelier:v1");
+  const ph = readJSON("observatory:v1");
+  const hi = readJSON("chronicle:v1");
+  const xp = (n: unknown) => (typeof n === "number" ? n : 0);
+  const len = (o: unknown) => (o && typeof o === "object" ? Object.keys(o as object).length : 0);
+  const arr = (a: unknown) => (Array.isArray(a) ? a.length : 0);
+  const totalXp = xp(en.xp) + xp(ch.xp) + xp(ph.xp);
+  const words = len(en.collection);
+  const stations = arr(ch.completed) + arr(ph.completed);
+  const chapters = Object.values((hi.progress as Record<string, { completed?: boolean }>) ?? {}).filter((p) => p?.completed).length;
+  const begun = [
+    xp(en.xp) > 0 || words > 0,
+    xp(ch.xp) > 0 || arr(ch.completed) > 0,
+    xp(ph.xp) > 0 || arr(ph.completed) > 0,
+    chapters > 0,
+  ].filter(Boolean).length;
+  const lvl = levelFromXp(totalXp);
+  return { totalXp, level: lvl.level, progress: lvl.progress, into: lvl.into, span: lvl.span, title: scholarTitle(lvl.level), words, stations, chapters, begun };
+}
+
+interface DailyPath { label: string; href: string; emoji: string; }
+const DAILY_PATHS: DailyPath[] = [
+  { label: "Uncover a new word in the Lexicon", href: "/english", emoji: "📚" },
+  { label: "Revisit your fading words", href: "/english/review", emoji: "🔮" },
+  { label: "Balance an equation in the Atelier", href: "/chemistry/games/balance", emoji: "⚖️" },
+  { label: "Brew a compound in the Atelier", href: "/chemistry/games/brew", emoji: "⚗️" },
+  { label: "Launch a satellite in the Observatory", href: "/physics/games/satellite", emoji: "🛰️" },
+  { label: "Rescue the city grid", href: "/physics/games/grid", emoji: "🏙️" },
+  { label: "Read a chapter of the Chronicle", href: "/history", emoji: "📜" },
+  { label: "Tune the wave table", href: "/physics/lab/waves", emoji: "🌊" },
+];
+
+function dailyPath(dateKey: string): DailyPath {
+  let h = 2166136261;
+  for (let i = 0; i < dateKey.length; i++) {
+    h ^= dateKey.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return DAILY_PATHS[(h >>> 0) % DAILY_PATHS.length];
+}
+
 const SUBJECTS: Subject[] = [
   {
     brand: "Chronicle",
@@ -117,6 +190,8 @@ export default function AthenaeumHub() {
   const [dark, setDark] = useState(false);
   const [hydrated, setHydrated] = useState(false);
   const [progress, setProgress] = useState<Record<string, string | null>>({});
+  const [scholar, setScholar] = useState<Scholar | null>(null);
+  const [daily, setDaily] = useState<DailyPath | null>(null);
 
   useEffect(() => {
     try {
@@ -132,6 +207,9 @@ export default function AthenaeumHub() {
     const p: Record<string, string | null> = {};
     SUBJECTS.forEach((s) => (p[s.subject] = readProgress(s)));
     setProgress(p);
+    setScholar(readAthenaeum());
+    const now = new Date();
+    setDaily(dailyPath(`${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`));
     setHydrated(true);
   }, []);
 
@@ -191,8 +269,72 @@ export default function AthenaeumHub() {
           </p>
         </motion.div>
 
+        {/* Athenaeum Scholar + Today's Path */}
+        {hydrated && (scholar?.begun || daily) && (
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+            className="mt-8 grid gap-4 sm:grid-cols-5"
+          >
+            {scholar && scholar.begun > 0 && (
+              <div className="rounded-2xl border border-[rgba(236,214,172,0.25)] bg-[rgba(30,22,10,0.5)] p-5 sm:col-span-3">
+                <div className="flex items-center gap-4">
+                  <div className="relative h-14 w-14 shrink-0">
+                    <svg viewBox="0 0 56 56" className="h-14 w-14 -rotate-90">
+                      <circle cx="28" cy="28" r="24" fill="none" stroke="rgba(255,210,140,0.18)" strokeWidth="5" />
+                      <circle cx="28" cy="28" r="24" fill="none" stroke="url(#sgrad)" strokeWidth="5" strokeLinecap="round"
+                        strokeDasharray={2 * Math.PI * 24}
+                        strokeDashoffset={2 * Math.PI * 24 * (1 - scholar.progress)} />
+                      <defs>
+                        <linearGradient id="sgrad" x1="0" y1="0" x2="1" y2="1">
+                          <stop offset="0" stopColor="#e6c15a" /><stop offset="1" stopColor="#b8892b" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    <span className="absolute inset-0 grid place-items-center font-display text-lg font-black text-[#f3dcae]">
+                      {scholar.level}
+                    </span>
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="text-[11px] font-bold uppercase tracking-widest text-[rgba(236,214,172,0.6)]">
+                      Athenaeum Scholar
+                    </div>
+                    <div className="gold-text font-display text-xl font-black">{scholar.title}</div>
+                    <div className="text-xs text-[rgba(236,214,172,0.7)]">
+                      {scholar.totalXp} XP · {scholar.begun}/4 subjects explored
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-3 flex flex-wrap gap-2 text-[11px]">
+                  <Stat n={scholar.words} label="words" />
+                  <Stat n={scholar.stations} label="stations" />
+                  <Stat n={scholar.chapters} label="chapters" />
+                </div>
+              </div>
+            )}
+            {daily && (
+              <Link
+                href={daily.href}
+                className="lift group flex flex-col justify-between rounded-2xl border border-[var(--gold)] bg-[rgba(30,22,10,0.5)] p-5 sm:col-span-2"
+              >
+                <div>
+                  <div className="text-[11px] font-bold uppercase tracking-widest text-[rgba(236,214,172,0.6)]">
+                    Today&apos;s Path
+                  </div>
+                  <div className="mt-2 flex items-start gap-3">
+                    <span className="text-3xl">{daily.emoji}</span>
+                    <span className="font-display text-lg font-extrabold text-[#f3dcae]">{daily.label}</span>
+                  </div>
+                </div>
+                <span className="mt-3 inline-block font-bold text-[var(--gold-2)]">Set out →</span>
+              </Link>
+            )}
+          </motion.div>
+        )}
+
         {/* Subject doors */}
-        <div className="mt-10 grid gap-5 sm:grid-cols-2">
+        <div className="mt-8 grid gap-5 sm:grid-cols-2">
           {SUBJECTS.map((s, i) => (
             <motion.div
               key={s.subject}
@@ -299,4 +441,12 @@ function SubjectDoor({
     );
   }
   return <div className="h-full cursor-default opacity-90">{inner}</div>;
+}
+
+function Stat({ n, label }: { n: number; label: string }) {
+  return (
+    <span className="rounded-full border border-[rgba(236,214,172,0.25)] px-2.5 py-1 font-bold text-[#f3dcae]">
+      {n} {label}
+    </span>
+  );
 }
