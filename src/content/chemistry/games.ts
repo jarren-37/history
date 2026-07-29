@@ -19,6 +19,12 @@ export const GAMES: GameMeta[] = [
     icon: "⚗️",
     tagline: "Combine the right ions to brew each compound the recipe demands.",
   },
+  {
+    slug: "detective",
+    name: "Test Tube Detective",
+    icon: "🔬",
+    tagline: "Read the reagent and the result, then name the hidden ion or gas.",
+  },
 ];
 
 export function getGame(slug: string): GameMeta | undefined {

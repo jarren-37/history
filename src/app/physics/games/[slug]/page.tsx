@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { GAMES, getGame } from "@/content/physics/games";
 import { SatelliteGame } from "@/components/physics/SatelliteGame";
 import { GridRescue } from "@/components/physics/GridRescue";
+import { BeamBalance } from "@/components/physics/BeamBalance";
 
 export function generateStaticParams() {
   return GAMES.map((g) => ({ slug: g.slug }));
@@ -19,6 +20,8 @@ export default function PhysicsGameRoute({ params }: { params: { slug: string } 
       return <SatelliteGame />;
     case "grid":
       return <GridRescue />;
+    case "beam":
+      return <BeamBalance />;
     default:
       notFound();
   }

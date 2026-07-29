@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { GAMES, getGame } from "@/content/chemistry/games";
 import { BalanceGame } from "@/components/chemistry/BalanceGame";
 import { BrewGame } from "@/components/chemistry/BrewGame";
+import { DetectiveGame } from "@/components/chemistry/DetectiveGame";
 
 export function generateStaticParams() {
   return GAMES.map((g) => ({ slug: g.slug }));
@@ -19,6 +20,8 @@ export default function ChemistryGameRoute({ params }: { params: { slug: string 
       return <BalanceGame />;
     case "brew":
       return <BrewGame />;
+    case "detective":
+      return <DetectiveGame />;
     default:
       notFound();
   }
