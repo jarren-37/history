@@ -9,6 +9,7 @@ import { resumeAudio } from "@/lib/sound";
 const LINKS = [
   { href: "/history", label: "Contents", icon: "📖" },
   { href: "/history/timeline", label: "Timeline", icon: "🕰️" },
+  { href: "/history/chronologer", label: "Chronologer", icon: "⏳" },
   { href: "/history/characters", label: "The Cast", icon: "🎭" },
   { href: "/history/map", label: "Atlas", icon: "🗺️" },
   { href: "/history/exam", label: "Exams", icon: "🪶" },
