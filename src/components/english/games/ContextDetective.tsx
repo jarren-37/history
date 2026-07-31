@@ -13,7 +13,11 @@ export function ContextDetective({ pool }: { pool: Word[] }) {
 
   const questions = useMemo(
     () => sample(pool, Math.min(8, pool.length)).map((w) => contextQuestion(w)),
-    [pool, seed]
+    // Capture the pool once per round (keyed on seed). Answering records a
+    // review, which changes the pool prop; depending on it would regenerate
+    // the questions mid-round.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [seed]
   );
 
   return (

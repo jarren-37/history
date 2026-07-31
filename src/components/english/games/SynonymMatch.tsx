@@ -26,7 +26,11 @@ export function SynonymMatch({ pool }: { pool: Word[] }) {
   const words = useMemo(
     () =>
       sample(pool, Math.min(ROUND, pool.length), (w) => w.synonyms.length === 0),
-    [pool, seed]
+    // Capture the pool once per round (keyed on seed). Matching records a
+    // review, which changes the pool prop; depending on it would reshuffle the
+    // board mid-round.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [seed]
   );
   const lefts = useMemo(() => shuffle(words), [words]);
   const rights = useMemo<RightItem[]>(

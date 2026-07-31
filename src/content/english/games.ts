@@ -44,6 +44,13 @@ export const GAMES: GameMeta[] = [
     tagline: "Reassemble the scattered words into a well-formed sentence.",
     minWords: 0,
   },
+  {
+    slug: "misfit",
+    name: "Odd One Out",
+    icon: "🧩",
+    tagline: "Three words share a meaning; one is its opposite. Spot the misfit.",
+    minWords: 5,
+  },
 ];
 
 export function getGame(slug: string): GameMeta | undefined {

@@ -19,7 +19,11 @@ export function LostLetters({ pool }: { pool: Word[] }) {
 
   const words = useMemo(
     () => sample(pool, Math.min(ROUND, pool.length)),
-    [pool, seed]
+    // Capture the pool once per round (keyed on seed). Answering records a
+    // review, which changes the pool prop; depending on it would regenerate
+    // the round mid-play.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [seed]
   );
 
   function advance(ok: boolean) {
