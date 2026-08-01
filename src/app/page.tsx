@@ -347,8 +347,58 @@ export default function AthenaeumHub() {
           ))}
         </div>
 
+        {/* The Gazette — a cross-cutting current-affairs feature */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-6"
+        >
+          <Link href="/gazette" className="lift group block">
+            <div
+              className="relative overflow-hidden rounded-3xl border-2 p-6 shadow-soft-lg sm:p-7"
+              style={{
+                background: "linear-gradient(155deg,#2a170f,#0b0a12)",
+                borderColor: "color-mix(in srgb, #e0142d 42%, transparent)",
+                color: "#f4e9dd",
+              }}
+            >
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full opacity-40 blur-3xl transition-opacity group-hover:opacity-70"
+                style={{ background: "#e0142d" }}
+              />
+              <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center">
+                <div className="text-5xl sm:text-6xl">📰</div>
+                <div className="flex-1">
+                  <div className="text-[11px] font-bold uppercase tracking-[0.25em]" style={{ color: "#ff9aa8" }}>
+                    Current Affairs
+                  </div>
+                  <h2 className="font-display text-2xl font-black sm:text-3xl">The Gazette</h2>
+                  <p className="mt-0.5 font-hand text-xl text-[#e8cfa0]">
+                    Today&apos;s world, one swipe at a time
+                  </p>
+                  <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[rgba(244,233,221,0.8)]">
+                    A vertical, swipeable feed of real headlines from newsrooms you can trust — The
+                    Straits Times, CNA, BBC and The Guardian — each linking to the full story. Stay
+                    sharp for essays, oral exams and the world beyond the syllabus.
+                  </p>
+                </div>
+                <div className="shrink-0">
+                  <span
+                    className="inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 font-display text-base font-extrabold shadow-lg transition-transform group-hover:scale-105"
+                    style={{ background: "#e0142d", color: "#fff" }}
+                  >
+                    Open the feed →
+                  </span>
+                </div>
+              </div>
+            </div>
+          </Link>
+        </motion.div>
+
         <p className="mt-10 text-center text-sm text-[rgba(236,214,172,0.6)]">
-          Four halls, four worlds — each with its own story to discover. More
+          Four halls and a newsstand — each with its own story to discover. More
           knowledge awaits within.
         </p>
       </div>
