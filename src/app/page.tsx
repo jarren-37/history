@@ -376,12 +376,12 @@ export default function AthenaeumHub() {
                   </div>
                   <h2 className="font-display text-2xl font-black sm:text-3xl">The Gazette</h2>
                   <p className="mt-0.5 font-hand text-xl text-[#e8cfa0]">
-                    Today&apos;s world, one swipe at a time
+                    Asia&apos;s headlines, one swipe at a time
                   </p>
                   <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[rgba(244,233,221,0.8)]">
-                    A vertical, swipeable feed of real headlines from newsrooms you can trust — The
-                    Straits Times, CNA, BBC and The Guardian — each linking to the full story. Stay
-                    sharp for essays, oral exams and the world beyond the syllabus.
+                    A vertical, swipeable feed of real Asia-focused headlines from newsrooms you can
+                    trust — The Straits Times, CNA, Nikkei Asia, SCMP and the BBC — each linking to the
+                    full story. Stay sharp for essays, oral exams and the region around you.
                   </p>
                 </div>
                 <div className="shrink-0">

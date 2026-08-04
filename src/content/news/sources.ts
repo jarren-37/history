@@ -1,16 +1,16 @@
 /**
- * The Gazette's trusted newsrooms.
+ * The Gazette's trusted newsrooms — tuned for an Asia-first feed.
  *
- * Every story in the feed is fetched live (server-side) from these outlets' own
- * RSS feeds and links straight back to the original article — nothing is
- * rewritten or invented. To show live news, the app's environment must be able
- * to reach these hosts; add them to your network egress allow-list if needed:
+ * Every story is fetched live (server-side) from these outlets' own RSS feeds
+ * and links straight back to the original article — nothing is rewritten or
+ * invented. To show live news, the app's environment must be able to reach
+ * these hosts; add them to your network egress allow-list if needed:
  *
  *   www.straitstimes.com, www.channelnewsasia.com, feeds.bbci.co.uk,
- *   www.theguardian.com, www.aljazeera.com
+ *   asia.nikkei.com, www.scmp.com, www.theguardian.com, www.aljazeera.com
  *
- * Feed URLs occasionally change; a feed that 404s is simply skipped, and the
- * others still load. Add, remove or reorder outlets here.
+ * Categories drive the feed's filter chips; the feed opens on "Asia". Feed URLs
+ * occasionally change; a feed that 404s is simply skipped and the rest load.
  */
 export interface FeedSource {
   key: string;
@@ -32,9 +32,8 @@ export const NEWS_SOURCES: FeedSource[] = [
     accent: "#1f6feb",
     homepage: "https://www.straitstimes.com",
     feeds: [
-      { url: "https://www.straitstimes.com/news/singapore/rss.xml", category: "Singapore" },
       { url: "https://www.straitstimes.com/news/asia/rss.xml", category: "Asia" },
-      { url: "https://www.straitstimes.com/news/world/rss.xml", category: "World" },
+      { url: "https://www.straitstimes.com/news/singapore/rss.xml", category: "Singapore" },
       { url: "https://www.straitstimes.com/news/business/rss.xml", category: "Business" },
     ],
   },
@@ -45,10 +44,26 @@ export const NEWS_SOURCES: FeedSource[] = [
     accent: "#e0142d",
     homepage: "https://www.channelnewsasia.com",
     feeds: [
-      { url: "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=10416", category: "Singapore" },
       { url: "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=6511", category: "Asia" },
-      { url: "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=6311", category: "World" },
+      { url: "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=10416", category: "Singapore" },
+      { url: "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=6936", category: "Business" },
     ],
+  },
+  {
+    key: "nikkei",
+    name: "Nikkei Asia",
+    short: "NIK",
+    accent: "#0b7d73",
+    homepage: "https://asia.nikkei.com",
+    feeds: [{ url: "https://asia.nikkei.com/rss/feed/nar", category: "Asia" }],
+  },
+  {
+    key: "scmp",
+    name: "South China Morning Post",
+    short: "SCMP",
+    accent: "#a67c00",
+    homepage: "https://www.scmp.com",
+    feeds: [{ url: "https://www.scmp.com/rss/91/feed", category: "Asia" }],
   },
   {
     key: "bbc",
@@ -65,9 +80,13 @@ export const NEWS_SOURCES: FeedSource[] = [
     key: "guardian",
     name: "The Guardian",
     short: "GDN",
-    accent: "#c70000",
+    accent: "#052962",
     homepage: "https://www.theguardian.com",
-    feeds: [{ url: "https://www.theguardian.com/world/rss", category: "World" }],
+    feeds: [
+      { url: "https://www.theguardian.com/world/asia-pacific/rss", category: "Asia" },
+      { url: "https://www.theguardian.com/world/rss", category: "World" },
+    ],
+    perFeedCap: 8,
   },
   {
     key: "aljazeera",
@@ -76,5 +95,11 @@ export const NEWS_SOURCES: FeedSource[] = [
     accent: "#fa9000",
     homepage: "https://www.aljazeera.com",
     feeds: [{ url: "https://www.aljazeera.com/xml/rss/all.xml", category: "World" }],
+    perFeedCap: 6,
   },
 ];
+
+/** Preferred order for the feed's category filter chips. */
+export const CATEGORY_ORDER = ["Asia", "Singapore", "World", "Business"];
+/** The category the feed opens on. */
+export const DEFAULT_CATEGORY = "Asia";

@@ -1,9 +1,10 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { NewsItem, NewsResponse } from "@/lib/news/types";
+import { CATEGORY_ORDER, DEFAULT_CATEGORY } from "@/content/news/sources";
 
 type Status = "loading" | "ready" | "empty" | "error";
 
@@ -25,6 +26,7 @@ export function Feed() {
   const [items, setItems] = useState<NewsItem[]>([]);
   const [sources, setSources] = useState<NewsResponse["sources"]>([]);
   const [reason, setReason] = useState("");
+  const [cat, setCat] = useState<string>(DEFAULT_CATEGORY);
   const [active, setActive] = useState(0);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLElement | null)[]>([]);
@@ -38,6 +40,9 @@ export function Feed() {
       if (data.ok && data.items?.length) {
         setItems(data.items);
         setActive(0);
+        // Open on Asia when there are Asia stories; otherwise show everything.
+        const hasDefault = data.items.some((it) => it.category === DEFAULT_CATEGORY);
+        setCat(hasDefault ? DEFAULT_CATEGORY : "All");
         setStatus("ready");
       } else {
         setReason(data.reason ?? "No live headlines right now.");
@@ -52,6 +57,19 @@ export function Feed() {
   useEffect(() => {
     load();
   }, [load]);
+
+  // Category chips present in the fetched stories, in a sensible order.
+  const categories = useMemo(() => {
+    const present = new Set(items.map((it) => it.category));
+    const ordered = CATEGORY_ORDER.filter((c) => present.has(c));
+    const extras = [...present].filter((c) => !CATEGORY_ORDER.includes(c)).sort();
+    return ["All", ...ordered, ...extras];
+  }, [items]);
+
+  const filtered = useMemo(
+    () => (cat === "All" ? items : items.filter((it) => it.category === cat)),
+    [items, cat]
+  );
 
   // Track which card is centred in the viewport.
   useEffect(() => {
@@ -69,14 +87,20 @@ export function Feed() {
     );
     cardRefs.current.forEach((el) => el && io.observe(el));
     return () => io.disconnect();
-  }, [status, items]);
+  }, [status, filtered]);
+
+  // Reset to the top when the category changes.
+  useEffect(() => {
+    setActive(0);
+    scrollerRef.current?.scrollTo({ top: 0 });
+  }, [cat]);
 
   const go = useCallback(
     (i: number) => {
-      const clamped = Math.max(0, Math.min(items.length - 1, i));
+      const clamped = Math.max(0, Math.min(filtered.length - 1, i));
       cardRefs.current[clamped]?.scrollIntoView({ behavior: "smooth" });
     },
-    [items.length]
+    [filtered.length]
   );
 
   // Keyboard navigation between stories.
@@ -98,7 +122,7 @@ export function Feed() {
   return (
     <div className="fixed inset-0 z-0 overflow-hidden bg-[#08080b] text-white">
       {/* Top bar */}
-      <div className="pointer-events-none fixed inset-x-0 top-0 z-30 bg-gradient-to-b from-black/80 via-black/40 to-transparent px-4 pb-8 pt-3 sm:px-6">
+      <div className="pointer-events-none fixed inset-x-0 top-0 z-30 bg-gradient-to-b from-black/85 via-black/45 to-transparent px-4 pb-8 pt-3 sm:px-6">
         <div className="pointer-events-auto mx-auto flex max-w-3xl items-center gap-3">
           <Link
             href="/"
@@ -110,12 +134,12 @@ export function Feed() {
           </Link>
           <div className="flex items-baseline gap-2">
             <span className="font-display text-xl font-black tracking-tight">📰 The Gazette</span>
-            <span className="hidden text-xs text-white/50 sm:inline">real news, one swipe at a time</span>
+            <span className="hidden text-xs text-white/50 sm:inline">Asia &amp; the world, one swipe at a time</span>
           </div>
           <div className="ml-auto flex items-center gap-3 text-xs font-semibold text-white/70">
             {status === "ready" && (
               <span className="tabular-nums" data-testid="gazette-counter">
-                {active + 1} / {items.length}
+                {filtered.length ? active + 1 : 0} / {filtered.length}
               </span>
             )}
             <button
@@ -128,11 +152,34 @@ export function Feed() {
             </button>
           </div>
         </div>
-        {status === "ready" && (
+
+        {/* Category chips */}
+        {status === "ready" && categories.length > 1 && (
+          <div className="pointer-events-auto mx-auto mt-2 flex max-w-3xl gap-2 overflow-x-auto pb-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]{display:none}">
+            {categories.map((c) => {
+              const on = c === cat;
+              return (
+                <button
+                  key={c}
+                  onClick={() => setCat(c)}
+                  data-testid="gazette-chip"
+                  aria-pressed={on}
+                  className={`shrink-0 rounded-full px-3.5 py-1 text-sm font-bold transition-colors ${
+                    on ? "bg-white text-black" : "border border-white/25 text-white/75 hover:text-white"
+                  }`}
+                >
+                  {c}
+                </button>
+              );
+            })}
+          </div>
+        )}
+
+        {status === "ready" && filtered.length > 0 && (
           <div className="mx-auto mt-2 h-0.5 max-w-3xl overflow-hidden rounded-full bg-white/15">
             <div
               className="h-full rounded-full bg-white/70 transition-[width] duration-300"
-              style={{ width: `${((active + 1) / items.length) * 100}%` }}
+              style={{ width: `${((active + 1) / filtered.length) * 100}%` }}
             />
           </div>
         )}
@@ -204,12 +251,27 @@ export function Feed() {
           data-testid="gazette-scroller"
           className="h-[100dvh] snap-y snap-mandatory overflow-y-scroll overscroll-contain scroll-smooth"
         >
-          {items.map((it, i) => (
-            <StoryCard key={it.id} item={it} index={i} refCb={(el) => (cardRefs.current[i] = el)} />
-          ))}
+          {filtered.length === 0 ? (
+            <div className="grid h-[100dvh] place-items-center px-6 text-center">
+              <div>
+                <div className="text-5xl">🗺️</div>
+                <p className="mt-3 text-white/70">No {cat} stories in this refresh.</p>
+                <button
+                  onClick={() => setCat("All")}
+                  className="mt-4 rounded-full bg-white px-5 py-2.5 font-display font-extrabold text-black transition-transform hover:scale-105"
+                >
+                  Show all headlines
+                </button>
+              </div>
+            </div>
+          ) : (
+            filtered.map((it, i) => (
+              <StoryCard key={it.id} item={it} index={i} refCb={(el) => (cardRefs.current[i] = el)} />
+            ))
+          )}
 
           {/* scroll hint on the first story */}
-          {active === 0 && items.length > 1 && (
+          {active === 0 && filtered.length > 1 && (
             <motion.div
               aria-hidden
               className="pointer-events-none fixed inset-x-0 bottom-6 z-30 flex justify-center"
@@ -274,7 +336,7 @@ function StoryCard({
         }}
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-3xl px-5 pb-16 pt-24 sm:px-8 sm:pb-20">
+      <div className="relative z-10 mx-auto w-full max-w-3xl px-5 pb-16 pt-28 sm:px-8 sm:pb-20">
         <div className="flex flex-wrap items-center gap-2">
           <span
             className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-black uppercase tracking-wide text-white"
