@@ -192,6 +192,7 @@ export default function AthenaeumHub() {
   const [progress, setProgress] = useState<Record<string, string | null>>({});
   const [scholar, setScholar] = useState<Scholar | null>(null);
   const [daily, setDaily] = useState<DailyPath | null>(null);
+  const [headline, setHeadline] = useState<{ title: string; source: string; accent: string } | null>(null);
 
   useEffect(() => {
     try {
@@ -211,6 +212,23 @@ export default function AthenaeumHub() {
     const now = new Date();
     setDaily(dailyPath(`${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`));
     setHydrated(true);
+  }, []);
+
+  // Pull the latest live Asia headline for the Gazette banner. If live news
+  // can't be reached, the banner simply shows no headline — never a fake one.
+  useEffect(() => {
+    let cancel = false;
+    fetch("/api/news")
+      .then((r) => r.json())
+      .then((d: { ok?: boolean; items?: { title: string; source: string; accent: string; category: string }[] }) => {
+        if (cancel || !d?.ok || !d.items?.length) return;
+        const top = d.items.find((i) => i.category === "Asia") ?? d.items[0];
+        if (top) setHeadline({ title: top.title, source: top.source, accent: top.accent });
+      })
+      .catch(() => {});
+    return () => {
+      cancel = true;
+    };
   }, []);
 
   function toggleTheme() {
@@ -383,6 +401,23 @@ export default function AthenaeumHub() {
                     trust — The Straits Times, CNA, Nikkei Asia, SCMP and the BBC — each linking to the
                     full story. Stay sharp for essays, oral exams and the region around you.
                   </p>
+                  {headline && (
+                    <div data-testid="hub-latest" className="mt-3 flex items-start gap-2 rounded-xl border border-white/10 bg-black/25 px-3 py-2">
+                      <span
+                        className="mt-0.5 shrink-0 rounded-full px-2 py-0.5 text-[10px] font-black uppercase tracking-wide text-white"
+                        style={{ background: headline.accent }}
+                      >
+                        Latest
+                      </span>
+                      <span
+                        className="text-sm font-semibold text-[#f4e9dd]"
+                        style={{ display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}
+                      >
+                        {headline.title}
+                        <span className="text-[rgba(244,233,221,0.6)]"> · {headline.source}</span>
+                      </span>
+                    </div>
+                  )}
                 </div>
                 <div className="shrink-0">
                   <span
